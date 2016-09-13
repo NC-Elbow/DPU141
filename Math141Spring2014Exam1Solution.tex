@@ -1,0 +1,343 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Exam 1 Solution Maths 141 Spring 2014 \\ DePaul University\\Dr. Alexander}
+\maketitle
+You have 90 minutes to complete this exam.  Calculators are allowed, but no other electronic devices are permitted.  Please write all your answers in complete, legible sentences, and show all your work to receive full credit.  There are seven (7) problems here.  You may choose to do any 6 of them.  
+\vspace{1in}
+
+
+%table
+\begin{center}
+  \begin{tabular}{ c | c }
+    Problem & Score\\
+    \hline
+    &\\
+    1&\\
+    &\\
+    2&\\
+    &\\
+    3&\\
+    &\\
+    4&\\
+    &\\
+    5&\\
+    &\\
+    6&\\
+    &\\
+    7&\\
+    &\\
+    Bonus&\\
+    &\\
+    \hline 
+    &\\    
+    Total& 
+ \end{tabular}
+\end{center}
+
+\newpage 
+Problem 1. Give the proper negation of the statement:
+\[
+\forall x\in\R, \exists y\in\Z \hspace{2mm} \text{such that} \hspace{2mm} y=\lfloor x^{2}e^{-x}\rfloor.
+\]
+
+Solution: We know the negation for a multiply quantified statement does the following:
+\begin{eqnarray*}
+\sim(\forall x\in D_1, \exists y\in D_2, s.t. P(x,y))\\
+\equiv \exists x\in D_1, s.t. \forall y\in D_2 \sim P(x,y)
+\end{eqnarray*}
+
+
+Thus the formal negation of the statement above is
+\[
+\exists x\in\R s.t. \forall y\in\Z, y\neq\lfloor x^2e^{-x}\rfloor
+\]
+
+In English: There is a real number $x$ so that for any integer $y$, $y$ is not equal to the floor of the quantity $x^2e^{-x}$.
+\newpage
+Problem 2.
+Prove the following statement or give a counterexample:
+\[
+\forall r\in\Q, \exists s\in\Q \hspace{2mm} \text{such that} \hspace{2mm} \sqrt{r} = s.
+\]
+
+We can refer the the bonus problem to see an entire class of counterexamples here.  Let $r$ be any prime number.  Since a prime number is an integer, it is also a rational.  By the bonus $\sqrt{p}\notin\Q$.  Thus providing a class of counterexamples.  Even more simply, any negative rational number will have a complex squareroot.  Thus $\sqrt{-|r|}\notin\Q$.  This statement is therefore false.
+
+
+\newpage
+Problem 3.
+Prove the following statement:\\
+For any integer $n$,which is not divisible by 5, $n^2\mod{5} = 1$ or $n^2\mod{5}=4$. \\
+Note: The more common way to write this is
+\[
+n^2 \equiv 1\mod{5}
+\]
+Whichever notation you choose for this problem is acceptable.\\
+
+Solution: We know by the Quotient Remainder Theorem that we can write any integer in the form $5k+r$ where $r$ is $0,1,2,3,4$.  Since $n$ is not divisible by 5, we can exclude the case $r=0$.
+
+Now 
+\[
+n^2 = (5k+r)^2 = 25k^2+10kr+r^2 = 5(5k^2+2kr)+r^2.
+\]
+Thus we see
+\[
+n^2\equiv r^2 \mod{5}.
+\]
+The squares, of course, are $1,4,9,16$.  Now we see
+\begin{eqnarray*}
+1& \equiv & 1\mod{5},\\
+4& \equiv & 4\mod{5},\\
+9& \equiv & 4\mod{5},\\
+16& \equiv & 1\mod{5}..\\
+\end{eqnarray*}
+
+
+
+
+\newpage
+Problem 4.
+Prove the following property for binomial coefficients:
+\[
+{n+1\choose r} = {n\choose r}+{n\choose r-1} 
+\]
+
+Solution: We will show this relation to be true in several ways.\\
+
+Proof 1 (direct computation).
+\begin{eqnarray*}
+{n \choose r} + {n \choose r-1}&=& \frac{n!}{(r!)(n-r)!} + \frac{n!}{(r-1)!(n-(r-1)!)}\\
+&=& \frac{(n+1-r)n!}{(n+1-r)r!(n-r)!} + \frac{r (n!)}{r(r-1)!(n+1-r)!}\\
+&=& \frac{(n+1-r)n!}{r!(n+1-r)!} + \frac{r(n!)}{r!(n+1-r)!}\\
+&=& \frac{(n+1-r)n!+ r(n!)}{r!(n+1-r)!}\\
+&=& \frac{(n+1)n!}{r!(n+1-r)!}\\
+&=& {n+1 \choose r}
+\end{eqnarray*}
+
+\vspace{1in}
+Proof 2 (Combinatorial Argument):\\
+Suppose we have an array of $n+1$ items, from which we wish to choose $r$.
+\[
+\overbrace{\underbrace{\Box\Box\Box\dots\Box\Box\Box}_\text{choose r}}^\text{n+1}
+\]
+
+Then we can either choose the first item or not.  In the first case
+\[
+\blacksquare\overbrace{\underbrace{\Box\Box\dots\Box\Box\Box}_\text{choose r-1}}^\text{n}
+\]
+In the second case
+\[
+\Box\overbrace{\underbrace{\Box\Box\dots\Box\Box\Box}_\text{choose r}}^\text{n}
+\]
+
+Thus
+\[
+{n+1\choose r} = {n\choose r}+{n\choose r-1} 
+\]
+\newpage
+
+Proof 3: (Using the Binomial Theorem and Polynomials)\\
+We know from the binomial theorem that
+\[
+(a+b)^n = \sum_{k=0}^{n}{n\choose k}a^k b^{n-k}.
+\]
+Thus 
+\[
+(1+x)^n = \sum_{r=0}^{n}{n\choose r}x^r.
+\]
+So the coefficient of $x^r$ is ${n\choose r}$.
+
+Now we know that $(1+x)^{n+1} = (1+x)(1+x)^n$ and
+\[
+x(1+x)^n = x\sum_{r=0}^{n}{n\choose r}x^r = \sum_{r=0}^{n}{n\choose r}x^{r+1}.
+\]
+Rewriting this we see
+\[
+x(1+x)^n = \sum_{r=1}^{n+1}{n\choose r-1}x^r.
+\]
+So the coefficient of $x^r$ is ${n \choose r-1}$.
+Now putting it together
+\begin{eqnarray*}
+\sum_{r=0}^{n+1}{n+1\choose r}x^r&=& (1+x)^{n+1}\\
+ &=& (1+x)(1+x)^n\\
+&=&(1+x)^n + x(1+x)^n\\ 
+&=& \sum_{r=0}^{n}{n\choose r}x^r + \sum_{r=1}^{n+1}{n\choose r-1}x^r\\
+&=& \sum_{r=0}^{n+1}\left({n\choose r}+{n\choose r-1}\right)x^r.
+\end{eqnarray*}
+Equating the coeffients of each $x^r$ we see
+\[
+{n+1\choose r} = {n\choose r}+{n\choose r-1} 
+\]
+\newpage 
+Problem 5.
+Prove the following statement:
+\[
+\sum_{j=1}^{n} j(j!) = (n+1)!-1
+\]
+
+
+Solution: We will also solve this problem by two methods.\\
+Proof 1: (By Induction)\\
+We saw this problem in our homework so it's fairly straight forward.  Let $P(n)$ be the predicate 
+\[
+\sum_{j=1}^{n} j(j!) = (n+1)!-1.
+\]
+We will prove this by induction.  First, for the base step $P(1)$
+\[
+\sum_{j=1}^{1} j(j!) = 1(1!) = 1= (1+1)!-1.
+\]
+So this checks out.  Now let move to the inductive step.\\
+Assume $P(k)$ is true for some $k$.  That is, we assume
+\[
+\sum_{j=1}^{k} j(j!) = (k+1)!-1.
+\]
+Now Consider
+\begin{eqnarray*}
+\sum_{j=1}^{k+1} j(j!) &=& \sum_{j=1}^{k} j(j!) + (k+1)(k+1)!\\
+&=& ((k+1)!-1) + (k+1)(k+1)!\\
+&=& (k+1)!(1+k+1) - 1\\
+&=& (k+2)(k+1)! - 1\\
+&=& (k+2)!-1.
+\end{eqnarray*}
+Which is in fact, $P(k+1)$ thus the inductive step has been shown and $P(n)$ is true for all $n>0$.
+\newpage
+
+Proof 2: (Telescoping series)
+Consider the following equation
+\[
+(k+1)! = (k+1)k! = k(k!) + k!
+\]
+Thus we have rearrange and find
+\[
+k(k!) = (k+1)!-k!
+\]
+
+So in our summation we have
+\[
+\sum_{j=1}^{k} j(j!)= \sum_{j=1}^{k}((k+1)!-k!). 
+\]
+Writing this out we have
+\[
+(k+1)!-k!+k!-(k-1)!+(k-1)!+\dots - 2! + 2! - 1! = (k+1)!-1
+\]
+We can see that all the ``middle terms" cancel each other and we're left only with the outermost terms.
+\newpage
+Problem 6.
+Prove the following statement:\\
+$7^n-1$ is divisible by 6 for every positive integer $n$.
+
+Solution:  Again we can solve this several ways.\\
+Proof 1: (Induction) This is a classic proof by induction. Let $P(n)$ be the predicate
+\[
+6| (7^n-1).
+\]
+We show $P(1)$ directly.
+\[
+6|6
+\]
+which is obvious since $\frac{6}{6}=1$.
+Now for the inductive step.
+Assume $P(k)$ to be true for some $k$ then
+\[
+7^{k+1}-1 = 7(7^k-1)+6.
+\]
+Then 
+\[
+6|(7^{k+1}-1) 
+\]
+since $6|6$ (this is $P(1)$) and $6|(7^k-1)$ (this is our assumtpion $P(k)$) then $6|(7^{k+1}-1)$ which is $P(k+1)$.
+\vspace{1in}
+
+Proof 2: (Appealing to a known result.)
+We can appeal to the homework and recall
+\[
+(x-y)|(x^n-y^n)
+\]
+Let $x=7,y=1$ then we achieve the desired result.
+
+\newpage
+Proof 3: (Using the binomial theorem)\\
+
+Notice $(6+1)^n = 7^n$. Then
+\[
+(6+1)^n = \sum_{k=0}^{n}{n\choose k}6^k.
+\]
+
+So we have 
+\[
+7^n = 6(\sum_{k=0}^{n-1}{n\choose k}6^{k-1})+1
+\]
+So $7^n-1 = 6q$ where $q$ is an integer.  Thus $6|7^n-1$.
+\newpage
+Problem 7.
+Verify that the sequence $c_n = 3^n +1$, with $c_0=2$ satisfies the recurrence relation
+\[
+c_{n+1} - 4 c_n + 3c_{n-1}=0
+\]
+Hint: Showing a single example is not sufficient to show this sequence satisfies the given relation.\\
+
+Solution:  This is straight forward algebra.  In order to verify something is true we just need to plug it in to whatever formula and check that it works.  In this case
+\[
+c_0 = 3^0+1 =2
+\]
+as stated.  And
+\begin{eqnarray*}
+c_{n+1}-4c_n+3c_{n-1} &=& (3^{n+1}) - 4(3^n+1)+3(3^{n-1}+1)\\
+&=& 3^{n+1} -4\cdot 3^n + 3\cdot 3^{n-1} + (1-4+3)\\
+&=& (3-4+1)\cdot 3^n +0\\
+&=& 0.
+\end{eqnarray*}
+\vspace{1in}
+
+Second Solution:\\
+We can show this to be true by induction as well.\\
+Base Step: $c_0 = 3^0+1=2$ and so the base step checks out.\\
+Inductive step:  Now assume that $c_k=3^k+1$ and $c_{k-1}=3^{k-1}+1$ for some $k$.  Then
+\begin{eqnarray*}
+c_{k+1} &=& 4c_k - 3c_{k-1}\\
+&=& 4(3^k+1) - 3(3^{k-1}+1)\\
+&=& 4\cdot 3^k - 3^k +4-3\\
+&=& 3\cdot 3^k+1\\
+&=& 3^{k+1}+1.
+\end{eqnarray*}
+
+Which is what we wished to show.
+
+\newpage
+Bonus.
+Prove that $\sqrt{p} \notin \Q$ for any prime $p$.
+\begin{proof}
+Suppose not.  Suppose that there is some prime $p$ so that $\sqrt{p}\in\Q$.  Then we can write 
+\[
+\sqrt{p}=\frac{a}{b}
+\]
+where $a,b\in\Z$ with no common factors ($\gcd(a,b)=1$) and $b\neq 0$. Then
+\[
+p = \frac{a^2}{b^2} \implies a^2 = pb^2.
+\]
+
+Because integers have unique prime factorizations (by the Fundamental Theorem of Arithmetic) this means the prime factors of $a$ must divide the factors of $pb^2$.  Certainly the factors of $a$ cannot divide $p$ since $p$ is prime, so the factors of $a$ must divide the factors of $b$.  However, we have assumed that $a,b$ have no common factors thus $a^2 \nmid pb^2$.  This contradicts our supposition, which means $a^2 \neq pb^2$ and $\sqrt{p}\notin \Q$.
+
+
+\end{proof}
+\end{document}

@@ -1,0 +1,392 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Notes on Discrete Logarithms \\ DePaul University\\Dr. Alexander}
+\maketitle
+
+
+In these notes we'll discuss one strategy for solving discrete logarithms modulo $p>3$ where $p$ is prime.
+
+\section*{Basic Algebraic and Combinatorial Notions}
+
+Let's recall Fermat's little theorem.  If $p$ is prime then
+\[
+a^p \equiv a \mod{p}
+\]
+
+Furthermore if $p\not| a$ then
+\[
+a^{p-1} \equiv 1 \mod{p}
+\]
+
+This tells us that the inverse of $a$ is $a^{p-2}$
+
+However, $p-1$ is not prime (unless $p=3$ and we can compute all of these directly) So it may be the case that $a^{n}\equiv 1 \mod{p}$ for some $n<p-1$.  For example
+
+\[
+2^3 = 8 \equiv 1 \mod{7}
+\]
+
+In this case, it is absolutely necessary that $n|(p-1)$.  So all the divisors of $p-1$ are possible integers where $a^n\equiv 1$.  This integer $n$ is called the \emph{order} of $a$.  Above we see $2$ has order $3$ and $3| (7-1)$
+
+In the case of 7 we can have elements with order $1,2,3,6$.
+
+The second idea we can see is that if $a$ has order $n$ and $b$ has order $m$ then $ab$ has order $lcm(n,m)$
+
+For example
+\[
+6^2 \equiv 36 \equiv 1 \mod{7}
+\]
+so $6$ has order $2$.  This means $12$ has order $lcm(2,3)=6$.
+
+We can see $12\equiv 5\mod{7}$ and so 5 has order 6.
+\[
+5,25\equiv 4, 20\equiv 6,30 \equiv 2, 10 \equiv 3, 15\equiv 1
+\]
+
+In other words
+\[
+5^6 \equiv 1 \mod{7}
+\]
+But no other integer smaller than 6 brings $5^n \equiv 1$.
+
+
+To check the order of an (nonzero) element we simply check all the powers of divisors of $p-1$.  Finding these powers is easy by repeated squaring.  Let's look for a moment at $p=127$. This means $p-1 = 126 = 2\cdot 3^2 \cdot 7$ which means we'll need to check all the possible orders
+\[
+a^n \equiv 1 \mod{127} \iff n \in \{1,2,3,6,7,9,14,18,21,42,63,126\}
+\]
+
+Let's look at $5$ quickly.
+\[
+5^1 \equiv 5, 5^2 \equiv 25, 5^4 \equiv 25^2 \equiv 625 \equiv 117, 5^8 \equiv 117^2 \equiv (-10)^2 \equiv 100
+\]
+
+\[
+5^{16} \equiv 100^2 \equiv 94, 5^{32} \equiv 94^2 \equiv 73, 5^{64} \equiv 73^2 \equiv 122 \equiv -5
+\]
+
+So if we wish to compute any power of $5$ we simply convert to binary and use the powers of $5$ already computed.
+
+\[
+5^{100} = 5^{64+32+4} \equiv 122\cdot 73 \cdot 117 \equiv 94
+\]
+
+Now we check the order of $5$ by simply checking the divisors of $p-1$.  In this case
+\[
+5^{63} \equiv -1 \mod{127}
+\]
+
+
+
+Now when we compute discrete logarithms, prime factorization can become a little funny, since we longer have a unique factorization of all number when considering wrapping around a modulus.  For example
+
+\[
+5^3 \equiv 125 \equiv -2 \mod{127}
+\]
+
+This means
+
+\[
+5^6 \equiv (-2)^2 \equiv 4 \mod{127}
+\]
+
+When we take logarithms we take advantage of this situation.
+
+\[
+6\log_{b}(5) \equiv 2\log_{b}(2) \mod{126} 
+\]
+
+Also notice that we consider wrapping around 126 instead of 127.  we do this since Fermat's little theorem tells us that the exponents repeat every $p-1$ steps.  Logarithms are telling us about exponents, and so we lower the modulus by one.
+
+
+Our general strategies are two fold in solving a problem of the form 
+\[
+a^n \equiv b \mod{p}
+\]
+
+The first strategy is computing a few powers of $a$ and giving the prime factors of those, then taking logarithms and reducing to easier problems.  The second strategy is to do this with $b$.  If this problem is solvable, then eventually a pair of logarithms will line up.  What do we mean by this?
+
+
+That is
+\[
+a^k \equiv p_1^{n_1}\cdots p_m^{n_m} \mod{p}
+\]
+
+Then 
+\[
+k \equiv n_1 \log_a(p_1) + \cdots + n_m \log_a(p_m)
+\]
+
+Maybe by chance we can solve some of these smaller $\log_a(p_j)$.
+
+If we know these values say
+\[
+q_j \equiv \log_a(p_j) \mod{p-1}
+\]
+
+Then our solution is easy
+\[
+n \equiv n\cdot k \cdot [k]^{-1} \equiv n\cdot [k]^{-1} (\sum n_j q_j) \mod{p-1}
+\]
+
+Let's go to the examples:
+
+
+
+
+
+
+
+
+\section*{Examples}
+
+The first example we want to consider is solving equations of the form 
+\[
+11^x \equiv n \mod{31}
+\]
+
+We see that $31-1=30$ which has prime factors $30 = 2\cdot 3\cdot 5$.  This means the order of any element must be
+\[
+a^n \equiv 1 \mod{31} \iff n\in \{1,2,3,5,6,10,15,30\}
+\]
+
+Let's actually check 11 directly.
+
+\[
+11^2\equiv -3 \equiv 28 \not\equiv 1 \mod{31}
+\]
+
+\[
+11^3\equiv -2 \equiv 29 \not\equiv 1 \mod{31}
+\]
+
+\[
+11^5\equiv 11^2 11^3 \equiv 6 \not\equiv 1 \mod{31}
+\]
+
+\[
+11^6\equiv (11^3)^2 \equiv 4 \not\equiv 1 \mod{31}
+\]
+
+\[
+11^{10}\equiv (11^5)^2 \equiv 5 \not\equiv 1 \mod{31}
+\]
+
+\[
+11^{15} \equiv -1  \not\equiv 1 \mod{31}
+\]
+
+So the order of $11$ must be $30$.
+
+The actual series (in general, we would never do this) is
+\[
+11,28,29,9,6,4,13,19,23,5,24,16,21,14,30,20,3,2,22,25,27,18,12,8,26,7,15,10,17,1
+\]
+
+
+Another way we can look at this is using the number of smaller absolute value modulo 31
+
+\[
+11,-3,-2,9,6,4,13,-12,-8,5,-7,-15,-10,14,-1,-11,3,2,-9,-6,-4,-13,12,8,-5,7,15,10,-14,1
+\]
+
+The generally faster way to compute $a^n \mod{p}$ is to convert $n$ to binary.  It is very easy to compute
+\[
+a^{2^k} = (a^2)^k
+\]
+So in the case of $11 \mod{31}$
+\[
+11^2 \equiv -3, 11^4 \equiv (-3)^2 \equiv 9, 11^8 \equiv 9^2 \equiv 19, 11^{16}\equiv 19^2 \equiv 20
+\]
+
+So for example let's compute $11^{13}$  We break $13$ into its binary component $13 = 8 + 4 +1$ thus
+\[
+11^{13} \equiv 11^8 11^4 11 \equiv 19\cdot 9 \cdot 11 \equiv 21 \mod{31}
+\]
+
+So let's try to compute $x$ where
+\[
+11^x \equiv 3 \mod{31}
+\]
+
+The first easy solution is that $11^2 \equiv -3 \mod{31}$ and $11^{15}\equiv -1 \mod{31}$
+So
+
+\[
+11^17 \equiv 11^{15} 11^2 \equiv (-1)\cdot(-3) \equiv 3 \mod{31}
+\]
+
+In this case
+\[
+x \equiv 17 \mod{30}
+\]
+
+The second solution:  Let's look at the right side of the equivalence.
+\[
+3^7 \equiv 3^{4+2+1} \equiv 17 \mod{31}
+\]
+
+Now taking $\log_{11}$ on both sides
+\[
+7 \log_{11}(3) \equiv \log_{11}(17) \mod{30}
+\]
+
+We know, however, that $11\cdot 17 \equiv 1  \mod{31}$
+
+By Fermat's little theorem we know
+\[
+11^{30} \equiv 11 \cdot 11^{29} \mod{31}
+\]
+
+Which tells us $11^{29}$ is inverse to $11$ or
+\[
+11^{29}\equiv 17 \mod{31} \implies \log_{11}(17) \equiv 29 \mod{30}
+\]
+
+Putting this together we have
+
+\[
+7\log_{11}(3) \equiv \log_{11}(17) \equiv 29 \mod{30}
+\]
+
+We need to find the inverse of 7 $\mod{30}$ which in our case is 13 since $7\cdot 13 = 91 = 3(30)+1$
+
+So multiplying both sides by 13 we get
+\[
+13\cdot 7 \cdot \log_{11}(3) \equiv 13\cdot 29 \equiv 13\cdot (-1) \equiv -13 \equiv 17 \mod{30}
+\]
+
+\[
+\log_{11}(3) \equiv 17 \mod{30}
+\]
+
+
+\newpage
+
+The second set of examples:
+
+Let's try to solve 
+\[
+5^x \equiv 9  \mod{61}
+\]
+
+First of all, we must check that this is possible.  The divisors of $61-1$ are $1,2,3,4,5,6,10,12,15,20,30,60$
+
+\[
+5^2 \equiv 25, 5^4 \equiv 25^2 \equiv 15, 5^8 \equiv 15^2 \equiv 42, 5^{16} \equiv 42^2 \equiv 56, 5^{32} \equiv 56^2 \equiv 25
+\]
+
+
+We know the powers $5^{2^k}$ so we can now check the divisors of $60$
+\[
+5^2 \equiv 25, 5^3\equiv 3, 5^5 \equiv 75, 5^6 \equiv 9, 5^{10} \equiv 74, 5^{12} \equiv 20, 5^{15}\equiv 60 \equiv -1 , 5^{20} \equiv 47, 5^{30} \equiv 1 
+\]
+
+This tells us that the order of $5$ is $30$ and we may not be able to solve the equation.  Luckily for us, we see
+\[
+5^6 \equiv 9
+\]
+
+So this has solution
+\[
+x \equiv 6 \mod{60}
+\]
+And since 5 has order 30 we know even that
+\[
+x\equiv 6 \mod{30}
+\]
+
+
+Let's see if we can solve
+\[
+5^x \equiv 31 \mod{61}
+\]
+
+
+In this case, we'll use all the tricks we can.
+\[
+31 \equiv -30 \equiv -2\cdot 3\cdot 5 \mod{61}
+\]
+
+We also know
+\[
+5^{15} \equiv -1 \mod{61}  \implies 5^{x+15} \equiv -5^x \mod{61}
+\]
+
+So we can solve
+\[
+5^y \equiv 2\cdot 3\cdot 5 \mod{61}
+\]
+
+Where $y=x+15$
+Now we can remove one power of 5 from each side
+\[
+5^{y-1} \equiv 6 \mod{61}
+\]
+
+We also know from checking the order of 5 that
+\[
+5^3 \equiv 3 \mod{61}
+\]
+
+So we're reduced to solving
+\[
+5^{x+11} \equiv 5^{y-4} \equiv 2 \mod{61} 
+\]
+
+Since we know many things of the sequence generated by 5 let's look at the right side of the equation.
+\[
+2^6 \equiv 3 \mod{61}
+\]
+
+That is
+\[
+2^6 \equiv 5^3 \mod{61} \implies 6 \log_{5}(2) \equiv 3 \mod{60}
+\]
+
+We can cancel a 3 and we get
+\[
+2\log_{5}(2) \equiv 1 \mod{60}
+\]
+
+So it appears 
+\[
+\log_{5}(2) \equiv 31 \mod{60}
+\]
+
+However we know that $5^{30} \equiv 1$ so $5^{31}\equiv 5 \not\equiv 2$
+
+This equation is not solvable.
+
+If it were we would have
+\[
+5^x \equiv 31 \mod{61} \implies 5^{x+11} \equiv 2 \mod{61} \implies x+11 \equiv 31 \mod{60} \implies x\equiv 20 \mod{60}
+\]
+
+And we can check directly
+\[
+5^{20} \equiv 5^{16+4} \equiv 56\cdot 15 \equiv 47 \not\equiv 2 \mod{61}
+\]
+
+
+\end{document}

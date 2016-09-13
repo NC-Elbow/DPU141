@@ -1,0 +1,326 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Exam 2 Solutions Maths 141 Spring 2014 \\ DePaul University\\Dr. Alexander}
+\maketitle
+You have 90 minutes to complete this exam.  Calculators are allowed, but no other electronic devices are permitted.  Please write all your answers in complete, legible sentences, and show all your work to receive full credit.  There are seven (7) problems here.  You may choose to do any six (6) of them.  
+\vspace{1in}
+%table
+\begin{center}
+  \begin{tabular}{ c | c }
+    Problem & Score\\
+    \hline
+    &\\
+    1&\\
+    &\\
+    2&\\
+    &\\
+    3&\\
+    &\\
+    4&\\
+    &\\
+    5&\\
+    &\\
+    6&\\
+    &\\
+    7&\\
+    &\\
+    Bonus&\\
+    &\\
+    \hline 
+    &\\    
+    Total& 
+ \end{tabular}
+\end{center}
+
+\newpage 
+Problem 1. Let $A_i = \{i,i^2\}$ for each $i=1,2,3,4$.  Note that these are sets of two elements except when $i=1$. Compute the following:\\
+a. $A_1\cup A_2\cup A_3\cup A_4$\\
+b. $A_1\cap A_2\cap A_3\cap A_4$\\
+c. Are $A_1,A_2,A_3,A_4$ mutually disjoint?\\
+
+Solution:  First, we'll write out all the sets explicitly
+\[
+A_1 = \{1\}, A_2 = \{2,4\},A_3 = \{3,9\}, A_4 = \{4,16\}
+\]
+
+a.Then the union is 
+\[
+A_1\cup A_2\cup A_3\cup A_4 = \{1,2,3,4,9,16\}
+\]
+
+b. There is no element in all four sets thus
+\[
+A_1\cap A_2\cap A_3\cap A_4 = \emptyset
+\]
+
+c. While the full intersection of all sets if empty, these sets are not mutually disjoint because
+\[
+A_2\cap A_4 = \{2\} \neq \emptyset
+\]
+
+\newpage
+Problem 2.
+Prove the following statement or give a counterexample: For all sets $A,B,C$,
+\[
+\text{If } B\cap C \subset A, \text{ then } (C-A)\cap (B-A) = \emptyset
+\]
+
+Solution: Let's recall that 
+\[
+C-A = C\cap A^c
+\]
+Thus
+\[
+(C-A)\cap (B-A) = (C\cap A^c)\cap (B\cap A^c) = C\cap B\cap A^c
+\]
+
+Since $B\cap C \subset A$ and $A\cap A^c = \emptyset$ this means that no subset of $A$ will have any intersection with $A^c$. Thus $(C\cap B)\cap A^c = \emptyset$.
+
+\newpage
+Problem 3. Define the \emph{symmetric difference} of two sets $A,B$ by the symbol $\Delta$.  
+\[
+A\Delta B = (A-B)\cup (B-A).
+\]
+Prove the following statement;
+\[
+\text{If } A\Delta C = B\Delta C, \text{ then } A=B.
+\]
+
+Solution:  We begin by stating that Symmetric difference means that an element is in exactly \emph{one} of the sets listed.  That is, if $x\in A\Delta C$ then $x\in A$ or $x\in C$, but not both.  Another way of saying this is
+\[
+A\Delta C = (A\cup C) - (A\cap C).
+\]
+
+So we begin with the assumption that $A\Delta C = B\Delta C$.  From the lefthand side, if $x\in A\Delta C$ then we have two possibilities.  First $x\in A$, but not in $C$.  Second $x\in C$, but not in $A$.  Let's consider the first situation.  Our hypotheses are these
+\begin{enumerate}
+\item $A\Delta C = B\Delta C$\\
+\item $x\in A$\\
+\item $x\notin C$
+\end{enumerate}
+
+Thus by hypothesis (1) we deduce that $x\in B\Delta C$.  From hypothesis (3) we deduce $x\notin C$ which means, by definition of symmetric difference $x\in B$.  Thus we have shown $x\in A \implies x\in B$ and so $A\subset B$.\\
+
+Now consider the second situation
+\begin{enumerate}
+\item $A\Delta C = B\Delta C$\\
+\item $x\notin A$\\
+\item $x\in C$
+\end{enumerate}
+Similar reasoning from above will show; if $x\notin A$ then $x\notin B$.  This is the contrapositive of $x\in B \implies x\in A$ thus $B\subset A$.  Since we have shown mutual inclusion, we conclude $A=B$.
+
+\newpage
+Problem 4.
+Given a set $S$ and a subset $A\subset S$ define the function $\chi_A : S\rightarrow \Z$ (the characteristic function) by 
+\[
+\chi_A (u) = \left\{ \begin{array}{cc}
+1 & u\in A \\ 0 & u\notin A
+\end{array}\right.
+\]
+
+Prove the following properties of $\chi$.\\
+a. $\chi_{A\cap B}(u) = \chi_{A}(u)\cdot \chi_{B}(u)$\\
+b. $\chi_{A\cup B}(u) = \chi_A(u)+\chi_B(u)-\chi_{A}(u)\cdot \chi_{B}(u)$
+
+\vspace{1in}
+
+Hint: This problem looks strange because we have introduced now notation, but in truth it is a completely straight forward problem.  Do not be intimidated by looks.  You already know how to do this problem.\\
+
+
+Solution:\\
+a.  Let look at all elements $u\in A\cap B$  Since $u\in A\cap B$ we have
+\[
+\chi_{A\cap B}(u)=1.
+\]
+Since $u\in A$ and $u\in B$ we have
+\[
+\chi_A(u)=1, \chi_B(u)=1.
+\]
+Therefore 
+\[
+\chi_{A\cap B}(u) = \chi_A(u)\cdot \chi_B(u)
+\]
+If $u\notin A\cap B$ then 
+\[
+\chi_A(u) \neq \chi_B(u) \text{ thus } \chi_A(u)\cdot \chi_B(u) = 0.
+\]
+
+b. We have already established
+\[
+\chi_{A\cap B}(u) = \chi_A(u)\cdot \chi_B(u)
+\]
+And thus we need only to establish
+\[
+\chi_{A\cup B}(u) = \chi_A(u)+ \chi_B(u) - \chi_{A\cap B}(u)
+\]
+We have three possibilities for $u\in A\cup B$.  First $u\in A-B$.
+This means
+\[
+\chi_A(u)+ \chi_B(u) - \chi_{A\cap B}(u) = 1+ 0 - 0 = 1 = \chi_{A\cup B}(u)
+\]
+Second $u \in B-A$.
+This means
+\[
+\chi_A(u)+ \chi_B(u) - \chi_{A\cap B}(u) = 0 + 1 - 0 = 1 = \chi_{A\cup B}(u)
+\]
+Third $u\in A\cap B$. This means
+\[
+\chi_A(u)+ \chi_B(u) - \chi_{A\cap B}(u) = 1+ 1 - 1 = 1 = \chi_{A\cup B}(u)
+\]
+In every case the two sides are equal.
+
+\newpage 
+Problem 5. Let $X$ be a nonempty set.  Let $\mathcal{P}(X)$ be the power set of $X$.  Define a relation $\bowtie$ ``not equal" on $\mathcal{P}(X)$ by
+\[
+A \bowtie B \Longleftrightarrow A \neq B
+\]
+
+a. Is this relation reflexive?\\
+b. Is this relation symmetric?\\
+c. Is this relation transitive?\\
+
+
+Solution:\\
+a. This relation is not reflexive since $A=A$ is a tautology.\\
+b. This relation is symmetric since if $A\neq B$ then $B\neq A$.\\
+c. This relation is not transitive.  Here is a counterexample:\\
+Let $A=\{2\}, B=\{3\}, C= \{2\}$ then
+
+\[
+(A \bowtie B) \wedge (B \bowtie C), \text{ but } (A \not\bowtie C).
+\]
+
+\newpage
+Problem 6. Define the relation $D$ on $\Z$ as follows
+\[
+m D n \Longleftrightarrow 4 | (m^2-n^2)
+\]
+a. Show that this is an equivalence relation.\\
+b. Describe all the equivalance classes of this relation.\\
+
+
+Solution: In order to show this to be an equivalence relation, we must show $D$ to be reflexive, symmetric, and transitive.
+\begin{enumerate}
+\item[(Reflexivity)] We know $4|0$ since $\frac{0}{4}\in\Z$.  So $4|(m^2-m^2)$ for any integer $m$ thus $mDm$ and the relation $(D)$ is reflexive.\\
+\item[(Symmetry)] We know if $4|k$ then $4|(-k)$.  Since $m^2-n^2 = -(n^2-m^2)$ we have $4|(m^2-n^2) \Longleftrightarrow 4|(n^2-m^2)$.  Thus if $mDn$ then $nDm$ and the relation $(D)$ is symmetric.\\
+\item[(Transitivity)] We know that if $4|a$ and $4|b$ then $4|(a+b)$.  Therefore if $mDn$ (i.e. $4|(m^2-n^2)$) and $nDk$ (i.e. $4|(n^2-k^2)$) then
+\[
+4| (m^2-n^2)+(n^2-k^2) \Longleftrightarrow 4|(m^2-k^2).
+\]
+Thus if $mDn$ and $nDk$ then $mDk$ and the relation $(D)$ is transitive.
+\end{enumerate}
+Thus $(D)$ is an equivalence relation on $\Z$.\\
+
+b. The equivalence classes of this relation, surprisingly (or not surprisingly, depending on one's outlook) are simply even and odd integers.  To show this, consider
+\[
+(2k)^2 \equiv 0 \mod{4}, \text{ and } (2k+1)^2 \equiv 1 \mod{4}
+\]
+So subtracting any two even squares we get
+\[
+4|((2n)^2-(2k)^2) \implies (2n)D(2k) \forall n,k
+\]
+So the even integers are one equivalence class.  On the other hand 
+\[
+4|((2m+1)^2-(2\ell+1)^2) \implies (2m+1)D(2\ell+1) \forall m,\ell
+\]
+And so the odd integers form the other euivalence class.
+
+
+
+
+\newpage
+Problem 7. Let $X$ be a nonempty set and $\mathcal{P}(X)$ be the power set of $X$.  Define the following relation on $\mathcal{P}(X)$:
+\[
+U R V \Longleftrightarrow N(U) = N(V)
+\]
+(i.e. The number of elements in each set in the same)
+
+
+a. Show that this is an equivalence relation.\\
+
+
+b. How many equivalence classes are there for this relation?\\
+
+Solution: Showing this is an equivalence relation is slightly easier.  We're only counting the number of elements in a set.  Clearly $N(U)=N(U)$ and so the relation is reflexive.  IF $N(U)=N(V)$ then $N(V)=N(U)$ and so the relation is symmetric.  If $N(U)=N(V)$ and $N(V)=N(W)$ then $N(U)=N(W)$ because the number of elements in every set is equal.  Therefore the relation is reflexive, symmetric, and transitive, thus an equivalence relation.\\
+
+For part (b) the number of equivalence classes depends entirely on $N(X)$.  Since the biggest subset of $X$ is itself no element of the power set of $X$ will have more than $N(X)$ elements.  Since the equivalence relation is determined by number of elements in the set, we will have $N(X)+1$ equivalence classes.
+They are; sets with no elements (i.e. the empty set), sets with 1 element, sets with 2 elements, $\dots$, sets with $N(X)$ elements.
+
+
+
+\newpage
+Bonus. Let $P,Q$ be predicates in $n$ variables.  Define the relation $R$ on the set of all predicates in $n$ variables as follows
+\[
+P(x_1,\dots, x_n) \equiv Q(x_1,\dots, x_n) \Longleftrightarrow \text{$P$ and $Q$ have the same truth tables.}
+\]
+
+a. Show this is an equivalence relation\\
+b. How many equivalence classes in this relation?\\
+c. Prove your statement in part (b) by induction.\\
+
+Solution: Part (a) was shown in a previous homework, although only with three statement variables rather than $n$.\\
+Part (b) is slightly trickier.  For each variable we have 2 possibilities (T/F) and so we need to consider (by the multiplication rule) $2^n$ possible statement variable combinations.  Since we have $2^n$ statement combinations (inputs) we have $2^n$ outputs, but each output can be again (T/F) and so we have $2^{2^n}$ possible equivalence classes.\\
+
+Part (c).  The claim is that with $n$ statement variables we have $2^{2^n}$ possible truth table equivalence classes.  In the base case we have one variable.  There are 4 possible truth tables as follow:
+\[
+\begin{array}{c|c|c|c|c}
+p & \mathcal{T} & \mathcal{C} & p & \sim p\\
+\hline
+T& T & F & T & F\\
+F & T & F & F & T
+\end{array}
+\]
+In this case $\mathcal{T}$ is a tautology, and $\mathcal{C}$ is a contradiction.\\
+
+For the inductive case.  Assume with $k$ statement variables we have $2^{2^k}$ possible truth table equivalences.  By adding and additional variable we will have $2*2^k$ possible inputs.  These are designated as such: We have $2^k$ inputs with the $k+1^{st}$ variable as ``true" and $2^k$ input variables with the $k+1^{st}$ variable as ``false." Therefore we have $2*2^k = 2^{k+1}$ input variables.  The calculation for the amount of possible truth table equivalence classes is the same.  For each input we have two choices (T/F) and so we have a total of $2^{2^{k+1}}$ truth table equivalence classes.  \\
+
+
+\begin{rem}
+An aside is that with two variables we have $2^{2^2}=16$ possible truth tables.  These 16 classes are the classical binary gates in computing (AND, OR, XOR, NAND, IF-THEN, tautology, contradiction, NOR, XNOR, (N)IF-THEN, NOT(A), NOT(B), THEN-IF, (N)THEN-IF,(A),(B)) See the next page for the full set of 16.  I won't bother writing out the full 256 for three variables.
+\end{rem}
+
+
+\newpage
+The 16 classical logic gates\\
+
+\begin{array}{c|c|c|c|c|c|c|c|c|c}
+A & B & $\mathcal{T}$ & OR & $A \leftarrow B$ & $A \rightarrow B$ & NAND & A & B & XOR\\
+\hline
+T & T & T & T & T & T & F & T & T & F\\
+T & F & T & T & T & F & T & T & F & T\\
+F & T & T & T & F & T & T & F & T & T\\
+F & F & T & F & T & T & T & F & F & F
+\end{array}
+
+\vspace{1in}
+
+\begin{array}{c|c|c|c|c|c|c|c|c|c}
+A & B & XNOR & $\sim B$ & $\sim A$ & AND & $A \not\rightarrow B$ & $A\not\leftarrow B$ & NOR & $\mathcal{C}$\\
+\hline
+T & T & T & F & F & T & F & F & F & F\\
+T & F & F & T & F & F & T & F & F & F\\
+F & T & F & F & T & F & F & T & F & F\\
+F & F & T & T & T & F & F & F & T & F
+\end{array}
+
+\end{document}

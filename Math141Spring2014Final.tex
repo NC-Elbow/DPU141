@@ -1,0 +1,152 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Final Exam Maths 141 Spring 2014 \\ DePaul University\\Dr. Alexander}
+\maketitle
+You have two hours to complete this exam.  Calculators are allowed, but no other electronic devices are permitted.  Please write all your answers in complete, legible sentences, and show all your work to receive full credit.  There are eleven (11) problems here.  You may choose to do any ten (10) of them.  
+\vspace{1in}
+%table
+\begin{center}
+  \begin{tabular}{ c | c }
+    Problem & Score\\
+    \hline
+    &\\
+    1&\\
+    &\\
+    2&\\
+    &\\
+    3&\\
+    &\\
+    4&\\
+    &\\
+    5&\\
+    &\\
+    6&\\
+    &\\
+    7&\\
+    &\\
+    8&\\
+    &\\
+    9&\\
+    &\\
+    10&\\
+    &\\
+    11&\\
+    &\\
+    Bonus&\\
+    &\\
+    \hline 
+    &\\    
+    Total& 
+ \end{tabular}
+\end{center}
+
+
+
+\newpage
+Problem 1. Give the proper negation of the following statement:
+\[
+\forall z\in\C, \exists x\in\R \text{ such that } x = |z|.  
+\]
+
+
+\newpage
+Problem 2. Prove the following by mathematical induction:
+\[
+n^2 < 2^n, \text{ for every } n>4.
+\]
+
+
+\newpage
+Problem 3. Prove the following by mathematical induction:
+\[
+\sqrt{n} < \frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \dots + \frac{1}{\sqrt{n}}, \text{ for every } n\geq 2 
+\]
+
+
+\newpage
+Problem 4. Use strong induction to prove the following:\\
+Let $d_1,d_2,\dots$ be a sequence defined by
+\[
+d_k = d_{k-1}\cdot d_{k-2}, \text{ with } d_1 = \frac{9}{10}, d_2 = \frac{10}{11}
+\]
+Show that $0< d_k \leq 1$.
+
+
+\newpage
+Problem 5. Prove the following statement or give a counterexample:
+\[
+\text{For all sets } A,B, (A\cap B)^c = A^c \cup B^c.
+\]
+
+
+\newpage
+Problem 6. Prove the following or give a counterexample:
+\[
+\text{For all sets } A,B, \text{ if } A^c \subseteq B, \text{then } A\cup B = U.
+\]
+
+
+\newpage
+Problem 7. Let $A= \Z^+ \times \Z^+$.  Define a relation $R$ on $A$ as follows:
+\[
+(a,b) R (c,d) \iff a+d = c+b.
+\]
+a. Prove this is an equivalence relation.\\
+b. Describe the equivalence classes of $R$.
+
+
+\newpage
+Problem 8. Let $R$ and $S$ be two separate equivalence relations on some set $A$.\\
+a. Is $R\cap S$ an equivalence relation?\\
+b. Is $R\cup S$ an equivalence relation?
+
+
+\newpage
+Problem 9. Prove the following statement:
+\[
+2+4+6+\dots + 2n \text{ is } \Theta(n^2)
+\]
+
+
+\newpage
+Problem 10. Prove (via any method you choose, mathematical induction or otherwise) the following statement:
+\[
+7x^2 + x\log(x) \text{ is } \Theta(x^2)
+\]
+
+
+\newpage
+Problem 11. Write a simple algorithm to compute the form of a number $n$ in a different base than 10.  For example, we can write 14 is base 10 as 1110 in binary and 112 in base 3, 32 in base 4, 24 in base 5, 20 in base 7, etc.\\
+
+Hint: First think about how to convert a number to binary (like we did in the homework) then think about what needs to change to convert to a different base.
+
+
+\newpage
+Bonus: Suppose we know that a data set has a normal distribution.  For example, suppose we have a set of 1000 test scores where the mean is 80 and the standard deviation is 5 points.  This means roughly two thirds of score are between 75 and 85, 95\% are between 70 and 90, and essentially everyone is between 65 and 95. Another example is to think of a random selection of many people of one gender in which we wish to sort by height.\\
+
+Write a special algorithm to sort this data.  How fast is this algorithm?  Can you make it faster than $O(n\log(n))?$
+
+
+\end{document}
+
