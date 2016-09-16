@@ -1,0 +1,153 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{svg}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Homework 6 Maths 141 Spring 2014}
+\maketitle 
+
+
+8.3.30:  Define the relation $Q$ on the set $\R\times\R$ as follows:\\
+For all $(w,x),(y,z)\in\mathbb{R}\times\mathbb{R}$:
+
+\[
+(w,x) Q (y,z) \Longleftrightarrow x=z
+\]
+
+Prove that this is an equivalence relation and describe the equivalence classes.\\
+
+Solution:  First we check reflexivity:\\
+\[
+(w,x)Q(w,x) 
+\]
+since $x=x$. Therefore $Q$ is reflexive.\\
+Next we check symmetry.
+\[
+(w,x)Q(y,z) \implies (y,z)Q(w,x)
+\]
+If $(w,x)Q(y,z)$ then $x=z$ thus $z=x$ and so $(y,z)Q(w,x)$ and $Q$ is symmetric.\\
+Finally, we check transitivity.
+\[
+(w,x)Q(y,z) \text{ and } (y,z) Q (r,s) 
+\]
+This means $x=z$ and $z=s$.  Since equality is transitive $x=s$ and $(w,x)Q(r,s)$ and thus $Q$ is transitive.  Since $Q$ is refelexive, symmetric, and transitive, it is an equivalence relation.\\
+
+As far as the classes are concerned, the set $\R\times\R$ is the Cartesian plane.  When considering only the second coordinate, we are saying (at least by our common pedagogy) that the vertical component is held constant, and that makes the equivalence classes horizontal lines in the plane.
+
+
+
+
+
+\newpage
+
+8.3.43: Define the operations $(+)$ and $(\cdot)$ on $\Z\times\Z$ as follows:
+\[
+[(a,b)]+[(c,d)] = [(ad+bc,bd)]
+\] 
+and
+\[
+[(a,b)]\cdot[(c,d)] = [(ac,bd)]
+\]
+
+a. Prove that ``addition" is well defined.\\
+
+What we need to show here is that if $[(a,b)]=[(a',b')]$ and $[(c,d)]=[(c',d')]$ then
+\[
+[(a,b)]+[(c,d)] = [(a',b')]+[(c',d')]
+\]
+
+The main point here is that we really should think of these pairs of integers as fractions.  For example
+\[
+[(a,b)] = \frac{a}{b} \implies \frac{a}{b}+\frac{c}{d} = \frac{ad+bc}{bd}
+\]
+
+So we're checking that representing a fraction by two different number means that addition still makes sense.  This, however is easy.
+\begin{eqnarray*}
+[(ad+bc,bd)] &=& [(a,b)]+[(c,d)]\\
+& = & [(a',b')]+[(c,d)]\\
+& = & [(a',b')]+[(c',d')]\\
+&=& [(a'd'+b'c',b'd')]
+\end{eqnarray*}
+
+
+This should make sense to us if we think of
+
+\[
+\frac{1}{2} + \frac{4}{5} = \frac{2}{4} + \frac{12}{15}.
+\]
+
+
+b. Show that ``multiplication" is well defined.  This is exactly the same exercise with a different operation\dots
+
+\begin{eqnarray*}
+[(ac,bd)] &=& [(a,b)]\cdot[(c,d)]\\
+& = & [(a',b')]\cdot[(c,d)]\\
+& = & [(a',b')]\cdot[(c',d')]\\
+&=& [(a'c',b'd')]
+\end{eqnarray*}
+
+\newpage
+
+11.1.7: Plot the function
+\[
+f(x) = \lceil x \rceil - \lfloor x  \rfloor
+\]
+
+Since $\lceil x \rceil = \lfloor x\rfloor$ only when $x$ is an integer and otherwise they differ by one this function is more properly written as
+\[
+f(x) = \left\{ \begin{array}{cc} 1 & x\notin \Z \\ 0 & x\in\Z \end{array}\right.
+\]
+ This is a straight horizontal line $y=1$ with holes at every integer.
+
+\newpage
+
+11.1.8: Plot the function $f(x) = \lfloor x^{1/2} \rfloor$.
+
+\vspace{1in}
+
+\includegraphics[scale=0.85]{floorsqrt}
+
+\newpage
+
+11.1.20: Suppose $f,g:\R \rightarrow \R$ are two real-valued and increasing functions.  Show $f+g$ is an increasing function.\\
+
+Since $f$ is increasing this means 
+\[
+f(x_1)<f(x_2), \forall x_1<x_2.  
+\]
+Similarly for $g$.
+\[
+g(x_1)<g(x_2), \forall x_1<x_2.  
+\]
+
+Thus
+\begin{eqnarray*}
+(f+g)(x_1) &=& f(x_1)+g(x_1)\\
+           & < & f(x_2) + g(x_1)\\
+           & < & f(x_2) + g(x_2)\\
+           & = & (f+g)(x_2). 
+\end{eqnarray*}
+
+
+And so $f+g$ is an increasing function.
+
+\end{document}

@@ -1,0 +1,123 @@
+\documentclass[10 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Homework 5 Maths 141 Spring 2014}
+\maketitle 
+
+8.1.18. Define a relation on $\{0,1,2,3,4,5,6,7,8\}$ as follows
+\[
+xVy \Longleftrightarrow 5|(x^2-y^2).
+\]
+
+Draw a directed graph of this relation.\\
+
+
+Solution:  First of all, let's recall $5|0$.  This is because $\frac{0}{5}=0\in\Z$.
+So $5|(n^2-n^2)$ for every $n$.  Thus we know we have the ordered pairs in our relation:\\
+\[
+(0,0),(1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8)\in V
+\]
+
+Additionally, we know that if $(x,y)\in V$ then also $(y,x)\in V$ since if $x^-y^2 = 5k$ for some $k\in \Z$ then $y^2-x^2 = -5k$ for the same $k\in\Z$.
+
+Finally, we know from the first midterm that when we square numbers $mod 5$ we have the three possibilities $0,1,4$  That leaves us with
+\[
+0^2 \equiv 5^2 \equiv 0 \mod{5}
+\] 
+and
+\[
+1^2 \equiv 4^2 \equiv 6^2 \equiv 1 \mod{5}
+\]
+and
+\[
+2^2\equiv 3^2 \equiv 7^2 \equiv 8^2 \equiv 4 \mod{5}.
+\]
+Any two numbers which have the same quadratic residues $\mod{5}$ will be related via $V$.  So our entire equivalence relation is
+\begin{eqnarray*}
+(0,0),(0,5),(5,0),(5,5),\\
+(1,1),(1,4),(1,6),\\
+(4,1),(4,4),(4,6),\\
+(6,1),(6,4),(6,6),\\
+(2,2),(2,3),(2,7),(2,8),\\
+(3,2),(3,3),(3,7),(3,8),\\
+(7,2),(7,3),(7,7),(7,8),\\
+(8,2),(8,3),(8,7),(8,8)
+\end{eqnarray*}
+
+
+This is essentially three complete directed graphs which are disjoint.  Or, equivalently, a directed graph with three connected components. The smallest of which looks like:
+\[
+\circlearrowright 0 \leftrightarrows 5 \circlearrowleft
+\]
+
+\newpage
+
+8.2.34-36. Let $R$ be a relation on set $A$ and $R^{-1}$ its inverse relation.Prove the following statements:\\
+
+34. If $R$ is reflexive then $R^{-1}$ is reflexive.\\
+
+Solution: If $R$ is reflexive then $(x,x)\in R$.  If we flip the coordinates in the ordered pair we get the inverse relation, thus $(x,x)\in R^{-1}$ and so $R^{-1}$ is reflexive.\\
+
+35. If $R$ is symmetric then $R^{-1}$ is symmetric.\\
+
+Solution:  Since $R$ is symmetric that means whenever $(x,y)\in R$, then also $(y,x)\in R$. Thus flipping the coordinates we see:\\
+If $(y,x)\in R^{-1}$ then $(x,y)\in R^{-1}$ and so $R^{-1}$ is symmetric when $R$ is.\\
+
+36. If $R$ is transitive then $R^{-1}$ is transitive.\\
+
+Solution: Since $R$ is transitive this means whenever $(x,y)\in R$ and $(y,z)\in R$ then also $(x,z)\in R$.  So when $(y,x)\in R^{-1}$ and $(z,y)\in R^{-1}$ then
+$(z,x)\in R^{-1}$ and thus $R^{-1}$ is transitive.
+\newpage
+
+8.3.22. Let $A$ be the set of all statements in three variables, and $R$ be a relation defined as follows:
+\[
+P R Q \Longleftrightarrow P \text{ has the same truth table as } Q.
+\]
+
+Prove this is an equivalence relation and describe the equivalence classes.\\
+
+Solution:  This is quite clearly an equivalence relation.  First of all $P$ has the same truth table as itself and thus $PRP$ for any $P$ and thus $R$ is reflexive.  Second, if $P$ and $Q$ have the same truth tables, then certainly $Q$ and $P$ will have the same truth tables.  Thus $R$ is symmetric.  By this same reasoning if $P$ has the same truth table as $Q$ and $Q$ has the same truth table as $L$ then $P$ must also have the same truth table as $L$ and thus $R$ is transitive.  So $R$ is an equivalence relation. It is the relation of logical equivalence in three variables.  Since we have three statement variables to consider, we see that there are $2^3$ possibilities for inputs, and thus $2^{2^3}$ possible truth tables.  So we have 256 equivalence classes.  Some examples include, tautology and contradiction which yield 8 true or eight false in the truth table respectively.  
+
+\newpage
+
+8.3.32. Let $A$ be the set of all straight lines in the Cartesian plane.  Define a relation on $A$ as follows:
+
+\[
+\ell_1 \parallel \ell_2 \Longleftrightarrow \ell_1 \text{ is parallel to } \ell_2.
+\]
+
+
+Show this is an equivalence relation and describe the equivalence classes.\\
+
+Solution:  Any line is parallel to itself and thus $\parallel$ is reflexive.  Ant two lines which are parallel to each other will be parallel regardless of the order in which one writes them, thus $\parallel$ is symmetric.  Similarly, if $\ell_1 \parallel \ell_2$ and $\ell_2 \parallel \ell_3$ then all three lines will be parallel to each other and thus $\ell_1 \parallel \ell_3$ thus $\parallel$ is transitive and thus an equivalence relation on lines in the Cartesian plane.  The equivalence classes can be described by letting the line which passes through the origin be the class representative.  We can then describe each line which passes through the origin by its angle of incidence $\theta$.  So we have one equivalence class for each $0 \leq \theta < \pi$.  This is also equivalent to one-dimensional real projective space $\R\mathbb{P}^1$.
+
+\newpage
+
+8.3.44. 
+
+
+
+
+
+
+\end{document}

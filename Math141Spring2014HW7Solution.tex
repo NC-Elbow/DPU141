@@ -1,0 +1,258 @@
+\documentclass[16 pt]{amsart}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Homework 7 Maths 141 Spring 2014}
+\maketitle 
+
+11.2.9: Write the following with $O, \Omega,$ or $\Theta$ notation.\\
+\[
+\frac{1}{2}x^2 \leq |3x^2-80x+7| \leq 3|x^2|
+\]
+For all real numbers $x>25$.
+
+
+This follows the definition of $\Theta$
+\[
+f(x) \text{ is } \Theta(g(x)) \text{ if } \exists A,B,N>0 \text{ so that } A|g(x)| \leq |f(x)| \leq B|g(x)| \forall x>N
+\]
+
+
+Thus 
+\[
+3x^2-80x+7 \text{ is } \Theta(x^2)
+\]
+
+\newpage
+
+11.2.31: Refer the the results of earlier problems to write $O,\Omega,$ or $\Theta$ notation for $7x^4-95x^3+3$.
+
+Earlier exercises indicate that
+
+\[
+7x^4-95x^3+3 \text { is } \Omega(x^4).
+\]
+Since 
+\[
+|x^4|\leq |7x^4-95x^3+3|, \forall x> 16
+\]
+and
+\[
+7x^4-95x^3+3 \text { is } O(x^4)
+\]
+since
+\[
+|7x^4-95x^3+3|\leq 105 |x^4|.
+\]
+therefore
+\[
+7x^4-95x^3+3 \text { is } \Theta(x^4).
+\]
+
+
+
+
+\newpage
+
+11.2.58: Use mathematical induction to prove\\
+
+a. 
+\[
+1^{1/3} + 2^{1/3} + \dots + n^{1/3} \leq n^{4/3}
+\]
+for all integers $n>0$.\\
+
+
+First of all, we check the base case:
+\[
+1^{1/3} = 1 \leq 1^{4/3} =1.
+\]
+and so this checks out.
+Now for the inductive step:  Assume
+\[
+1^{1/3} + 2^{1/3} + \dots + k^{1/3} \leq k^{4/3}
+\]
+We must show
+\[
+1^{1/3} + 2^{1/3} + \dots + (k+1)^{1/3} \leq (k+1)^{4/3}
+\]
+Here we have 
+\begin{eqnarray*}
+\sum_{j=1}^{k+1} j^{1/3}& =& \sum_{j=1}^{k} j^{1/3} + (k+1)^{1/3}\\
+& \leq & k^{4/3} + (k+1)^{1/3}\\
+& \leq & k\cdot k^{1/3} + (k+1)^{1/3}\\
+& \leq & k\cdot (k+1)^{1/3} + (k+1)^{1/3}\\
+& = & (k+1)\cdot (k+1)^{1/3}\\
+& = & (k+1)^{4/3} 
+\end{eqnarray*}
+
+
+And thus
+\[
+1^{1/3} + 2^{1/3} + \dots + n^{1/3} \leq n^{4/3}
+\]
+
+or
+\[
+1^{1/3} + 2^{1/3} + \dots + n^{1/3} \text{ is } O(n^{4/3}).
+\]
+
+\vspace{1in}
+
+b. Prove
+\[
+\frac{1}{2}n^{4/3} \leq 1^{1/3} + 2^{1/3} + \dots + n^{1/3} 
+\]
+
+Again, the base step is nearly trivial
+\[
+\frac{1}{2} 1^{4/3} = \frac{1}{2} < 1^{1/3} =1.
+\]
+
+Now for the inductive step, we assume
+\[
+\frac{1}{2}k^{4/3} \leq 1^{1/3} + 2^{1/3} + \dots + k^{1/3} 
+\]
+we want to show
+\[
+\frac{1}{2}(k+1)^{4/3} \leq 1^{1/3} + 2^{1/3} + \dots + (k+1)^{1/3} 
+\]
+
+So we have 
+\begin{eqnarray*}
+\sum_{j=1}^{k+1} j^{1/3} & = & \sum_{j=1}^{k} j^{1/3} + (k+1)^{1/3} \\
+          & \geq & \frac{1}{2}k^{4/3} + (k+1)^{1/3}\\  
+\end{eqnarray*}
+
+From here we have to step aside for a moment and see why this last step moves us toward our goal.
+Consider
+\[
+k^2 > k^2-1 = (k+1)(k-1)
+\]
+This means
+\[
+\frac{k}{k-1} > \frac{k+1}{k} > \left(\frac{k+1}{k}\right)^{1/3}
+\]
+Now we cross multiply and see
+\[
+k\cdot k^{1/3} > (k-1)\cdot (k+1)^{1/3}
+\]
+From here we apply the trick of adding zero and see
+\[
+(k-1)(k+1)^{1/3} = (k+1-2)(k+1)^{1/3} = (k+1)^{4/3} - 2(k+1)^{1/3}
+\]
+
+We divide by two and look back to the original inequality
+\[
+k^{4/3} > (k+1)^{4/3} - 2(k+1)^{1/3}
+\]
+
+Rearranging we see
+\[
+\frac{1}{2} k^{4/3} + (k+1)^{1/3} \geq \frac{1}{2}(k+1)^{4/3}
+\]
+which is exactly where we left our proof by induction.
+Thus
+\begin{eqnarray*}
+\sum_{j=1}^{k+1} j^{1/3} & = & \sum_{j=1}^{k} j^{1/3} + (k+1)^{1/3} \\
+          & \geq & \frac{1}{2}k^{4/3} + (k+1)^{1/3}\\  
+          & \geq & \frac{1}{2}(k+1)^{4/3}     
+\end{eqnarray*}
+
+And so
+\[
+1^{1/3} + 2^{1/3} + \dots + n^{1/3} \text{ is } \Omega(n^{4/3})
+\]
+
+\vspace{1in}
+
+c. Putting (a) and (b) together we see
+\[
+\frac{1}{2}n^{4/3} \leq 1^{1/3} + 2^{1/3} + \dots + n^{1/3} \leq n^{4/3}
+\]
+
+or 
+\[
+1^{1/3} + 2^{1/3} + \dots + n^{1/3} \text{ is } \Theta(n^{4/3}).
+\]
+
+\newpage
+
+
+4.8.28: Prove for all integers $a,b$ that $gcd(a,b)|lcm(a,b)$.
+
+This problem could not be more simple.  Since $gcd(a,b)|a$ and $a|lcm(a,b)$ we can write
+\[
+a = d\cdot gcd(a,b), \text{ and } a\cdot \ell = lcm(a,b)
+\]
+where $d,\ell$ are integers.  Then
+\[
+lcm(a,b) = a\cdot \ell = gcd(a,b)\cdot d\cdot \ell
+\]
+and so
+\[
+gcd(a,b) | lcm(a,b).
+\]
+
+\newpage
+
+
+11.3.19: Count the number of operations for the given pseudocode.\\
+
+$\begin{array}{llll}
+\textbf{for} & i = 1 \text{ to } n& &\\
+             & \textbf{for} & j=1 \text{ to } i & \\
+             &    & \textbf{for} & k=1 \text{ to } j\\
+             &    &       & x:= i\cdot j \cdot k\\  
+             &   & \text{next } k & \\
+             & \text{next } j & & \\
+ \text{next } i & & & 
+ \end{array}$      
+ 
+ 
+ Looking to the inner most loop we have $j$ loops per sequence.  $j$, however, is incrementing relative to $i$.
+ So if we only look at the inner two loops we see the there are 1,2,3,4,5,6 loops incrementing with $i$.
+ Adding these we get
+ \[
+ 1+2+3+\dots + i = \binom{i+1}{2}
+ \]
+ 
+ For each loop in $n$ we get $\binom{i+1}{2}$ additional loops.
+ Thus, letting $\ell_n$ be the number of loop when $i=n$ we have the following recurrence relation;
+ \[
+ \ell_n = \ell_{n-1} + \binom{n+1}{2}
+ \]
+ In each loop are two multiplications and thus we have $2\ell_n$ total number of operations.
+ 
+ In this case we can solve $\ell_n$ directly and see
+ \[
+ \ell_n = \sum_{m=2}^{n} \binom{n+1}{2} = \sum_{m=2}^{n} \frac{1}{2}(m^2+m) =\frac{1}{2}\left( \frac{n(n+1)(2n+1)}{6}-1 + \frac{n^2+n}{2}-1\right)
+ \]
+ 
+ We see that
+ \[
+ \ell_n = \frac{1}{12}n^3 + \text{ lower order terms } 
+ \]
+ and thus
+ \[
+ \ell_n \text{ is } \Theta(n^3)
+ \]
+ by the theorem of polynomial orders.  Since the number of operations is twice the number of loops, it too, is $\Theta(n^3)$.
+      
+\end{document}

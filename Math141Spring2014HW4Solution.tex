@@ -1,0 +1,155 @@
+\documentclass[10 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Homework 4 Maths 141 Spring 2014}
+\maketitle 
+
+6.1.25. Let $R_i = \{x\in\R | 1\leq x \leq 1+ \frac{1}{i}\} = [1,1+\frac{1}{i}]$\\ for all positive integers $i$.\\
+a.$\bigcup_{i=1}^{4} R_i$\\
+Solution: Since $R_i$ are all decreasing in ``size" and each $R_{j}\subset R_i$ for all $j>i$.  So the union is simply $R_1=[1,2]$.\\
+
+b.$\bigcap_{i=1}^{4} R_i$\\
+
+Solution: Again, with the explanation from part (a) we see the intersection is simply $R_4 = [1,5/4]$.\\
+
+c.Are the $R_i$ mutually disjoint?\\
+
+Solution: Every set $R_i$ contains the element $1$, so $1\in R_i\cap R_j$ for any $i,J$ therefore these are not mutually disjoint.\\
+
+d.$\bigcup_{i=1}^{n} R_i$\\
+
+Solution: We simply have $R_1 = [1,2]$\\
+
+e.$\bigcap_{i=1}^{n} R_i$\\
+
+Solution: $R_n = [1,1+1/n]$.\\
+
+
+f.$\bigcup_{i=1}^{\infty} R_i$\\
+
+Solution: $R_1 = [1,2]$\\
+
+g.$\bigcap_{i=1}^{\infty} R_i$\\
+ 
+Solution: Here we see that the only element in every $R_i$ is simply $1$ and so this is the big intersection. 
+
+
+
+
+\newpage
+
+6.2.16. For all sets $A,B,C$, if $A\subset B$ and $A\subset C$ then $A\subset  (B \cap C)$\\
+
+Solution: Let $x\in A$  Then by definition of subset $x\in B$ and $x\in C$.  Therefore $x \in B \text{ and } C$ which means $x\in (B\cap C)$.  Thus for any $x\in A$ we have shown $x\in B\cap C$ and so $A\subset (B\cap C)$.
+
+
+\newpage
+
+6.2.21. Find the mistake in the proof.\\
+\begin{thm}
+For all sets $A$ and $B$, $A^c\cup B^c = (A\cup B)^c$
+\end{thm}
+
+Solution: The proof states at some point that $x\in A^c$ or $x\in B^c$ therefore $x\in (A\cup B)^c$.  This is a misuse of DeMorgan's laws.  To say $x$ is neither in $A$, nor in $B$ is to say that $x$ is certainly not simultaneously in both.  Therefore $x\in (A\cap B)^c$.
+
+\newpage
+
+6.2.41. For all integers $n\geq 1$ if $A,B_1,\dots, B_n$ are any sets then
+\[
+\bigcap_{i=1}^{n} (A\times B_i) = A \times \bigcap_{i=1}^{n} B_i
+\]
+
+Solution:  We can argue this by showing mutual set inclusions, but in this particular case it is easier to argue directly by definitions.
+\begin{eqnarray*}
+\bigcap_{i=1}^{n} (A\times B_i) &=& \{(a,b)|(a,b)\in (A\times B_i) \text{ for all } i \}\\
+&=& \{(a,b)| a\in A, b\in B_i \text{ for all } i \}\\
+&=& A\times \bigcap_{i=1}^n B_i
+\end{eqnarray*}
+
+
+\newpage
+
+6.3.26. Given an integer $n\geq 2$ and a set $\{2,3,\dots,n\}$ Let $S$ be the set of all nonempty subsets of the given set, and let $S_i \in S$.  Let $P_i$ be the product of all elements in $S_i$.  Prove or disprove:
+\[
+\sum_{i=1}^{2^{n-1}-1} P_i = \frac{(n+1)!}{2} -1
+\]
+
+
+Solution:  The trick to this problem is knowing what all of the things are.  So let's define $X_n = \{2,3,\dots,n\}$.  Then let's look at $S$.  Since it is the set of all nonempty subsets of $X_n$ it is the power set minus the empty set.
+\[
+S = \mathcal{P}(X_n) - \emptyset
+\]
+
+Thus the number of elements in $S$ is
+\[
+N(S) = N(\mathcal{P}(X_n)) -1 = 2^{N(X_n)}-1 = 2^{n-1}-1
+\]
+
+This explains where we get the number in the top of the sum.  Now, let's work an entire example with $X_4=\{2,3,4\}$.
+\[
+S=\{ \{2\},\{3\},\{4\},\{2,3\},\{2,4\},\{3,4\},\{2,3,4\} \}
+\]
+Then
+\[
+S_1 =\{2\},S_2 = \{3\},\dots, S_7 =\{2,3,4\}
+\]
+and
+\[
+P_1=2, P_2=3,\dots, P_7 =24
+\]
+So we have the example
+\[
+\sum_{i=1}^{7} P_i = 2+3+4+6+8+12+24 = 59 = \frac{(4+1)!}{2}-1
+\]
+So we have some basis for concluding this is true.  Let's try to prove it by induction.
+
+\begin{proof}
+For the base case We have $n=2$ thus $X_2=\{2\}$, $S=\{2\}$, $S_1 = \{2\}$, and $P_1=2$. So we have 
+\[
+\sum_{i=1}^{2^{2-1}-1}P_i = 2 = \frac{3!}{2}-1.
+\]
+Thus the base step is verified.  Now let's look at the inductive step.  Suppose we have $X_n$ which satifies
+\[
+\sum_{i=1}^{2^{n-1}-1} P_i = \frac{(n+1)!}{2} -1
+\]
+Let's look at what happens for $n+1$.
+\[
+\sum_{i=1}^{2^{(n+1)-1}-1} P_i = \sum_{i=1}^{2^{n-1}-1} P_i + \sum_{i=2^{n-1}}^{2^{n}-1} P_i.
+\]
+
+We notice that in the above sum we have two large sums.  The first contains $2^{n-1}-1$ terms and the second contains a full $2^{n-1}$ terms.  So what are these extra $2^{n-1}$ terms.  If we look back to the definition of $S$ we see that the terms missing are all terms containing the element $n+1$.  These include $\{n+1\}$ and $S_i \cup \{n+1\}$ from all the previous $S_i$.  Thus the $P_i$ are $(n+1)\cdot P_i$ for the earlier $P_i$ and we have term $n+1$ left by itself.  Therefore
+\begin{eqnarray*}
+\sum_{i=1}^{2^{(n+1)-1}-1} P_i &=& \sum_{i=1}^{2^{n-1}-1} P_i + \sum_{i=2^{n-1}}^{2^{n}-1} P_i\\
+&=& \frac{(n+1)!}{2}-1 + (n+1)\cdot\left(\frac{(n+1)!}{2}-1\right) + n+1 \\
+&=& (n+2)\cdot\left(\frac{(n+1)!}{2}-1\right) + n+1\\
+&=& \frac{(n+2)!}{2} -1
+\end{eqnarray*}
+
+\end{proof}
+
+
+
+
+
+
+\end{document}

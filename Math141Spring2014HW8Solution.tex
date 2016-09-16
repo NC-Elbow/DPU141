@@ -1,0 +1,305 @@
+\documentclass[16 pt]{amsart}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Homework Last Maths 141 Spring 2014}
+\maketitle 
+
+11.5.25: The recurrence relation arising from the efficieny of merge sort is given by
+\[
+m_n = m_{\lceil n/2 \rceil} + m_{\lfloor n/2 \rfloor} + n-1
+\]
+with $m_1 = 0$ since it takes no time to order a list of one element.  
+
+Show that $m_n$ is $\Theta(n\log (n))$ by showing:\\
+
+a. 
+\[
+\frac{1}{2}n\log(n) \leq m_n
+\]
+
+b.
+\[
+m_n \leq 2n\log(n)
+\]
+
+
+Solution:\\
+a. Here, we will use strong induction.  First, the base step:
+\[
+\half 1\cdot \log(1) = 0 \leq m_1 =0.
+\]
+Now since we're using strong induction we'll assume
+\[
+\half k\log(k) \leq m_k, \forall k<n
+\]
+and we wish to show
+\[
+\half n\log(n) \leq m_n.
+\]
+
+
+Unfortunately for us, we have two cases to consider here, both even and odd.  Let's consider the even case first:
+
+\begin{eqnarray*}
+m_n & = & m_{n/2} + m_{n/2} + n-1\\
+    & = & 2 m_{n/2} + n-1\\
+    & \geq & 2(\half \frac{n}{2}\log\left(\frac{n}{2}\right)) + n-1\\
+    & = & \frac{n}{2} \log\left(\frac{n}{2}\right) + n-1\\
+    & = & \frac{n}{2} (\log(n)-\log(2))+n-1\\
+    & = & \frac{n}{2}(\log(n)-1)+n-1\\
+    & = & \frac{n}{2}\log(n) + \frac{n}{2} - 1 \\
+    & \geq & \half n \log(n)
+\end{eqnarray*}
+This is true for all $n>1$, which is what we wanted to show.
+
+Now for the odd case. This is mostly similar, except that the floor and ceiling functions don't evaluate directly to $n/2$.  
+
+
+
+\begin{eqnarray*}
+m_n & = & m_{(n-1)/2} + m_{(n+1)/2} + n-1\\
+    & \geq & \half \frac{n-1}{2}\log\left(\frac{n-1}{2}\right) + \half \frac{n+1}{2}\log\left(\frac{n+1}{2}\right) + n-1\\
+    & = & \half \frac{n-1}{2}(\log(n-1)-1)\\
+    &   & + \half \frac{n+1}{2}(\log(n+1)-1)+n-1\\
+    & = & \frac{n-1}{4}\log(n-1) + \frac{n+1}{4}\log(n+1) +\frac{n}{2}-1\\
+    & = & \frac{1}{4}\left((n-1)\log(n-1)+(n+1)\log(n+1)\right)+ \half n-1\\
+    & = & \frac{1}{4}\left((n+1-2)\log(n-1)+(n+1)\log(n+1)\right)+\half n-1\\
+    & = & \frac{1}{4}\left((n+1)\log(n-1)+(n+1)\log(n+1)\right)\\
+    & & -2\log(n-1)+\half n-1\\
+    & \geq &  \frac{1}{4}\left(n\log(n)+n\log(n)\right)-2\log(n-1) + \half n-1\\
+    & \geq & \half n\log(n)
+\end{eqnarray*}
+This hold true for $n>2$ but since we're in the odd case, this works.
+
+In fact $(n+1)\log(n-1) > n\log(n)$ when $n>4$, but the additional term of $\half n$ pushes this back down to $n>2$.  
+
+
+
+Thus we have shown
+\[
+m_n \text{ is } \Omega(n\log(n)).
+\]
+\vspace{1in}
+
+b. Now we wish to show a similar result but we wish the show
+\[
+m_n \leq 2n\log(n)
+\]
+Again, we will argue by strong induction with the nearly trivial base step:
+\[
+m_1=0 \leq 2(1)\log(1)=0.
+\]
+
+Now for the strong induction we'll assume
+\[
+m_k \leq 2k\log(k) \forall k<n.
+\]
+
+Let's again begin with the even case.
+\begin{eqnarray*}
+m_n & = & m_{n/2} + m_{n/2} + n-1\\
+    & = & 2 m_{n/2} + n-1\\
+    & \leq & 2(2\frac{n}{2}\log\left(\frac{n}{2}\right)) + n-1\\
+    & = & 2n \log\left(\frac{n}{2}\right) + n-1\\
+    & = & 2n (\log(n)-\log(2))+n-1\\
+    & = & 2n(\log(n)-1)+n-1\\
+    & = & 2n\log(n) -n - 1 \\
+    & \leq & 2n \log(n)
+\end{eqnarray*}
+
+Which is what we wished to show.
+
+\vspace{1in}
+Now let's consider the odd case
+
+\begin{eqnarray*}
+m_n & = & m_{(n-1)/2} + m_{(n+1)/2} + n-1\\
+    & \leq & (n-1)\log\left(\frac{n-1}{2}\right)\\
+    &      & + (n+1)\log\left(\frac{n+1}{2}\right) + n-1\\
+    & = & (n-1)\log(n-1)+(n+1)\log(n+1) - n-1\\
+    & = & (n-1)(\log(n-1)+\log(n+1)) + 2\log(n+1)- n-1\\
+    & = & (n-1)\log(n^2-1) + 2\log(n+1) -n-1\\
+    & leq & n\log(n^2)+2\log(n+1) -n-1\\
+    & = & 2n\log(n) +2\log(n+1) -n - 1 \\
+    & \leq & 2n \log(n)
+\end{eqnarray*}
+This is true for $n>2$ and since we're in the odd case, our smallest $n$ will be 3.
+This is what was to be shown.\\
+
+Thus we conclude
+\[
+m_n \text{ is } O(n\log(n)).
+\]
+
+Putting these together we get
+
+\[
+\half n \log(n) \leq m_n \leq 2n\log(n) 
+\]
+and thus
+\[
+m_n \text{ is } \Theta(n\log(n)).
+\]
+\newpage
+
+11.5.26:  In this problem we will show that the ability to evaluate a power function $x^n$ is $O(\log(n))$ rather than the more obvious $O(n)$.\\
+
+The main point is that we need not compute $x^n$ by simply multiplying 
+\[
+\underbrace{x\cdot x\cdots x}_\text{n copies}
+\]
+which takes $n-1$ multiplications, but rather by computing $x^n$ using the binary representation of $n$ and realizing
+\[
+x^{2^k} = (x^{2^{k-1}})^2
+\]
+SO for example, we can compute $x^{43}$ by
+\[
+x^{43} = x^{32+8+2+1}=x^{32}x^{8}x^2 x 
+\]
+Where we can compute $x^{32}$ by 5 multiplications
+\[
+x^{32}= (x^{16})^2= \dots = ((((x^2)^2)^2)^2)^2
+\]
+So in this case we compute $x^{43}$ by 12 multiplications rather than 42.\\
+
+
+
+a. Write an algorithm to take a real number $x$ and an integer $n$ and return $x^n$ by:\\
+(i) calling an algorithm to find the binary representation of $n$ and returning a sequence
+\[
+n_{10} = (r[k]r[k-1]\dots r[1]r[0])_2
+\]
+where each $r[i]$ is 0 or 1.\\
+
+
+Solution (i):
+Algorithm 5.1.1. is taking $n$ computing $n \mod{2}$ then $n$ div 2 and repeating until $n$ div 2 is 0.\\
+
+
+
+Decimal-to-Binary.0
+\[
+\begin{array}{llll}
+\text{Input: } n &&&\\
+\text{Algorithm Body:} &&&\\
+& q:=n, i:= 0 &&\\
+& \text{while} (i=0 \text{ or } q\neq 0) &&\\
+&& r[i]:= q \mod{2} &\\
+&& q := q \text{ div } 2 &\\
+&& i := i+1 & \\
+& \text{end while} &&\\
+\text{Output: } r[0]r[1]\dots r[k]
+\end{array}
+\]
+
+
+
+I suggest another algorithm.  Assuming we have a good definition for $\log_2(n)$ we can call the following alternative algorithm
+
+Decimal-to-Binary.1
+\[
+\begin{array}{llll}
+\text{Input: } n &&&\\
+\text{Algorithm Body:} &&&\\
+& q:=n, k:= \lfloor \log_2(n) \rfloor &&\\
+& r[k]:=1 && \\
+& \text{For } i:= 1 \text{ to }k, && \\
+& & r[i]:=0 & \\
+&& \text{next } i & \\
+& \text{end for} &&\\
+& \text{while} (q\neq 0) &&\\
+&& q:= q - 2^{\lfloor \log_2(q)\rfloor} &\\
+&& i := \lfloor \log_2(q)\rfloor &\\
+&& r[i] := 1 & \\
+& \text{end while} &&\\
+\text{Output: } r[0]r[1]\dots r[k]
+\end{array}
+\]
+
+Here, we have initialized all $r[i]$ as zero, and we only check which of them are nonzero.\\
+
+
+\vspace{1in}
+
+(ii) Compute $x^2, x^{2^2}, \dots, x^{2^k}$ by recurssive squaring.
+
+Solution (ii):\\
+Binary-Base
+\[
+\begin{array}{llll}
+\text{Input: } x,k &&&\\
+\text{\# This k is obtained from } \lfloor \log_2(n) \rfloor&&&\\
+\text{Algorithm Body:} &&&\\
+& \text{For } i=1 \text{ to } k && \\
+& & x^{2^i} : = (x^{2^{i-1}})^2 & \\
+& & \text{next } i & \\
+& \text{end for} && \\
+\text{Output: } x,x^2,x^{2^2},\dots, x^{2^k} &&& \\
+\end{array}
+\]
+
+\vspace{1in}
+
+(iii) Compute  $x^n$ by using the fact that
+\[
+x^n = x^{r[k]2^k + \dots + r[0]2^0} = x^{r[k]2^k}\cdots x^{r[0]2^0}.
+\]
+
+
+Solution (iii)
+Compute-Power
+\[
+\begin{array}{llll}
+\text{Input: } x,n &&&\\
+\text{Algorithm Body:} &&&\\
+& k:= \lfloor \log_2(n)\rfloor &&\\
+& \text{Decimal-to-Binary.0}(x,n) && \\
+& \text{Binary-Base}(x,k) && \\
+& y:=1 & & \\
+& \text{For } i=1 \text{ to } k && \\
+&& y:= y\cdot (x^{2^i})^{r[i]} & \\
+&& \text{next } i &\\
+&\text{end for} &&\\
+\text{Output: } y &&& \\
+\end{array}
+\]
+
+
+\vspace{1in}
+
+b. Show that the number of multiplications used to obtain $x^n$ via the algorithm in (a) is less than or equal to $2\lfloor\log_2(n)\rfloor$\\
+
+Solution:\\
+Each $x^{2^k}$ requires $k$ multiplications (i.e. squaring $k$ times).  Each product of different $x^{2^j}$ and $x^{2^i}$ requires only one multiplication.  And so we have a maximum number of multiplications of
+\[
+\text{Multiplications required for } x^n \leq k + k
+\]
+The additional $k$ comes from the intermultiplications of the different $x^{2^j}$.
+
+If we assume that we need to compute every $x^{2^j}$ for $j\leq k$ then we have k multiplications, and then a maximum of $k$ more for the intermultiplications between the various $x^{2^j}$ thus
+
+\[
+\text{Max}(x^n) \leq 2k = 2\lfloor \log_2(n)\rfloor 
+\] 
+And thus we have made multiplication $O(\log(n))$.  An exponential improvement on $O(n)$
+
+
+\end{document}

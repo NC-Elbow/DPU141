@@ -1,0 +1,118 @@
+\documentclass[10 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Homework 1 Maths 141 Spring 2014}
+\maketitle 
+Problem 3.3.41. Indicate which of the following statements are true and which are false.  Justify your answers.\\
+
+a. $\forall x \in \mathbb{Z}^{+}, \exists y \in \mathbb{Z}^{+}$ such that $x=y+1$.\\
+Solution: We can see without much effort that this is indeed false.  The reason is that $\mathbb{Z}^{+}$ does not include zero.  So if $X=1$ then the $y$ in question must be $0$ which is not in $\mathbb{Z}^{+}$.\\
+
+b. $\forall x \in \mathbb{Z}, \exists y \in \mathbb{Z}$ such that $x=y+1$.\\
+Solution: Similar to (a), but with the allowance for all integers rather than only positive integers.  In this case the statement is true since we can actually solve for $y$ directly.
+$y=x-1$.  Since the difference of integers is an integer, $y\in\mathbb{Z}$.\\
+
+c. $\exists x \in\mathbb{R}$ such that $\forall y\in\mathbb{R}, x=y+1$.\\
+Solution: The point of this question is not really about the elements contained in the real numbers, but rather about the order of quanitifiers.  If we take any two $y\in \mathbb{R}$ then we will find it difficult to obtain a single $x$ satisfying this equation for both $y$.  A quick counterexample:  If $y=\pi$ then there exists an $x$ which satisfies the equation, namely $x=\pi+1$.  However, for a different $y$, $x=\pi+1$ will not satisfy the equation.  If we had switched the order of $\exists$ and $\forall$ then the statement would be true.\\
+
+d. $\forall x\in\mathbb{R}^{+}, \exists y\in\mathbb{R}^{+}$ such that $xy=1$.\\
+Solution:  Since we're restricting $x$ to only positive real numbers we can take its reciprocal (or multiplicative inverse).  Therefore $y=\frac{1}{x}\in\mathbb{R}^{+}$ and so $xy = x\cdot\frac{1}{x} = 1$. Therefore this is true.\\
+
+e. $\forall x\in\mathbb{R}, \exists y\in\mathbb{R}$ such that $xy=1$.\\
+Solution: This time we do not restrict $x$ to positive real numbers, but rather only to real numbers.  The issue here is that we cannot invert (multiplicatively) $x=0$.  So if $x=0$ then $xy=0y=0\neq 1$ and the statement is false.  For any other $x$ there is such a $y$, but one counterexample is enough to show the statement to be false.\\
+
+f.g. (skip)\\
+
+h. $\exists u\in\mathbb{R}^{+}$ such that $\forall v\in\mathbb{R}^{+}, uv<v$.\\
+Solution: Since $v>0$ and $u>0$ the multiple $uv>0$.\\
+Now for any $0<u<1$ we maintain the inequality $0< uv < v$.  Thus the statement is true.
+
+\newpage
+
+Problem 4.3.43.  In a certain town $2/3$ of the men are married to $3/5$ of the women.  Assume that all marriages are monogamous.  Also, assume that there are at least 100 men in the town.  What is the least possible number of men in the town?  What is the least possible number of women in the town?\\
+
+Solution: Let $m$ be the number of men in the town.  Let $w$ be the number of women in the town.  By the assumption that marriages are monogamous we arrive at
+\[
+\frac{2}{3} m = \frac{3}{5} w
+\]
+
+This means $10 m = 9w$ or $\frac{10}{9} m = w$ so that $9 | m$.\\
+Also since $m>100$ we're looking for the smallest integer multiple of 9 greater than 100.  Which is 108.\\
+Therefore $m =108$ and $w = \frac{10}{9} m = 120$.\\
+
+A more general solution: Suppose $\frac{m}{n}$ of group $A$ are aligned with $\frac{p}{q}$ of group $B$.  Assume also that $\frac{m}{n}<\frac{p}{q}$ and that $A>N$ for some $N$.  How many $A$ and how many $B$ are there?\\
+Our setup looks quite similar to the solution from before.
+\[
+\frac{m}{n} A = \frac{p}{q} B \implies \frac{qm}{pn} A=B \implies pn|A.
+\]
+If $pn | N$ then $A = N$ Otherwise
+\[
+A = pn \cdot (N \mathrm{div} pn) + pn, B = qm((N \mathrm{div} pn) +1) 
+\]
+
+
+\newpage
+
+Problem 4.4.23. If $n \mod{5} = 3$ then $n^2 \mod{5} = 4$.\\
+Solution: We can approach this in several ways. 
+The direct solution is easy, but more lengthy.\\
+Since $n \mod{5} = 3$ this means we can write $n=5k+3$ for some integer $k$.
+Therefore $n^2 = (5k+3)^2 = 25k^2 + 30K + 9 = 5(5k^2+6k+1) + 4.$
+Letting $\ell = 5k^2+6k+1$ and noting that $\ell$ is an integer since sums and products of integers are integers, we see $n^2 = 5\ell+4$ or $n^2\mod{5}=4$.\\
+
+The second solution is to write brackets around numbers like to denote their values modulo 5.
+For example $[0]$ represents $\{0,5,10,15,...\}$ and $[4]$ represents $\{-1,4,9,14,19,...\}$
+Noting that $[n]\cdot[m] = [mn]$ we see
+\[
+[3]^2 = [3^2] = [9] = [4].
+\]
+
+
+
+\newpage
+Problem 4.4.42. Claim: Every prime number other than 2 or 3 is of the form $6q+1$ or $6q+5$.
+\begin{proof}
+Let $p$ be a prime which is neither 2 nor 3.  Then $p$ is not divisible by any positive integers other than 1 and itself.  Consider now that the Quotient Remainder theorem tells us that we may split up positive integers into 6 classes as such, $6q+r$ where $0\leq r \leq 5$.  Note now that $2|6q$, $2|6q+2$, $2|6q+4$, and $3|6q+3$.  Thus none of $6q,6q+2,6q+3,6q+4$ can be prime.  The only options we have left then are $6q+1$ and $6q+5$ which is what we wish to show.
+\end{proof}
+
+
+
+\newpage
+Problem 4.5.28 Prove: For any odd integer $n$ 
+\[
+\lfloor \frac{n^2}{4} \rfloor = \left(\frac{n-1}{2}\right) \left(\frac{n+1}{2}\right).
+\]
+
+\begin{proof}
+Since $n$ is odd we may write it as $n=2k+1$ for some $k\in\mathbb{Z}$.  Then $n^2 = 4k^2+4k+1$ and 
+\[
+\lfloor \frac{n^2}{4} \rfloor = \lfloor \frac{4k^2+4k+1}{4} \rfloor = \lfloor k^2+k+\frac{1}{4}\rfloor = k^2+k.
+\]
+Now $k=\frac{n-1}{2}$ So
+\[
+k^2+k = k(k+1) = \left(\frac{n-1}{2}\right)\left(\frac{n+1}{2}\right).
+\]
+
+\end{proof}
+
+\end{document}

@@ -1,0 +1,302 @@
+\documentclass[10 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Homework 3 Maths 141 Spring 2014}
+\maketitle 
+
+5.6.28\\
+Prove that $F_{k+1}^2 - F_k^2 - F_{k-1}^2 =2F_k F_{k-1}$ for all $k\geq1$ where $\{F_n\}$ is the Fibonacci sequence.\\
+
+Solution:\\
+We know that $F_{k+1} = F_k + F_{k-1}$.  So substituting in the equation we see
+\begin{eqnarray*}
+F_{k+1}^2 - F_k^2 - F_{k-1}^2 & = & (F_k + F_{k-1})^2 - F_k^2 - F_{k-1}^2\\
+&=& F_k^2 + 2F_k F_{k-1} + F_{k-1}^2 - F_k^2 - F_{k-1}^2\\
+&=& 2F_k F_{k-1}.
+\end{eqnarray*} 
+
+\newpage
+5.6.33\\
+It turns out that the Fibonacci sequence satisfies the following explicit formula: For all integers $n\geq0$
+\[
+F_n = \frac{1}{\sqrt{5}}\left[\left(\frac{1+\sqrt{5}}{2}\right)^{n+1}- \left(\frac{1-\sqrt{5}}{2}\right)^{n+1} \right]
+\]
+
+Solution:\\
+This is a matter of plugging numbers in directly and simplifying.  Let's make matters easier on ourselves and make the definitions:
+\begin{eqnarray*}
+r_1 &=& \left(\frac{1+\sqrt{5}}{2}\right),\\
+r_2 &=&  \left(\frac{1-\sqrt{5}}{2}\right).
+\end{eqnarray*}
+
+As we saw in class, and is a well known fact both of these $r_i$ satisfy the quadratic equation
+\[
+r^2 - r-1=0.
+\]
+Now we substitute $F_n = A(r_1^{n+1}-r_2^{n+1})$ and begin our computation.\\
+\begin{eqnarray*}
+F_{n+1} -F_n - F_{n-1} &=& A(r_1^{n+2}-r_2^{n+2}) -A(r_1^{n+1}-r_2^{n+1}) -A(r_1^{n}-r_2^{n})\\
+&=& A ((r_1^{n+2} - r_1^{n+1}-r_1^n) - (r_2^{n+2} - r_2^{n+1}-r_2^n))\\
+&=& A(r_1^n(r_1^2-r_1-1) - r_2^n(r_2^2-r_2-1))\\
+&=& A(r_1^n\cdot(0)-r_2^n\cdot(0))\\
+&=&0.
+\end{eqnarray*}
+
+
+
+\newpage
+5.714\\
+The following sequence is defined recursively.  Use iteration to give an explicit formula for the sequence.  Simplify if possible.
+\[
+x_{k} = 3x_{k-1}+k
+\]
+$x_1=1$.
+
+Solution:\\
+Let's not worry about the value of$x_1$ just yet and see if we can simply find a pattern in the iterations.
+\begin{eqnarray*}
+x_2 & = & 3x_1+2\\
+x_3 &=& 3x_2+3\\
+&=& 3(3x_1+2)+3\\
+&=& 3^2x_1 + 3^1\cdot 2 + 3\\
+x_4 &=& 3x_3+4\\
+&=& 3(3^2x_1 + 3^1\cdot 2 + 3)+4\\
+&=& 3^3 x_1 + 3^2\cdot 2+ 3\cdot 3 + 4\\
+x_5 &=& 3x_4+5\\
+&=& 3(3^3 x_1 + 3^2\cdot 2+ 3\cdot 3 + 4)+5\\
+&=& 3^4x_1+3^3\cdot2+3^2\cdot 3+3\cdot 4 +5
+\end{eqnarray*}
+
+What appears to be happening is that for $x_k$ the powers of 3 decrease on each successive multiplier.  So it appears that we have something of the form
+\[
+x_k = 3^{k-1}x_1 + \sum_{j=2}^{k}3^{k-j}\cdot j
+\]
+Noting that $x_1=1$ we have
+\[
+x_k = \sum_{j=1}^{k}3^{k-j}\cdot j.
+\]
+
+Let's test this formula against the given recurrence relation.
+\begin{eqnarray*}
+x_{k+1} &=&  3x_k+(k+1)\\
+&=& 3(\sum_{j=1}^{k}3^{k-j}\cdot j)+(k+1)\\
+&=& \sum_{j=1}^{k}3^{k+1-j}\cdot j + (k+1)\\
+&=& \sum_{j=1}^{k+1}3^{k+1-j}\cdot j.
+\end{eqnarray*}
+which is exactly what we had expected.
+\newpage
+5.7.26\\
+A person saving for retirement makes an intial deposit of \$1000 to a bank account earning interest at a rate of 3\% per year compounded monthly, and each month she adds an additional \$200 to the account.\\
+a. For each nonnegative integer $n$, let $A_n$ be the amount in the account at the end of $n$ months.  Find a recurrence relation relating $A_k$ to $A_{k-1}$.\\
+b.Use iteration to find an explicit formula for $A_n$.\\
+c. Use mathematical induction to prove the correctness of the formula you obtained in part(b).\\
+d. How much will the account be worth in 20 years? In 30 years?\\
+e. How long until the account has a value of \$10,000?
+
+Solution:\\
+a. This is fairly straightforward.  Interest compounded $n$ times anually pays out an interest rate of $r/n$ per cycle.  In this case then
+\[
+A_{n+1} = A_n (1+\frac{.03}{12}) + 200.
+\]
+
+
+b. Before solving this particular recurrence relation, let's simplify our notation slightly.  Let $q=1+.03/12$ and $m=200$.
+Then we see the relation from part a. reduced to 
+\[
+A_{n+1}=qA_n + m.
+\]
+Iterating this a few times (as we did above) we'll see that
+\begin{eqnarray*}
+A_1 &=& qA_0 + m\\
+A_2 &=& qA_1+m\\
+&=& q(qA_0+m)+m\\
+A_3 &=& qA_2+m \\
+&=& q(q^2A_0 + qm +m)+m\\
+&=& q^3A_0 + q^2m+qm+m\\
+\vdots &&\\
+A_n &=& q^nA_0 + m(q^{n-1}+q^{n-2}+\dots+q+1)
+\end{eqnarray*}
+
+
+Now we know from class (and if necessary prove it by induction) of the geometric sum
+\[
+\sum_{j=0}^{k}r^j = \frac{r^{k+1}-1}{r-1}
+\]
+Letting our ratio be $q$ we finally see
+\[
+A_n = q^nA_0 + m\cdot\frac{q^n-1}{q-1}
+\]
+We can fill in the numbers $q=1.0025$ and $m=200$ whenever we like.
+
+c. Prove the formula derived in part (b) by mathematical induction.
+\begin{lem}
+The sequence
+\[
+A_n = q^nA_0 + m\cdot\frac{q^n-1}{q-1}
+\]
+Satisfies the recurrence relation
+\[
+A_{n+1} = qA_n +m
+\]
+\end{lem}
+\begin{proof}
+We shall proceed by mathematical induction.  In the base case $n=1$ we see. 
+\begin{eqnarray*}
+A_1 &=& qA_0+m\\
+&=& q^1A_0 + m\cdot\frac{q^1-1}{q-1}
+\end{eqnarray*}
+This is simply a direct computation.
+Now for the inductive step.
+Assume for some value $k$ we have that
+\[
+A_k =q^kA_0 + m\cdot\frac{q^k-1}{q-1}
+\]
+satisfies the reccurence relation as above.  Let's show that
+\[
+A_{k+1} =q^{k+1}A_0 + m\cdot\frac{q^{k+1}-1}{q-1}
+\]
+satisfies as well.
+
+\begin{eqnarray*}
+A_{k+1} &=& qA_k+m \\
+&=& q(q^kA_0 + m\cdot\frac{q^k-1}{q-1})+m\\
+&=& q^{k+1} A_0 + qm\cdot\frac{q^k-1}{q-1}+qm\\
+&=&q^{k+1} A_0 + qm\cdot\frac{q^k-1}{q-1}+qm\frac{q-1}{q-1}\\
+&=&q^{k+1}A_0 + m\frac{q^{k+1}-q+q-1}{q-1}\\
+&=& q^{k+1}A_0 + m\cdot\frac{q^{k+1}-1}{q-1}
+\end{eqnarray*}
+Thus the sequence satisfies the relation at the $k+1^{st}$ term if it satisfies at the $K^{th}$ term.
+\end{proof}
+
+d. This is a simple matter of asking how months are 20 and 30 years respectively.
+For the 20 year solution $n=240$ so
+\[
+A_{240} = q^{240}A_0 + m\frac{q^{240}-1}{q-1}
+\]
+We can plug in the numbers as necessary.
+For the 30 year case
+\[
+A_{360} = q^{360}A_0 + m\frac{q^{360}-1}{q-1}
+\]
+
+e. For the time at which we will achieve \$10,000 in the account we simply solve for $n$ in
+\[
+10000 = q^nA_0 + m\frac{q^n-1}{q-1}
+\]
+This is a matter of algebra.
+
+\newpage
+5.7.53\\
+Compute $\begin{bmatrix}
+1&1\\
+1&0
+\end{bmatrix}^n$ for small values of $n$ (up to about 5 or 6).  Conjecture an explicit formula for each entry in the matrix and prove your conjecture using mathematical induction. 
+
+The matrices for the first few iterations are
+\[
+\begin{bmatrix}
+1&1\\
+1&0
+\end{bmatrix},
+\begin{bmatrix}
+2&1\\
+1&1
+\end{bmatrix},
+\begin{bmatrix}
+3&2\\
+2&1
+\end{bmatrix},
+\begin{bmatrix}
+5&3\\
+3&2
+\end{bmatrix}
+\]
+These look like the Fibonacci numbers arranged in the following way
+\[
+\begin{bmatrix}
+F_{n+1}&F_n\\
+F_n&F_{n-1}
+\end{bmatrix}
+\]
+Let's prove this.
+\begin{lem}
+Let $\{F_n\}$ be the Fibonacci sequence with $F_0=0$ and $F_1=1$.
+Then 
+\[
+\begin{bmatrix}
+1&1\\
+1&0
+\end{bmatrix}^n = 
+\begin{bmatrix}
+F_{n+1}&F_n\\
+F_n&f_{n-1}
+\end{bmatrix}
+\]
+\end{lem}
+
+\begin{proof}
+We begin by induction.  The base step is easy
+\[
+\begin{bmatrix}
+1&1\\
+1&0
+\end{bmatrix}=\begin{bmatrix}
+F_2&F_1\\
+F_1&F_0
+\end{bmatrix}
+\]
+
+Now let's look at the inductive step.  Assuming this is true for some value $k$.  Let's show the $k+1^{st}$ step to be true.
+\begin{eqnarray*}
+\begin{bmatrix}
+1&1\\
+1&0
+\end{bmatrix}^{k+1} &=& 
+\begin{bmatrix}
+1&1\\
+1&0
+\end{bmatrix}^k * 
+\begin{bmatrix}
+1&1\\
+1&0
+\end{bmatrix}\\
+&=& \begin{bmatrix}
+F_{k+1}&F_k\\
+F_k&F_{k-1}
+\end{bmatrix}*
+\begin{bmatrix}
+1&1\\
+1&0
+\end{bmatrix}\\
+&=& \begin{bmatrix}
+F_{k+1}+F_k& F_{k+1}\\
+F_{k}+F_{k-1} & F_k
+\end{bmatrix}\\
+&=&\begin{bmatrix}
+F_{k+2}&F_{k+1}\\
+F_{k+1}&F_{k}
+\end{bmatrix}
+\end{eqnarray*}
+\end{proof}
+
+\end{document}
