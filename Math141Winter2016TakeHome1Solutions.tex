@@ -1,0 +1,653 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Take Home Exam 1 Maths 141 Winter 2016 \\ DePaul University\\Dr. Alexander}
+\maketitle
+This is due 28 January 2016.  You may use any resources online or in person that you wish, but the work you submit must be your own.  Cheating is strictly forbidden.
+\vspace{1in}
+
+
+%table
+\begin{center}
+  \begin{tabular}{ c | c }
+    Problem & Score\\
+    \hline
+    &\\
+    1&\\
+    &\\
+    2&\\
+    &\\
+    3&\\
+    &\\
+    4&\\
+    &\\
+    Bonus Round 
+    &\\
+    \hline 
+    &\\    
+    Total& 
+ \end{tabular}
+\end{center}
+
+
+\newpage
+
+
+Problem 1: Consider the function $f(n,m)$ of two variables $n\ge m \ge 0$with the following criterion:
+\[
+f(n+1,m+1) = f(n,m+1) + f(n,m) 
+\]
+And the conditions:
+\[
+f(0,0)= f(1,0) = f(1,1) = 1.
+\]
+
+(a) Prove by induction on two variables
+\[
+f(n,m) = \frac{n!}{m!(n-m)!}.
+\]
+
+\vspace{.5in}
+
+Solution: The base case is done for us as $f(2,1) = f(1,1) + f(1,0) = 1+1$.
+
+
+For the first induction:  We assume $f(k,m)$ satisfies the criteria and we need to show $f(k+1,m)$ satisfies as well.
+
+\[
+f(k+1,m) = f(k,m) + f(k,m-1) = {k \choose m} + {k \choose m-1}
+\]
+
+This requires a small amount of algebra.
+\[
+\frac{k!}{m!(k-m)!} + \frac{k!}{(m-1)!(k-(m-1))!}  = \frac{k!}{(m-1)!(k-m)!}\left(\frac{1}{m} + \frac{1}{(k+1-m)}\right)
+\]
+For this equality we have factored out all the biggest pieces and left the remaining bits in the denominators.  Now we get a common denominator
+
+\[
+\frac{k!}{(m-1)!(k-m)!}\left(\frac{1}{m} + \frac{1}{(k+1-m)}\right) = \frac{k!}{(m-1)!(k-m)!}\left(\frac{k+1-m+m}{m(k+1-m)} \right)
+\]
+
+In the numerator we have 
+\[
+(k+1)k! = (k+1)!
+\] 
+and in the denominator we have 
+\[
+m(m-1)! = m!
+\] 
+and 
+\[
+(k+1-m)(k-m)! = (k + 1 - m)! = (k-(m-1))!
+\]
+
+So we have
+\[
+f(k+1,m) = {k+1 \choose m}
+\]
+
+
+For the second induction we need to show
+\[
+f(k,m+1) = f(k-1,m+1) + f(k-1,m)
+\]
+This, however is nearly the same set of algebraic maneuvers as before.  
+\[
+{k-1 \choose m+1} + {k-1 \choose m} = \frac{(k-1)!}{m!(k-m-1)!}\left(\frac{1}{m+1} + \frac{1}{k-m-2 }\right) = {k \choose m+1}
+\]
+
+
+\vspace{.5in}
+
+(b) Prove (by any method you choose)
+\[
+\sum_{k=0}^{n} [f(n,k)\cdot f(m,m-k)] = f(n+m,m) 
+\]
+Hint: This is a special form of the Chu-Vandermonde identity.
+ 
+\vspace{.5in}
+ 
+Solution: We don't need Chu-Vandermonde in this case.  We only need the binomial theorem.
+\[
+(1+x)^{n+m} = (1+x)^n(1+x)^m = \sum_{j=0}^{n}{n \choose k}x^j \cdot \sum_{k=0}^{m}{m \choose m-k} x^{k} 
+\]
+ 
+Now we simply expand and collect the coefficients of the term $x^m$.  In the farthest left most expansion
+\[
+{n+m \choose m} x^m
+\]
+On the right we see
+
+\[
+x^m \cdot \sum_{k=0}^{min(n,m)} {n\choose k}{m\choose m-k}
+\] 
+Equating the two gives the desired result. 
+
+\vspace{.5in} 
+ 
+(c) Now we see that $f(n,m)$ is the binomial coefficient $\binom{n}{m} = \frac{n!}{m!(n-m)!}$.
+
+Using the binomial theorem itself, show the relation in part (a) by expanding the following and equating polynomials
+\[
+(1+x)^{n+1} = (1+x)(1+x)^n
+\]
+
+\vspace{.5in}
+
+Solution: We could simply apply part (b) with $m=1$ and see
+\[
+{n \choose k-1}{1 \choose 1} + {n \choose k}{1 \choose 0} = {n \choose k-1} + {n \choose k} = {n+1 \choose k}
+\]
+
+\vspace{.5in}
+ 
+(d) Finally, show
+\[
+\sum_{k=0}^{n} \binom{n}{k}^2 = \binom{2n}{n}
+\] 
+
+
+\vspace{.5in}
+
+Solution:  Now consider the symmetry in the binomial coefficients
+\[
+{n \choose k} = {n \choose n-k}
+\]
+
+Apply part (b) again and let $n=m$ and apply the symmetric property of binomial coefficients to see
+\[
+\sum_{k=0}^{n}{n \choose k}{n \choose n-k} = \sum_{k=0}^{n}{n \choose k}{n \choose k} = \sum_{k=0}^{n}{n \choose k}^2 = {2n \choose n}
+\]
+
+\newpage
+
+
+Problem 2: Prove by induction
+\[
+\frac{n^n}{3^n} < n! < \frac{n^n}{2^n} \hspace{1cm} \forall n > 10
+\]
+
+\vspace{.25in}
+Bonus for this question: Show for any $\epsilon >0$
+\[
+\frac{n^n}{(e+\epsilon)^n} < n! < \frac{n^n}{(e-\epsilon)^n} \forall n>N
+\]
+What is the appropriate base case here?\\
+Hint: This is a weak form of Stirling's approximation
+
+\vspace{.5in}
+
+Let's solve all of these inequalities in one go.  Let's look, however, at the leftside inequality first...
+\[
+\frac{n^n}{3^n} < n! 
+\]
+
+When $n=11$ (which is our presumptive base case) this is certainly true.  We can simply check this with a calculator.  Now let's look at the inductive hypothesis.
+\[
+\frac{k^k}{3^k} < k! \text{ for some } k>10.
+\]
+
+We must show 
+
+\[
+\frac{(k+1)^{(k+1)}}{3^{(k+1)}} < (k+1)!
+\]
+
+Let's move things around and look at our hypothesis as a multiplicative inequality.
+\[
+k^k < 3^k k!
+\]
+Now consider
+\[
+3^{(k+1)}(k+1)! = 3\cdot(k+1) 3^k k!
+\]
+So we know from our hypothesis that
+\[
+3\cdot(k+1) k^k < 3\cdot (k+1) 3^k k!
+\]
+
+If we can simply show that $(k+1)^{(k+1)} < 3\cdot (k+1) k^k$ then we're set.  
+
+Moving everything with $k$ to the left and we arrive at
+
+\[
+\frac{(k+1)^k}{k^k} \approx e
+\]
+
+We know this fact from calculus (or a quick websearch)
+In fact
+\[
+2 \le \left(1 + \frac{1}{k}\right)^k \le e < 3.
+\]
+So the lefthand inequality holds.
+
+Now by considering the righthand inequality we need the inequality to be reversed and the 3 is replaced by a 2.
+This means we need to show
+
+\[
+2 < \frac{(k+1)^k}{k^k}
+\]
+
+which is true if $k>1$ and since our base case is $k>10$ this holds too.
+
+In fact we've actually shown the bonus as well.
+\[
+e - \epsilon < \frac{(k+1)^k}{k^k} < e + \epsilon
+\]
+
+
+The small problem here is that the base case $N$ will depend on $\epsilon$.  Thus we really must consider $N(\epsilon)$.
+
+For example, if $e - \epsilon = 2$ then $N=2$, but if $e-\epsilon = 2.5$ then $N=10$ and if $\epsilon = 10^{-6}$
+then $N > 10^6 $.
+
+
+\newpage
+
+Problem 3: (a) Prove by induction:
+\[
+\begin{bmatrix}
+5 & -6 \\
+1 & 0
+\end{bmatrix}^n = 
+\begin{bmatrix}
+(3^{n+1}-2^{n+1}) & 6\cdot(2^n- 3^n) \\
+(3^n-2^n) & 6\cdot(2^{n-1}-3^{n-1})\end{bmatrix}
+\]
+
+\vspace{.5in}
+
+Solution:  As always, the base case is relatively straightforward.
+\[
+\begin{bmatrix}
+5 & -6 \\
+1 & 0
+\end{bmatrix}^1 = 
+\begin{bmatrix}
+(3^{1+1}-2^{1+1}) & 6\cdot(2^1- 3^1) \\
+(3^1-2^1) & 6\cdot(2^{1-1}-3^{1-1})\end{bmatrix}
+\]
+Which holds.
+
+
+Now let's look at the inductive step.  Assuming this is true at step $k$ for some $k>0$ we show
+\[
+\begin{bmatrix}
+5 & -6 \\
+1 & 0
+\end{bmatrix}^{k+1} =
+\begin{bmatrix}
+5 & -6 \\
+1 & 0
+\end{bmatrix}^k  
+\begin{bmatrix}
+5 & -6 \\
+1 & 0
+\end{bmatrix} = 
+\begin{bmatrix}
+(3^{k+1}-2^{k+1}) & 6\cdot(2^k- 3^k) \\
+(3^k-2^k) & 6\cdot(2^{k-1}-3^{k-1})\end{bmatrix}
+\begin{bmatrix}
+5 & -6 \\
+1 & 0
+\end{bmatrix} 
+\]
+
+Now it's a matter of working out all for matrix elements and working them into the correct form.  Let's look at the top left element to begin.
+
+\[
+(3^{k+1}-2^{k+1})\cdot 5 + 6\cdot(2^k-3^k)\cdot 1 = (15-6)3^k - (10-6)2^k = 3^{k+2}-2^{k+2}
+\]
+So this element checks out.  We simply follow this procedure with the other three elements and arrive at
+
+
+\[
+\begin{bmatrix}
+5 & -6 \\
+1 & 0
+\end{bmatrix}^{k+1} = 
+\begin{bmatrix}
+(3^{k+2}-2^{k+2}) & 6\cdot(2^{k+1}- 3^{k+1}) \\
+(3^{k+1}-2^{k+1}) & 6\cdot(2^{k}-3^{k})\end{bmatrix}
+\]
+which is the desired result.
+
+\vspace{.5in}
+
+(b) Now consider the simultaneous recurrence relations
+\begin{eqnarray*}
+b_{n+1} & = & 5b_n -6 a_n\\
+a_{n+1} & = & b_n
+\end{eqnarray*}
+
+Where $a_0 =2, b_0 = 5$
+
+Verify (by plugging in directly) that the solution is
+\[
+a_n = 2^n+ 3^n
+\]
+\begin{center}
+and
+\end{center}
+\[
+b_n = 2^{n+1}+ 3^{n+1}
+\]
+
+\vspace{.5in}
+
+Solution: This is a simple straight forward calculation.
+\begin{eqnarray*}
+b_{n+1} &=& 5 b_n - 6 a_n\\ 
+&=& 5(2^{n+1}+3^{n+1}) - 6(2^n + 3^n)\\
+&=& (10-6)2^n + (15-6)3^n\\
+&=& 2^{n+2} + 3^{n+2}  
+\end{eqnarray*}
+
+And $a_{n+1} = b_n = 2^{n+1}+3^{n+1}$ works by definition of $b_n$.
+
+
+
+\vspace{.5in}
+
+(c) Consider the second order homogeneous recurrence relation
+\[
+a_{n+2} - 5 a_{n+1} + 6a_n =0
+\]
+with $a_0 =2, a_1=5$.  Solve this recurrence relation.
+
+
+\vspace{.5in}
+
+Solution:  Using our proof by (strong) induction we know that for second order linear homogeneous recurrence relations with constant coefficients (which is what we have currently) we can guess a solution
+\[
+a_n = C\cdot r^n
+\]
+
+Where $r$ solves the characteristic polynomial
+\[
+r^2 - 5 r + 6 = 0
+\]
+
+We see that this factors
+\[
+r^2-5r+6 = (r-2)(r-3) = 0
+\]
+
+And so we arrive at a general solution
+\[
+a_n = C\cdot 2^n + D\cdot 3^n
+\]
+
+Now using our initial condition
+\begin{eqnarray*}
+a_0 &=& 2 = C+D\\
+a_1 &=& 5 = 2C + 3D
+\end{eqnarray*}
+
+This solution is simple (by design) and we get $C=D=1$ thus giving the specific solution to this recurrence relation as
+\[
+a_n = 2^n + 3^n.
+\]
+
+\vspace{.5in}
+
+(d) By making the substitution $a_{n+1}=b_n$ Show that we can transform part (c) into
+\[
+\begin{bmatrix}
+b_{n+1} \\ a_{n+1}
+\end{bmatrix} = \begin{bmatrix}
+5 & -6 \\ 
+1 & 0 
+\end{bmatrix} \begin{bmatrix}
+b_n \\ a_n
+\end{bmatrix}
+\]
+
+\vspace{.5in}
+
+Solution: The first thing we need to do is to transform $b_{n+1}$ as a sum of $b_n$ and $a_n$.
+\[
+a_{n+2} - 5 a_{n+1} + 6 a_n = b_{n+1} - 5 b_n +  6 a_n
+\]
+
+And now we see the two equations simultaneously:
+\begin{eqnarray*}
+b_{n+1} &=& 5 b_n - 6a_n\\
+a_{n+1} &=& 1 b_n + 0 a_n 
+\end{eqnarray*}
+
+Simply picking off the coefficients off the matrix we arrive at
+
+\[
+\begin{bmatrix}
+b_{n+1} \\ a_{n+1}
+\end{bmatrix} = 
+\begin{bmatrix}
+5 & -6 \\ 1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+b_{n} \\ a_{n}
+\end{bmatrix}
+\]
+
+\vspace{.5in}
+
+(e) Show that a first order recurrence relation
+\[
+x_{n+1} = A x_n, \text{ where } x_0 \text{ is given.}
+\]
+has the solution $x_{n} = A^n x_0$ where $A$ is a matrix and $x_n$ is a sequence of vectors.\\
+
+Conclude that
+\[
+\begin{bmatrix}
+b_{n+1} \\ a_{n+1}
+\end{bmatrix} = \begin{bmatrix}
+5 & -6 \\ 
+1 & 0 
+\end{bmatrix}^n \begin{bmatrix}
+b_0 \\ a_0
+\end{bmatrix}
+\]
+
+
+\vspace{.5in}
+
+Solution: This is nothing more than showing that a first order recurrence relation actually works.  Let $x_n$ be a sequence of vectors, and $A$ a square matrix with the relation:
+
+\[
+x_{n+1} = A x_n
+\]
+
+Then by induction we assume $x_k = A^k x_0$ and see
+\[
+x_{k+1} = A x_k = A(A^k)x_0 = A^{k+1}x_0
+\]
+
+And so a matrix recurrence relation also works.
+
+Now we simply define
+\[
+x_n = \begin{bmatrix}
+b_n \\ a_n
+\end{bmatrix}, A = \begin{bmatrix}
+5 & -6 \\ 1 & 0
+\end{bmatrix}
+\]
+
+And this gives the desired result.  The point is that we are now able to take any order recurrence relation and convert it into a first order matrix recurrence relation.  In particular we solve several orders of the recurrence relation simultaneously.
+
+\newpage
+
+Problem 4: (a) Prove by induction
+\[
+\sum_{j=0}^{n} r^j = \frac{r^{n+1}-1}{r-1}  \forall n\ge 0 , r\ne 0,1
+\]
+
+\vspace{.5in}
+
+Solution: By induction; our base case is, as usual, simple.
+\[
+1 = \frac{r-1}{r-1} 
+\]
+provided $r\ne 0,1$.
+
+Now for the inductive step: Assume for some $k\ge 0$
+\[
+\sum_{j=0}^{k} r^j = \frac{r^{k+1}-1}{r-1}
+\]
+
+Now we show
+\[
+\sum_{j=0}^{k+1} r^j = \frac{r^{k+1}-1}{r-1} + r^{k+1} = \frac{(r^{k+1}-1)+(r^{k+1}(r-1))}{r-1} = \frac{r^{k+2}-1}{r-1}
+\]
+
+which is the desired result.
+
+
+\vspace{.5in}
+
+(b) Now consider that $r$ is a rational number written as $r = x/y$.  Make this substituion into part (a) to transform the equation into the divisibility:
+\[
+(x-y) | (x^n - y^n)
+\]
+
+\vspace{.5in}
+
+Solution: This part is nothing but bookkeeping.  Since $r=x/y$
+we have
+\[
+1 + \frac{x}{y} + \frac{x^2}{y^2} + \cdots + \frac{x^n}{y^n} = \frac{(x/y)^{n+1}-1}{(x/y)-1}
+\]
+Now let's clear the denominator from the left side, ie multiply \emph{both} sides by $y^n$
+
+We get
+\[
+y^n + xy^{n-1} + x^2y^{n-2} + \cdots + x^n = \frac{x^{n+1}y^{-1} - y^n}{(x/y)-1}
+\]
+
+
+Before you read on, make sure you understand what happened in the previous step!  
+
+\vspace{.5in}
+
+Have you read the above step?
+
+\vspace{.5in}
+
+Are you sure?
+
+\vspace{.5in}
+
+Please make sure that the math from the above step works out.  This is important!
+
+\vspace{.5in}
+
+Ok, now I'm trusting that you have verified this equation above.  If you haven't then the misunderstanding is now on you.
+
+\vspace{.5in}
+
+
+So now we need to clear the $y^{-1}$ from the right side.  We'll do this by simply multiplying the right side by 1.  However we'll do this in the form of $\frac{y}{y}$.  This is allowed since $y\in\Z$ is not zero.  So on the righthand side
+\[
+\frac{x^{n+1}y^{-1} - y^n}{(x/y)-1} \cdot \frac{y}{y} = \frac{x^{n+1}-y^{n+1}}{x-y}
+\]
+
+Now we have the sum of integers on the left and a fraction of integers on the right.  This tells us that
+\[
+(x-y) | (x^{n+1}-y^{n+1})
+\]
+For all $n$.  Thus we can shift the index back by one step and arrive at the result from above in the ``preferred" format
+\[
+(x-y) | (x^n-y^n)
+\]
+
+
+
+
+\vspace{.5in}
+
+(c) Show by induction (directly) that
+\[
+(x-y) | (x^n-y^n)
+\]
+
+\vspace{.5in}
+
+Solution:  Essentially look at your class notes.  Let's take $n=0$ as the base case.
+\[
+(x-y)|0 \text{ since everything divides zero.}
+\]
+
+Now for the inductive step.  Assume for some $k\ge 0 $ that
+\[
+(x-y)|(x^k-y^k).
+\]
+
+It is our goal to show
+
+\[
+(x-y)|(x^{k+1}-y^{k+1}).
+\]
+
+This is easy if we recognize
+\[
+x^{k+1} - y^{k+1} = x(x^k - y^k) + y^k(x-y)
+\]
+
+By assumption $x-y$ divides all the pieces on the right and thus by our rules of divisibility divides the sum. Therefore
+\[
+(x-y)|(x^{k+1}-y^{k+1}).
+\]
+as desired.
+
+
+\vspace{.5in}
+
+(d) Using part (c) Show that ``If $n$ is not prime then $2^n -1$ is not prime." 
+
+
+\vspace{.5in}
+
+Since $n$ is not prime it may be written in the form $n=ab$ where $1<a,b<n$ and $a,b\in\Z$.  By the above proofs we see
+\[
+(2^a-1) | ((2^a)^b-1^b)
+\]
+
+and thus $2^{ab}-1 = 2^n-1$ is not prime.
+
+\newpage
+
+
+Bonus Round:  Here are your category three questions:
+
+Bonus 1: Show 
+\[
+\ln(n) < \sum_{j=1}^{n} \frac{1}{j} < \ln(n)+1
+\]
+
+\vspace{.75in}
+
+Bonus 2: Let $A$ be a square matrix.  What does it mean to take the absolute value of $A$?
+
+\end{document}

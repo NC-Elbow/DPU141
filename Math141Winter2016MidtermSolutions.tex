@@ -1,0 +1,318 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Midterm Maths 141 Winter 2016 \\ DePaul University\\Dr. Alexander}
+\maketitle
+You have 90 minutes to complete this exam.  Calculators are allowed, but no other electronic devices are permitted.  Please write all your answers in complete, legible sentences, and show all your work to receive full credit.  Please complete all seven (7) problems.
+
+
+%table
+\begin{center}
+  \begin{tabular}{ c | c }
+    Problem & Score\\
+    \hline
+    &\\
+    1&\\
+    &\\
+    2&\\
+    &\\
+    3&\\
+    &\\
+    4&\\
+    &\\
+    5&\\
+    &\\
+    6&\\
+    &\\
+    7&\\
+    &\\
+    Bonus&\\
+    &\\
+    \hline 
+    &\\    
+    Total& 
+ \end{tabular}
+\end{center}
+
+\newpage 
+Problem 1. Prove by induction: For every $n\ge 1$.
+\[
+\sum_{j=1}^{n} \frac{1}{j(j+1)} = \frac{n}{n+1}
+\]
+
+\vspace{.5in}
+
+Solution: The base case, as always is easy.
+\[
+\sum_{j=1}^{1} \frac{1}{j(j+1)} = \frac{1}{2} = \frac{1}{1+1}
+\]
+
+
+Now for the inductive step.  Assume for some $k\ge 1$ that
+\[
+\sum_{j=1}^{k} \frac{1}{j(j+1)} = \frac{k}{k+1}
+\]
+
+And now we show this result holds for $k+1$.
+
+\[
+\sum_{j=1}^{k+1} \frac{1}{j(j+1)} = \sum_{j=1}^{k} \frac{1}{j(j+1)}  + \frac{1}{(k+1)(k+2)} = \frac{k}{k+1} + \frac{1}{(k+1)(k+2)}
+\]
+
+Now taking a common demominator we have
+
+\[
+\frac{k}{k+1} + \frac{1}{(k+1)(k+2)} = \frac{k(k+2) + 1}{(k+1)(k+2)} = \frac{(k+1)^2}{(k+1)(k+2)} = \frac{k+1}{k+2}
+\]
+
+which is the desired result.
+
+\newpage
+
+Problem 2.
+Prove by induction: For every $n\ge 0$
+\[
+\begin{bmatrix}
+1 & a & b \\
+0 & 1 & c \\
+0 & 0 & 1
+\end{bmatrix}^n = \begin{bmatrix}
+1 & na & nb + {n \choose 2}ac \\
+0 & 1 & nc \\
+0 & 0 & 1
+\end{bmatrix}
+\]
+
+Hint: ${1\choose 2}=0$.
+
+
+\vspace{.5in}
+
+Solution:  In the base case
+
+\[
+\begin{bmatrix}
+1 & a & b \\
+0 & 1 & c \\
+0 & 0 & 1
+\end{bmatrix}^1 = \begin{bmatrix}
+1 & 1a & 1b + {1 \choose 2}ac \\
+0 & 1 & 1c \\
+0 & 0 & 1
+\end{bmatrix}
+\]
+Since ${1 \choose 2} = 0$ this holds.
+
+Now for the inductive step, we assume for some $k\ge 1$ 
+\[
+\begin{bmatrix}
+1 & a & b \\
+0 & 1 & c \\
+0 & 0 & 1
+\end{bmatrix}^k = \begin{bmatrix}
+1 & ka & kb + {k \choose 2}ac \\
+0 & 1 & kc \\
+0 & 0 & 1
+\end{bmatrix}
+\]
+
+Then
+
+\[
+\begin{bmatrix}
+1 & a & b \\
+0 & 1 & c \\
+0 & 0 & 1
+\end{bmatrix}^{k+1} = \begin{bmatrix}
+1 & ka & kb + {k \choose 2}ac \\
+0 & 1 & kc \\
+0 & 0 & 1
+\end{bmatrix} 
+\begin{bmatrix}
+1 & a & b \\
+0 & 1 & c \\
+0 & 0 & 1
+\end{bmatrix}
+\]
+
+The diagonal entries are all $1$.  The lower triangular entries are all $0$.
+The entry at $(1,2)$ is $a + ka = (k+1)a$.  
+The entry at $(2,3)$ is $c + kc = (k+1)c$.  Which leaves us only to check the entry at $(1,3)$.
+The matrix multiplication yields
+\[
+b + kac + kb + {k\choose 2}ac = (k+1)b + (k+{k\choose 2}ac) = (k+1)b + {k+1 \choose 2}ac
+\]
+as desired.
+
+\newpage
+Problem 3.
+Prove by induction
+\[
+\prod_{j=1}^{n} \frac{j+3}{j}= \frac{(n+1)(n+2)(n+3)}{6} 
+\]
+
+\vspace{.5in}
+
+Solution: Again, the base case is simple enough
+
+\[
+\prod_{j=1}^{1} \frac{j+3}{j}= 4 = \frac{(1+1)(1+2)(1+3)}{6} 
+\]
+
+Now for the inductive step.  We assume for some $k\ge 1$
+\[
+\prod_{j=1}^{k} \frac{j+3}{j}= \frac{(k+1)(k+2)(k+3)}{6} 
+\]
+
+Then at step $k+1$ we have
+\[
+\prod_{j=1}^{k+1} \frac{j+3}{j}= \frac{(k+1)(k+2)(k+3)}{6} \cdot \frac{k+4}{k+1} = \frac{(k+2)(k+3)(k+4)}{6} 
+\]
+
+As desired.
+
+
+\newpage
+
+Problem 4.
+Prove by induction
+\[
+n2^n < n! \text{ for all } n>5.
+\]
+
+
+\vspace{.5in}
+
+Solution: we check directly at $n=6$.
+\[
+6\cdot 64 < 720.
+\]
+
+Now consider the case that $k>5$ (in particular $k>5>4>2$ we will use these facts momentarily.)
+
+Assume 
+\[
+k 2^k < k!
+\]
+
+Then 
+\[
+(k+1) 2^{k+1} = (2k+2)2^k = 2k2^k + 2\cdot 2^k < 2k 2^k + 2k 2^k = 4k2^k < 4k! < (k+1)k! = (k+1)!
+\]
+
+The first inequality is because $k>2$. The second inequality is our inductive hypothesis.  The third inequality is because $k+1 > 4$. 
+
+
+
+\newpage 
+Problem 5.
+Prove by induction
+\[
+5 | (3^n - (-2)^n) \text{ for all } n>0.
+\]
+
+\vspace{.5in}
+
+Solution: Recall
+\[
+(x-y) | (x^n - y^n)
+\]
+for all integers $x,y$ and $n\ge 0$.
+
+We saw this by induction in that
+\[
+x^{k+1} - y^{k+1} = x(x^k-y^k) + y^k(x-y)
+\]
+
+Now let $x=3$ and $y=-2$ and we're finished.
+
+
+
+\newpage
+Problem 6.
+Verify that the sequence $a_n =(1+n) 2^n $ solves the following recurrence relation
+\[
+a_{n+2} - 4a_{n+1} + 4a_n = 0 
+\]
+with $a_0 =1$ and $a_1 = 4$
+
+
+\vspace{.5in}
+
+Solution:  We did this example in class.  So let's simply restate it here.  By the claim
+\begin{eqnarray*}
+a_{n+2} & = & (n+3)2^{n+2}\\
+a_{n+1} & = & (n+2)2^{n+1}\\
+a_{n} & = & (n+1)2^{n}\\
+\end{eqnarray*}
+
+Thus plugging in directly
+\[
+a_{n+2} - 4a_{n+1} + 4a_n = (n+3)2^{n+2} - 4 (n+2)2^{n+1} + 4(n+1)2^n = 2^n(4n - 8n + 4n + 12 - 16 + 4) = 0
+\]
+
+Additionally, to meet the intial conditions:
+\[
+a_0 = (0+1)2^0 = 1
+\]
+and
+\[
+a_1 = (1+1)2^1 = 4
+\]
+
+\newpage
+
+Problem 7. Let $A= \{n \in \Z | 0\le n \le 100\}$ and define the relation $R$ on the power set $\mathcal{P}(A)$ as follows
+
+\[
+S_1 \textbf{R} S_2 \iff |S_1| = |S_2|
+\]
+
+
+(a) Show that this is an equivalence relation.\\
+
+(b) What are the equivalence classes?\\
+
+
+\vspace{.5in}
+
+Solution: We're saying only that sets are related if they have the same number of elements.  Obviously, every set has the same number of elements as itself, that is $|S|=|S|$ for every set $S$, in particular for any subset $S\subseteq A$.  So the relation is reflexive.  If $|S|=|T|$ then $|T|=|S|$ for any sets, in particular for subsets of $A$.  So the relation is symmetric.  Finally, if $|S|=|T|$ and $|T|=|V|$ then $|S| = |V|$ so the relation is transitive and thus we have an equivalence relation.\\
+
+
+(b) We're partitioning by size of sets.  So the equivalence classes are given by the number of elements in a set.
+\begin{itemize}
+\item[] $\lbrack 0 \rbrack = \emptyset$ since this is the only set with no elements.\\
+\item[] $\lbrack n \rbrack = \{S\subseteq A| |S|=n \}$
+\end{itemize}
+
+
+
+\newpage
+
+Bonus. Show 
+\[
+7 | (2222^{5555} + 5555^{2222}).
+\]
+
+
+\end{document}

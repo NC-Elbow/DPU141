@@ -1,0 +1,641 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Take Home Assignment 2 Maths 141 Winter 2016 \\ DePaul University\\Dr. Alexander}
+\maketitle
+This is due 1 March 2016.  You may use any resources online or in person that you wish, but the work you submit must be your own.  Cheating is strictly forbidden.
+\vspace{1in}
+
+
+%table
+\begin{center}
+  \begin{tabular}{ c | c }
+    Problem & Score\\
+    \hline
+    &\\
+    1&\\
+    &\\
+    2&\\
+    &\\
+    3&\\
+    &\\
+    4&\\
+    &\\
+    Bonus Round 
+    &\\
+    \hline 
+    &\\    
+    Total& 
+ \end{tabular}
+\end{center}
+
+
+\newpage
+
+
+Problem 1: Let $X_n = \{2,3,\dots n\}$ for all $n>2$.  
+
+\[
+\sum_{j=1}^{2^{n-1}-1} P_j = \frac{(n+1)!}{2}-1
+\]
+
+Where $P_j$ is the product of all the elements in a nonempty subset of $X_n$.\\
+
+
+(a) Work this out explicitly (I mean every detail) for $X_4$ and $X_5$.\\
+
+(b) Show the general case by induction (on $n$).
+
+\vspace{.5in}
+
+Solution: Let's take a look at $X_4 = \{2,3,4\}$.  This has $3 = 4-1$ elements and so it's power set will have $2^{4-1}$ elements.  We only consider nonempty sets so the sets we must consider number $2^3-1 = 7$.  Indeed they are
+\[
+\{2\},\{3\},\{4\},\{2,3\},\{2,4\},\{3,4\},\{2,3,4\}
+\]
+
+Let's label these in order as they are written $S_i$.  That is
+\[
+S_1 = \{2\} ,\dots, S_7 = \{2,3,4\}
+\]
+
+Now the $P_j$ are the products of the elements in $S_j$.  So we have
+\[
+P_1 = 2,P_2=3,P_3=4,P_4 = 6, P_5 = 8, P_6 = 12, P_7 =24
+\]
+
+The sum then becomes
+\[
+\sum_{j=1}^{2^{4-1}-1} P_j = 2+3+4+6+8+12+24 = 59 =\frac{(4+1)!}{2}-1
+\]
+
+For $X_5$ allow me to keep the exact same sets from $X_4$ in the same order.  Meaning that the new required sets are
+\[
+\{5\},\{2,5\},\{3,5\},\{4,5\},\{2,3,5\},\{2,4,5\},\{3,4,5\},\{2,3,4,5\}
+\]
+
+As written we have
+\[
+S_{i+8} = S_i \cup \{5\} 
+\]
+which means
+\[
+P_{i+8} = 5\cdot P_i
+\]
+
+This leaves our sum as
+\[
+\sum_{j=1}^{2^{5-1}-1} P_j = \sum_{j=1}^{2^{4-1}-1} P_j + 5 + 5\cdot\sum_{j=1}^{2^{4-1}-1} P_j
+\]
+
+Take a moment to study that previous formula and figure out exactly what we've done.
+
+This means the sum is
+\[
+\left(\frac{(4+1)!}{2}-1\right) + 5 + 5\cdot\left(\frac{(4+1)!}{2}-1\right) = 6\cdot\left(\frac{(4+1)!}{2}-1\right) + 5
+\]
+
+Now simplifying and collecting terms leaves us with
+\[
+6\cdot\left(\frac{(4+1)!}{2}-1\right) + 5 = \frac{(5+1)!}{2}-1
+\]
+
+\vspace{.25in}
+
+In order to tackle the general problem in (b) Let's develop some simple notation.
+\[
+S = \mathcal{P}(X_n) - \emptyset
+\]
+
+Then we let
+
+\[
+S_i \subseteq S, \text{ for all } 1\le i \le 2^{n-1}-1
+\]
+
+And the products $P_j$ are
+\[
+P_j = \prod_{x\in S_j} x
+\]
+
+For example: if $S_{12} = \{2,3,5\}$ then
+\[
+P_{12} = \prod_{x \in S_{12}} x = 2\cdot 3\cdot 5 =30
+\]
+
+
+When we solve this by induction we induct on the subscript $n$ in $X_n$.
+
+So to move from $X_n$ to $X_{n+1}$ the only sets in the set $S$ (power set minus empty set) that we were missing from before are those containing the element $\{n+1\}$.  See the example above for $4$ to $5$.  Then assuming our induction works at some step $k$. 
+\[
+\sum_{j=1}^{2^{k-1}-1} P_j = \frac{(k+1)!}{2} - 1
+\]
+
+We can reorder our new sets so that
+\[
+S_1 = \{2\} ,\dots, S_{2^{k-1}-1} = X_k, S_{2^{k-1}} = \{k+1\}, S_{i+2^{k-1}} = S_i \cup \{k+1\}
+\]
+
+This means
+\[
+P_{2^{k-1}} = n+1, P_{i+2^{k-1}} = (k+1)\cdot P_i
+\]
+
+Then our summation becomes
+
+\[
+\sum_{j=1}^{2^{k}-1} P_j = \sum_{j=1}^{2^{k-1}-1} P_j + (k+1) + (k+1)\cdot \sum_{j=1}^{2^{k-1}-1} P_j
+\]
+
+Since we know the sums on left and right we can factor this term out.  The leftmost term is only one copy, but the rightmost term is and additional $(k+1)$ copies of the previous sum.  Thus
+
+\[
+(1+(k+1)) \cdot \left(\frac{(k+1)!}{2} - 1\right) + (k+1)= \frac{(k+2)!}{2} - k - 2 + k + 1
+\]
+
+Which is exactly the result we claimed.
+
+\newpage
+
+
+Problem 2: A complex number $a+bi$ where $i = \sqrt{-1}$ can be represented by a two by two matrix as follows:
+
+\[
+a+bi \leftrightsquigarrow \begin{bmatrix}
+a & b \\
+-b & a
+\end{bmatrix}
+\]
+\vspace{.25in}
+
+(a) Show that this is well defined, that is
+\[
+(a+bi)(c+di) \leftrightsquigarrow 
+\begin{bmatrix}
+a & b \\
+-b & a
+\end{bmatrix}
+\begin{bmatrix}
+c & d \\
+-d & c
+\end{bmatrix}
+\]
+
+\vspace{.25in}
+
+(b) The length of a complex number is given by
+\[
+|a+bi| = \sqrt{a^2+b^2}
+\]
+
+The determinant of a $2\times 2$ matrix is given by
+\[
+\det\begin{bmatrix}
+a & b\\
+c & d
+\end{bmatrix} = ad - bc
+\]
+
+Show that the length of a complex number is the square root of its corresponding determinant.
+
+\vspace{.25in}
+
+(c) Now show that
+\[
+\det(A^n) = \det(A)^n
+\]
+
+You'll want to do this by induction!
+
+\vspace{.25in}
+
+(d) Now if a complex number has length one, then it can be represented
+\[
+\cos(\theta) + i \sin(\theta) \leftrightsquigarrow \begin{bmatrix}
+\cos(\theta) & \sin(\theta)\\
+-\sin(\theta) & \cos(\theta)
+\end{bmatrix}
+\]
+
+Using this information Prove DeMoivre's theorem
+\[
+(\cos(\theta)+i\sin(\theta))^n = (\cos(n\theta)+i\sin(n\theta))
+\]
+
+
+\vspace{.5in}
+
+Solution: (a) The standard complex multiplication yields
+\[
+(a+bi)(c+di) = ac + adi+bci - bd = (ac-bd)+(ad+bc)i
+\]
+
+
+The matrix multiplication looks like
+\[
+\begin{bmatrix}
+a & b \\ -b & a
+\end{bmatrix}
+\begin{bmatrix}
+c & d \\ -d & c
+\end{bmatrix} = 
+\begin{bmatrix}
+ac-bd & ad+bc \\ -bc-ad & -bd+ac
+\end{bmatrix}
+\]
+Which is the form we expected.
+
+\vspace{.25in}
+
+(b) The $2\times 2$ matrix which corresponds to $a+bi$ is
+
+\[
+\begin{bmatrix}
+a & b \\ -b & a
+\end{bmatrix}
+\]
+with corresponding determinant
+\[
+\det \begin{bmatrix}
+a & b \\ -b & a
+\end{bmatrix} = a^2 + b^2
+\]
+
+So the squareroot yields
+\[
+\sqrt{\det(A)} = \sqrt{a^2+b^2} = |a+bi|
+\]
+
+\vspace{.25in}
+
+(c) To show this by induction we check the base case
+\[
+\det(A^1) = \det(A)^1
+\]
+
+Now assume that we know the form of $A^k$ for some $k$.
+\[
+A = \begin{bmatrix}
+a & b \\ c & d
+\end{bmatrix} \text{ and } A^k =\begin{bmatrix}
+a_k & b_k \\ c_k & d_k
+\end{bmatrix}
+\]
+
+By this assumption 
+\[
+\det(A^k) = a_k d_k - b_k c_k 
+\]
+
+Now we compute
+\[
+A^k A = \begin{bmatrix}
+a_k & b_k \\ c_k & d_k
+\end{bmatrix}
+\begin{bmatrix}
+a & b \\ c & d
+\end{bmatrix} = 
+\begin{bmatrix}
+a_k a + b_k c & a_k b + b_k c \\ c_k a + d_k c & c_k  b + d_k d
+\end{bmatrix}
+\]
+
+
+Then the determinant is
+\[
+\det(A^k A) = (a_k a + b_kc)(c_k a + d_k c) - (c_k a + d_k c)(a_k b + b_k c)
+\]
+
+We can compare with
+\[
+\det(A^k)\det(A) = (a_k d_k - b_k c_k)(ad -bc)
+\]
+
+
+With a little algebra we can show that these are, in fact, equal.
+
+\vspace{.25in}
+
+(d) Finally we can look at DeMoivre's theorem
+\[
+\begin{bmatrix}
+\cos(k\theta) & \sin(k\theta) \\ -\sin(k\theta) & \cos(k\theta)
+\end{bmatrix}
+\begin{bmatrix}
+\cos(\theta) & \sin(\theta) \\ -\sin(\theta) & \cos(\theta)
+\end{bmatrix} = 
+\]
+
+\[
+\begin{bmatrix}
+\cos(k\theta)\cos(\theta) -\sin(k\theta)\sin(\theta)& \sin(k\theta)\cos(\theta) + \cos(k\theta)\sin(\theta)\\ -\sin(k\theta)\cos(\theta) - \cos(k\theta)\sin(\theta) & 
+\cos(k\theta)\cos(\theta) - \sin(k\theta)\sin(\theta)
+\end{bmatrix} 
+\]
+
+Recalling our elementary trig identities
+\begin{eqnarray*}
+\cos(A)\cos(B) - \sin(A)\sin(B) &=& \cos(A+B)\\
+\sin(A)\cos(B) + \cos(A)\sin(B) &=& \sin(A+B)
+\end{eqnarray*}
+
+We set $A = k\theta$ and $B=\theta$ and arrive at
+
+\[
+\begin{bmatrix}
+\cos((k+1)\theta) & \sin((k+1)\theta) \\ -\sin((k+1)\theta) & \cos((k+1)\theta)
+\end{bmatrix}
+\]
+
+\newpage
+
+
+Problem 3: The discrete logarithm is exactly analogous to the classical logarithm in that 
+\[
+\log_b(x) = y  \iff b^y =x
+\]
+
+This same idea holds in the discrete case except modulo $n$ for some $n$.
+
+\[
+\log_b(x) = y  \iff b^y \equiv x \mod{n} 
+\]
+
+This is a very difficult problem to solve classical.  In fact, many cryptosystems are based on this very fact.  So try your hand at it.  Find $x$ so that
+\[
+3^x \equiv 5 \mod{101}
+\]
+
+Describe your solution in as much detail as possible.
+
+\vspace{.25in}
+
+Hint: You'll want to websearch discrete logs like crazy.  We have, however, already covered all the techniques in class that you'll need to solve this.  However, you will probably learn some new ways to apply these techniques.
+
+
+\vspace{.5in}
+
+Solution: We will give three solutions here.  The first is the most obvious and the hardest to fully compute.  We'll simply write down the powers of $3 \mod{101}$
+
+The first 20
+\[
+3,9,27,81,41,22,66,97,89,65,94,80,38,13,39,16,48,43,28,84
+\]
+
+The second 20
+\[
+50,49,46,37,10,30,90,68,2,6,18,54,61,82,44,31,93,77,29,87
+\]
+
+The third 20
+\[
+59,76,26,78,32,96,86,56,67,100,98,92,74,20,60,79,35,13,39,16
+\]
+
+The fourth 20
+\[
+48,43,28,84,51,52,55,64,91,71,11,33,99,95,83,47,40,19,57,70
+\]
+
+The last 20
+\[
+8,24,72,14,42,25,75,23,69,5,15,45,34,1
+\]
+
+We see $5$ is in the $96^{th}$ spot and so
+\[
+3^{96} \equiv 5 \mod{101}
+\]
+
+
+\vspace{.25in}
+
+Second Solution:  We're actually lucky in this case.  We have Fermat's Little Theorem 
+\[
+3^{100} \equiv 1 \mod{101}
+\]
+
+Additionally, let's look at 5 a little more closely.
+
+\[
+5\cdot 20 = 100 \equiv -1  \implies 5\cdot(-20) \equiv 1
+\]
+Now we see
+\[
+-20 \equiv 81 \mod{101}
+\]
+
+So 
+
+\[
+3^x \equiv 5 \implies 3^x \cdot 81 \equiv 5\cdot 81 \equiv 1 \mod{101}
+\]
+
+We know $81 = 3^4$ and so the result
+
+\[
+3^x 3^4 \equiv 3^{100} \equiv 1 \mod{101}
+\]
+
+Which means $x=96$.  More precisely, $x\equiv 96 \mod{100}$
+
+\vspace{.25in}
+
+Third Solution:  This is a slightly more sophisticated solution.  We again recall Fermat's little theorem which tells us: Given $p \not| a$
+\[
+a^p \equiv a \mod{p} \implies a^{p-1} \equiv 1\mod{p}
+\]
+
+So now when we consider taking discrete logarithms we will work $\mod{p-1}$ rather than $\mod{p}$ So consider this
+
+\[
+5^3 = 125 \equiv 24 = 2^3 \cdot 3 \mod{101}
+\]
+
+Now taking logarithms we get
+
+\[
+3\log_3(5) \equiv 3\log_3(2) + 1 \mod{100}
+\]
+
+Notice how we changed from $\mod{101}$ to $\mod{100}$.
+
+We have reduced (in some sense) to finding $\log_3(2)$.
+
+Now consider
+\[
+2^7 = 128 \equiv 27 = 3^3 \mod{101}
+\]
+
+This tells us
+\[
+7\log_3(2) \equiv 3 \mod{100}
+\]
+Again changing from modulo 101 to modulo 100.
+\[
+7\cdot 43 = 301 \equiv 1 \mod{100}
+\]
+Multiplying both sides by three we see
+\[
+7\cdot 43 \cdot 3 \equiv 7\cdot 29 \equiv 3 \mod{100}
+\]
+
+This tells us
+\[
+\log_3(2) \equiv 29 \mod{100}
+\]
+We could have looked this up in the terrible table we wrote for the first (inelegant) solution.
+So we return to
+\[
+3\log_3(5) \equiv 3\log_3(2) + 1 \equiv 3\cdot 29 + 1 \equiv 88\mod{100}
+\]
+
+In order to get rid of the three we find it's inverse modulo 100.  We know $3\cdot 67 = 201$.
+This tells us to multiple both sides by 67 and we see
+\[
+67\cdot 3 \cdot \log_3(5) \equiv \log_3(5) \equiv 67\cdot 88 \equiv 96 \mod{100}
+\]
+
+For the third time we achieve the correct value.
+
+\newpage
+
+
+Problem 4: Find all integers $x$ so that
+\begin{itemize}
+\item[] $x \equiv 1\mod{3}$\\
+\item[] $x \equiv 3\mod{5}$\\
+\item[] $x \equiv 2\mod{11}$\\
+\item[] $x \equiv 5\mod{13}$\\
+\end{itemize}
+
+\vspace{.25in}
+
+Hint: This is an extremely simplified version of the Chinese Remainder Theorem.
+
+
+\vspace{.5in}
+
+Solution: We see $x =3k+1$ So plugging that into out second equation we have
+\[
+3k+1 \equiv 3 \mod{5} \implies 3k \equiv 2 \mod{5}
+\]
+We know that $2$ and $3$ and inverse to each other $\mod{5}$ So multiplying both sides by $2$ we have
+\[
+2\cdot (3k) \equiv 2\cdot 2 \mod{5}
+\]
+That is
+\[
+k\equiv 4 \mod{5}
+\]
+
+So our equation now reads
+\[
+x = 3k+1 = 3(5\ell + 4) + 1 = 15\ell + 13
+\]
+
+Now moving onto the third equation
+\[
+15\ell + 13 \equiv 2 \mod{11} \implies 15\ell \equiv 0 \mod{11} \implies 4\ell \equiv 0 \mod{11}
+\]
+
+Since 11 is not divisible by 4 this must mean
+\[
+\ell \equiv 0 \mod{11} \implies \ell = 11m
+\]
+
+Now we have
+\[
+x = 3k+1 = 15\ell+ 13 = 15(11m) + 13 = 165m+13
+\]
+
+Finally
+\[
+165 m + 13 \equiv 5 \mod{13} \implies 9m\equiv 5 \mod{13}
+\]
+
+Let's look for the inverse of $9 \mod{13}$
+
+We see
+\[
+9\cdot 3 = 27 = 13\cdot 2 + 1
+\]
+
+So multiplying both sides by 3 we have
+\[
+3\cdot 9m \equiv 3\cdot 5 \mod{13} \implies m \equiv 2 \mod{13}
+\]
+
+Then our solution $x$ is
+\[
+x = 165m + 13 = 165(13n+2)+13 = 2145n + 343 
+\]
+
+So the smallest positive integer which satisfies this is $343$.
+
+
+\newpage
+
+
+Bonus Round:  We know the there are many objects which do not commute.  That is
+\[
+xy \ne yx.
+\]
+
+Consider two possible scenarios.  The form
+\[
+xy -yx 
+\]
+is called the commutator.
+
+Suppose we have two objects whose commutator is 1.
+That is
+\[
+xy-yx = 1
+\]
+
+In this case we like to write all the $y$ terms before all the $x$ terms.  The reason for this is because most of the time when we use functions we associate to the right, rather than the left.
+
+In this situation, what is the new analog of the binomial theorem.  For example:
+\[
+(x+y)^2 = x^2 + 2yx + y^2 + 1
+\]
+
+
+The second situation to consider is
+\[
+xy = zyx
+\]
+
+Where $z$ is just a number.  Things like this usually happen when we're dealing with rotations in high numbers of dimensions.  For example
+\[
+xy = \cos(\theta) yx, \text{ for some } \theta \ne 0
+\]
+
+What is the appropriate analog of the binomial theorem in this case?
+
+\[
+(x+y)^2 = x^2 + (1+z)yx + y^2
+\]
+
+
+\end{document}
