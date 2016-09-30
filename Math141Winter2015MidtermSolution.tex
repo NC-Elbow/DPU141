@@ -1,0 +1,275 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Exam 1 Maths 141 Winter 2015 \\ DePaul University\\Dr. Alexander}
+\maketitle
+You have 90 minutes to complete this exam.  Calculators are allowed, but no other electronic devices are permitted.  Please write all your answers in complete, legible sentences, and show all your work to receive full credit.  There are seven (7) problems here.  You may choose to do any 6 of them.  
+\vspace{1in}
+
+
+%table
+\begin{center}
+  \begin{tabular}{ c | c }
+    Problem & Score\\
+    \hline
+    &\\
+    1&\\
+    &\\
+    2&\\
+    &\\
+    3&\\
+    &\\
+    4&\\
+    &\\
+    5&\\
+    &\\
+    6&\\
+    &\\
+    7&\\
+    &\\
+    Bonus&\\
+    &\\
+    \hline 
+    &\\    
+    Total& 
+ \end{tabular}
+\end{center}
+
+\newpage 
+Problem 1. Give the proper negation of the statement:
+\[
+\forall x\in\R, \exists y\in\Z \hspace{2mm} \text{such that} \hspace{2mm} y=\lfloor x^{2}e^{-x}\rfloor.
+\]
+
+\vspace{1in}
+
+Solution: We know that negation switches several things: $\forall \leftrightarrow \exists$ and $P(x)\leftrightarrow \sim P(x)$.  So our negation is:
+
+\[
+\exists x\in \R \text{ such that } \forall y\in\Z, y\neq \lfloor x^2 e^{-x} \rfloor
+\]
+
+\newpage
+
+Problem 2.
+Prove the following statement or give a counterexample:
+\[
+\forall r\in\Q, \exists s\in\Q \hspace{2mm} \text{such that} \hspace{2mm} \sqrt{r} = s.
+\]
+
+\vspace{1in}
+
+Solution: This statement is obviously false.  Not every rational has a rational squareroot.  Every rational, does however, have a rational square, but that is the converse of what we wish to prove.  For example $2\in\Q$ but $\sqrt{2}\notin \Q$.  Even more simply let $r\in\Q$ be negative, then $\sqrt{r}\notin\Q$.
+
+\newpage
+
+Problem 3.
+Prove the following statement:\\
+For any integer $n$,which is not divisible by 5, $n^2\mod{5} = 1$ or $n^2\mod{5}=4$. \\
+Note: The more common way to write this is
+\[
+n^2 \equiv 1\mod{5}
+\]
+Whichever notation you choose for this problem is acceptable.
+
+\vspace{1in}
+
+Solution: First let's see what happens to any integer $n$ when we square it:
+\[
+n = 5k+r (\text{by Quotient Remainder Theorem}) \implies n^2 = 5(5k^2+2kr) + r^2
+\]
+
+That is to say
+\[
+n^2 \equiv r^2 \mod{5}
+\]
+
+So we need only to check the cases $r=1,2,3,4$ (we've excluded $r=0$ since $5\nmid n$).
+\[
+1^2 \equiv 1 \mod{5}, 2^2 \equiv 4 \mod{5}, 3^2 \equiv 9\equiv 4\mod{5}, 4^2 \equiv 16 \equiv 1 \mod{5}
+\]
+
+\newpage
+Problem 4.
+Define the \emph{symmetric difference} of two sets $A,B$ by the symbol $\Delta$.  
+\[
+A\Delta B = (A-B)\cup (B-A).
+\]
+Prove the following statement;
+\[
+\text{If } A\Delta C = B\Delta C, \text{ then } A=B.
+\]
+
+\vspace{1in}
+
+Solution:  This problem is rather easy when we consider the contrapositive.\\
+
+Suppose $A\neq B$ then (without loss of generality) we can assume that $\exists x\in A$ but $x\notin B$.  Since the sets are not equal one of the sets contains an element that is not in the other.  For this proof, we've just labeled the set containing a (possibly) extra element as $A$.  If not, we just switch the labels.  Now, for this particular $x\in A$ we have exactly two cases.
+\begin{itemize}
+\item[1] $x\in C$.  In this case $x\in A$, $x\notin B$, and $x\in C$. Therefore $x\notin A\Delta C$ and $x\in B\Delta C$ this the symmetric differences are unequal.\\
+\item[2] $x\notin C$ In this case $x\in A\Delta C$, but $x\notin B\Delta C$ and then, again, the symmetric differences are unequal.
+\end{itemize}
+
+\newpage 
+
+Problem 5.
+Prove the following statement:
+\[
+\sum_{j=1}^{n} j(j!) = (n+1)!-1
+\]
+
+\vspace{1in}
+
+Solution:  This is classic induction:\\
+For the base step
+\[
+\sum_{j=1}^{1} j(j!) = 1(1!) = 1 = (1+1)!-1
+\]
+and so the base step checks out just fine.\\
+
+Now let's assume that for some particular $m>0$ that
+\[
+\sum_{j=1}^{m} j(j!) = (m+1)!-1
+\]
+
+We must show that
+\[
+\sum_{j=1}^{m+1} j(j!) = (m21)!-1
+\]
+
+So working off our assumption
+\[
+\sum_{j=1}^{m+1} j(j!) = \left(\sum_{j=1}^{m} j(j!)\right) + (m+1)(m+1)! = ((m+1)!-1) + (m+1)(m+1)!
+\]
+
+Now we simply factor out a copy of $(m+1)!$ and see
+\[
+(1+m+1)(m+1)! - 1 = (m+2)(m+1)! -1 = (m+2)! -1
+\]
+
+which is what we desired to show.
+
+
+
+\newpage
+
+Problem 6.
+Prove the following statement: For $n>5$
+\[
+n! < \frac{n^n}{2^n}
+\]
+Aside: This is one of the weaker versions of the famed Stirling approximations.
+
+\vspace{1in}
+
+Solution: For the base case $6! = 720 < 729 = 6^6/2^6$ so the base case checks out.\\
+
+The inductive case in this inequality is slightly more algebraically intensive than the last problem.  Let's first rewrite the assumption
+\[
+2^n n! < n^n
+\]
+Now assume for some $m>5$ 
+\[
+2^m m! < m^m
+\]
+We must show
+\[
+2^{m+1} (m+1)! < (m+1)^{(m+1)}
+\]
+The first part of the inequality is to work with our inductive hypothesis
+\[
+2^{m+1}(m+1)! = 2\cdot(m+1) 2^m m! < 2\cdot (m+1) \cdot m^m
+\]
+We've reduced our induction to simply showing
+\[
+2\cdot (m+1) \cdot m^m < (m+1)^{(m+1)}
+\]
+Factoring out one copy og $(m+1)$ from both sides we need to show
+\[
+2 < \left(\frac{m+1}{m}\right)^m = \left(1+\frac{1}{m}\right)^m
+\]
+Some of you may recognize the righthand side as an approximation to 
+\[
+e = \lim_{n\rightarrow \infty} \left(1+\frac{1}{n}\right)^n
+\]
+
+However, a simple binomial expansion of the right side is enough to show us that this inequality is satisfied:
+\[
+2 < \left(1+\frac{1}{m}\right)^m = 1 + m\cdot(1/m) + \cdots = 2 + \text{positive}
+\]
+So we have shown the inequality to hold.
+
+\newpage
+
+Problem 7.
+Verify that the sequence $c_n = 3^n +1$, with $c_0=2$ satisfies the recurrence relation
+\[
+c_{n+1} - 4 c_n + 3c_{n-1}=0
+\]
+Hint: Showing a single example is not sufficient to show this sequence satisfies the given relation.
+
+\vspace{1in}
+
+Solution: We simply need to plug in the formula $c_n=3^n+1$ and confirm that is satisfies the recurrence relation:
+
+\begin{eqnarray*}
+c_{n+1} - 4c_n + 3c_{n-1} &  = & (3^{n+1})-4(3^n+1) + 3(3^{n-1}+1)\\
+& = & 3^{n+1} - 4\cdot 3^n + 3(3^{n-1})\\
+& = & 3^{n}(3-4+1)\\
+& = & 0
+\end{eqnarray*}
+
+\newpage
+Bonus.
+Prove that 
+\[
+\sum_{k=1}^{n} k^4 = \frac{n(n+1)(2n+1)(3n^2+3n-1)}{30}
+\]
+
+\vspace{1in}
+
+Solution:  This is an example of one of the many famous Bernoulli polynomials.  While I won't solve this one here in this method, let me simply hint at how to solve these in general.\\
+
+It is known that the sum of consecutive $p^{th}$ powers of integers yields a polynomial of degree $p+1$ (check this for yourself if you don't believe it). That is
+\[
+\sum_{k=1}^{N} k^p = a_{p+1}N^{p+1} + a_{p}N^p + \cdots + a_1 N + a_0  
+\]
+
+Then by induction we see
+\[
+\sum_{k=1}^{N+1} k^p = a_{p+1}(N+1)^{p+1} + a_{p}(N+1)^p + \cdots + a_1 (N+1) + a_0
+\]
+From here we use the inductive hypothesis and collect (a lot) of terms and equate polynomials... (it takes a while, but it's very simple algorithmically)
+\[
+\sum_{k=1}^{N+1} k^p = \sum_{k=1}^{N} k^p + (N+1)^p
+\]
+
+Now go to town, and enjoy the ride.  Having the ability to solve this problem gets you the ability to do integral calculus without having to know antiderivatives.  It's a lot more work, but it is interesting to know, that, in principle it can be done.\\
+
+In fact, see if you can derive these facts:
+\[
+a_{p+1} = \frac{1}{p+1}, a_p = \frac{1}{2}, a_0 = 0
+\]
+
+
+\end{document}

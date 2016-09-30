@@ -1,0 +1,157 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{svg}
+\usetikzlibrary{graphs,arrows,topaths}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\begin{document}
+
+\title{Homework 7 Maths 141 Winter 2015}
+\maketitle 
+
+
+8.4.11: Prove by induction that if $a\equiv c \mod{n}$ then $a^m\equiv c^m \mod{n}$
+
+\vspace{1in}
+
+Solution:
+The base case is the assumption that $a\equiv c\mod{n}$ For the inductive step assume for some $k$ that
+\[
+a^k \equiv c^k \mod{n}
+\]
+
+Then we have
+
+\[
+a^{k+1} \equiv a\cdot a^k \equiv a\cdot c^k \equiv c\cdot c^k \equiv c^{k+1} \mod{n}
+\]
+
+Where the second equivalence is our inductive hypothesis, the third equivalence is the original hypothesis, and the other steps are basic algebra.
+
+
+
+\newpage
+
+8.4.31: a. Find an inverse of $210 \mod{13}$.
+
+\vspace{.5in}
+
+The easiest way to deal with this (in my opinion) is to reduce 210 to 2.  ie $210\equiv 2\mod{13}$.  Then we consider that $2\cdot 7 = 14 \equiv 1\mod{13}$.  So $7$ is an inverse.
+
+\vspace{.5in}
+
+b. Find a positive inverse.\\
+Solution: 7>0. 
+
+\vspace{.5in}
+
+c. Find an $x$ so that
+\[
+210x \equiv 8 \mod{13}
+\]
+
+Since $210\cdot 7 \equiv 1$ we have $(210 \cdot 7)\cdot 8 \equiv 8$ and since multiplication is associative we have
+\[
+210\cdot 56 \equiv 210 \cdot 4 \equiv 8 \mod{13}
+\]
+
+So this $x$ is 56 or $x\equiv 4\mod{13}$
+
+\newpage
+
+
+8.4.32: a. Find an inverse for $41\mod{660}$.
+
+\vspace{.5in}
+
+Solution: Consider $660 = 41\cdot 16 + 4$ 
+So we can rewrite 
+\[
+4 = 660 - 41\cdot 16
+\] 
+Now we reduce 41
+\[
+41 = 4\cdot 10 + 1 \implies 1 = 41 - 4\cdot 10
+\]
+
+So we rewrite 
+\[
+1 = 41 - 4\cdot 10 = 41 - (660-41\cdot 16)\cdot 10 = 660 \cdot 10 + 161\cdot 41
+\]
+
+In this case we see that 
+\[
+41\cdot 161 = 1  + \text{ som multiple of } 660
+\]
+Which is to say
+\[
+41\cdot 161 \equiv 1 \mod{660}
+\]
+
+\vspace{.5in}
+
+b. Find the least positive $x$ so that
+\[
+41x \equiv 125 \mod{660}
+\]
+
+\vspace{.5in}
+
+Solution: We know from the previous problem that $41\cdot (161\cdot 125) \equiv 125$. Now we reduce this number
+\[
+125\cdot 161 \equiv 20125 \equiv 325 \mod{660}
+\]
+
+We know that this is the least positive value because it satisfies the equation and it is positive and less than $n$ where $n$ is the number of equivalence classes we're allowing.
+
+\newpage
+
+
+8.4.38:  Find the least positive inverse of $43 \mod{660}$
+
+\vspace{1in}
+
+Solution:We apply the same technique as before:
+\[
+660 = 43* 15 + 15
+\]
+\[
+43 = 15 * 2 + 13 
+\]
+\[
+15 = 13 * 1 + 2
+\]
+\[
+13 = 2* 6 + 1
+\]
+\[
+1 = 13- 2*6 = 13 - (15-13)* 6 = ... = 307*43 - 20*660
+\]
+
+So we arrive at
+\[
+43*307\equiv 1\mod{660}
+\]
+
+Or $307$ is the least positive inverse of $43\mod{660}$
+
+\end{document}

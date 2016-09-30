@@ -1,0 +1,207 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{svg}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{section}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Homework 3 Maths 141 Winter 2015}
+\maketitle 
+
+
+5.3.10. Prove by induction $n^3 - 7n + 3$ divisible by $3$.
+
+\vspace{1in}
+
+Solution: Let's prove this by induction.  First, the base case is easy.  Let $n=0$ 
+Then $3 | (0^2- 0 +3)$.
+
+Now for the inductive step;  Assume for some $m>0$ that $3|m^3 - 7m + 3$.
+Now consider
+\[
+(m+1)^3 - 7(m+1) + 3 = m^3 + 3m^2 + +3m + 1 -7m - 7 + 3 = (m^3-7m + 3) + 3(m^2+m - 2)
+\]
+
+Since $3|(m^3-7m+3)$ by assumption and $3| 3(m^2+m-2)$ by direct computation, we see that 
+\[
+3|(m^3-7m+3)+3(m^2+m-2) \iff 3 | ((m+1)^3-7(m+1)+3).
+\]
+
+\newpage
+
+5.3.14. Prove $n^3-n$ is divisible by $6$
+
+\vspace{1in}
+
+
+Solution: We were asked to do this without factoring.  Let's show the proof by factoring first, just for clarity.
+\[
+n^3-n = (n)(n^2-1) = (n-1)(n)(n+1)
+\]
+Since this is a product of three consecutive integers one of them will be divisible by three and at least one will be divisible by 2 and therefore the overall product is divisible by 6.\\
+
+Now let's prove this by induction:\\
+For the base step, let $n=0$ and $6|0$ because everything divides zero (but remember, 0 doesn't divide anything, this is a very one directional divisibility).\\
+
+Now for the inductive step; Assume for some $m>0$ that $6|m^3-m$ then
+\[
+(m+1)^3 - (m+1) = m^3 + 3m^2+3m + 1 - m - 1 = (m^3-m) + 3(m^2+m)
+\]
+
+Now $6|(m^3-m)$ by our inductive hypothesis, and we can see that $6|3(m^2+m)$ 
+because $3|3(m^2+m)$ and $m^2+m$ is always even.  (A sum of like parity integers is always even and $m^2$ has the same parity as $m$).
+Thus 
+\[
+6|(m^2-m) + 3(m^2+m) \iff 6|((m+1)^3-(m+1))
+\]
+
+\newpage
+
+
+
+5.6.33. Show the explicit formula for the Fibonacci numbers satisfies the recurrence relation
+
+\vspace{1in}
+
+Solution: We need to make a quick observation here:  While in class we started the Fibonacci sequence as $F_0=0,F_1=1$ the book starts as $F_0=F_1=1$ and thus the exponent in the explicit formula is shifted by one.\\
+
+Let's make a second observation:\\
+We found that $\frac{1+\sqrt{5}}{2},\frac{1-\sqrt{5}}{2}$ both satisfy the equation
+\[
+x^2-x-1=0  \longleftrightarrow 1+x=x^2
+\]
+This was how we arrived at $\frac{1\pm\sqrt{5}}{2}$ in the first place. To verify the recurrence relation with the explicit formula we simply need to add.  
+\begin{eqnarray*}
+F_{n-1} + F_n & = & \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^n-\left(\frac{1-\sqrt{5}}{2}\right)^{n}\right) + \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{n+1}-\left(\frac{1-\sqrt{5}}{2}\right)^{n+1}\right)\\
+& = & \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{n}+\left(\frac{1+\sqrt{5}}{2}\right)^{n+1}\right) - \frac{1}{\sqrt{5}}\left(\left(\frac{1-\sqrt{5}}{2}\right)^{n}-\left(\frac{1-\sqrt{5}}{2}\right)^{n+1}\right)\\
+& = & \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{n+2}-\left(\frac{1-\sqrt{5}}{2}\right)^{n+2}\right)\\
+& = & F_{n+1}
+\end{eqnarray*}
+
+The equality between lines two and three is given by appealing to the identity $1+x=x^2$ for $\frac{1\pm\sqrt{5}}{2}$.
+
+
+
+\newpage
+
+5.7.51. Prove or disprove 
+
+If $a_k = (a_{k-1} +1)^2$  then $a_n = (n-1)^2$
+
+\vspace{1in}
+
+
+Solution: This is simply wrong.  Let's check the recurrence relation on the left by iteration starting with $a_1=0$ Then we have the sequence $0,1,4,25,676,\dots$ Clearly 676 is not $6^2$.  Just for fun, run through the Online Encyclopedia of Integer sequences to see where this sequence actually arises.\\
+
+www.oeis.org
+
+
+\newpage
+
+
+5.7.52. A single line divides a plane into two regions.  Two lines divide it into 4. 
+
+a. Write a recurrence relation $P_n = \#$ of regions in the plane divided by $n$ lines (in general position)
+
+\vspace{.5in}
+
+Solution: First, let's count how many regions we have by drawing a certain number of lines, and see if we can pick out a pattern.
+$P_0=1, P_1=2,P_2=4,P_3=7,P_4=11,P_5=16,P_6=22,\dots$
+
+
+Do you see the pattern yet?  I see $P_n-P_{n-1}=n$.  In other words
+\[
+P_n = P_{n-1}+n
+\]
+
+\vspace{.5in}
+
+b. Solve the recurrence relation
+
+\vspace{.5in}
+
+Solution: Let's iterate this function and see if we find a pattern that emerges
+\begin{eqnarray*}
+P_n = P_{n-1}+n & = & P_{n-2} + (n-1) + n \\
+& = & P_{n-3} + (n-2)+(n-1) + n\\ 
+& = & P_{n-4} + (n-3) + (n-2) + (n-1) + n \\
+& = & \dots\\
+& = & P_0 + (1+2+ \cdots + n)\\
+& = & 1 + \frac{n(n+1)}{2}
+\end{eqnarray*}
+
+\newpage
+
+
+5.8.16. Solve $s_k = 2s_{k-1} + 2s_{k-2}, s_0=1, s_1=3$.
+
+\vspace{1in}
+
+Solution: This is a very standard second order linear homogeneous recurrence relation.  A mouthful, to be sure, for something so simple.  As we saw in the First order case, we can make a guess of
+\[
+s_k = C\cdot r^k
+\]
+Where $C$ is some constant to be determined later.  We saw that by induction a solution of this form will, in fact, solve this recurrence relation.  So, let's see if we can solve it.
+\[
+s_k - 2 s_{k-1} - 2s_{k-2} = C\cdot r^k - 2C\cdot r^{k-1} - 2C\cdot r^{k-2} = 0
+\] 
+Let's factor a common term of $Cr^{k-2}>0$ and arrive at
+\[
+r^2-2r-2=0.
+\]
+Solving via the (extremely old school) quadratic equation we get $r = 1\pm \sqrt{3}$. Thus our general solution looks like
+\[
+s_k = A (1+\sqrt{3})^k + B(1-\sqrt{3})^k
+\]
+
+
+WARNING:  If you don't believe anything that I've said up to this point, you have enough mathematical sophistication to check the answers for yourself.  You can literally plug in \emph{any} combination of $A$ and $B$ from above and the recurrence relation will resolve to zero.\\
+
+
+Now, we have the general solution, let's solve for $A$ and $B$ explicitly.  By taking into account $s_0 =1$ and $s_1=3$ we see
+\begin{eqnarray*}
+s_0=1 &=& A + B\\
+s_1=3 &=& A(1+\sqrt{3}) + B(1-\sqrt{3})
+\end{eqnarray*}
+
+Looking at the second equation and collecting terms without $\sqrt{3}$ and those with we have
+\[
+3 = A(1+\sqrt{3})+ B(1-\sqrt{3}) = (A+B) + \sqrt{3}(A-B)
+\]
+Since the first equation tells us $A+B=1$ we have
+\[
+3 = (A+B) + \sqrt{3}(A_B) \implies 2 = \sqrt{3}(A-B)
+\]
+
+So we have the resulting series of equations
+\begin{eqnarray*}
+1 & = & A+B\\
+\frac{2}{\sqrt{3}} & = & A-B
+\end{eqnarray*}
+
+Add the two equations, we get $A = \frac{1}{2} + \frac{1}{\sqrt{3}} = \frac{3+2\sqrt{3}}{6}$ 
+Then from the first equation $B = \frac{3-2\sqrt{3}}{6}$
+
+So the specific solution becomes
+\[
+s_k = \left(\frac{3+2\sqrt{3}}{6}(1+\sqrt{3})^k\right) + \left(\frac{3-2\sqrt{3}}{6}(1-\sqrt{3})^k\right)
+\]
+
+\end{document}

@@ -1,0 +1,269 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{xypic}
+\usepackage{tikz}
+\usetikzlibrary{graphs,arrows,topaths}
+\usepackage{mathtools}
+\usepackage{svg}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{section}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Homework 5 Maths 141 Winter 2015}
+\maketitle 
+
+8.1.12: a. Suppose $F:X\rightarrow Y$ is a one-to-one function, but not onto.  Is $F^{-1}$ a function?
+
+\vspace{.5in}
+
+Solution: In some cases $F^{-1}$ may be a function, but it need not be in every case.  There is a theorem of analysis called the local invertibility theorem which says in a small enough open neighborhood around any point, a continuous function can be invertible.  In any case, the definition of a function says that \emph{every} input must have an output.  So consider the simplest possible function.
+\[
+F : \{a\} \rightarrow \{a,b\}; F(a) = a.
+\]
+This is a perfectly good one to one function, but if we try to invert it, $b$ has no place to go and thus $F^{-1}$ is a relation, but not a function.
+
+\vspace{.5in}
+
+b. Suppose F is onto but not one-to-one is $F^{-1}$ a function?
+
+\vspace{.5in}
+
+Solution:  Again $F^{-1}$ will fail to be a function.  Consider the example from above, but with the domain and codomain switched.
+\[
+F:\{a,b\} \rightarrow \{a\}; F(a)=F(b)=a
+\]
+
+This is a perfectly good surjective function, but upon ``inverting" it we see $F^{-1}$ doesn't have a unique output for $a$ and thus fails to meet the criteria of being a function at all.  In high school we would have said that $F^{-1}$ fails the vertical line test.   
+
+\newpage
+
+8.1.18:  Let $A=\{0,..8\}$ and let $V$ be the relation
+
+\[
+xVy \iff 5|(x^2-y^2)
+\]
+
+
+Draw the graph of the relation.
+
+\vspace{1in}
+
+Solution: First of all, let's actually compute the relation.  From the midterm we know that any number not divisible by 5 has a square which is congruent to one or four modulo 5.  In this case we have
+\[
+1^2 \equiv 4^2 \equiv 6^2 \mod{5}, \text{ and } 2^2\equiv 3^2 \equiv 7^2 \equiv 8^2 \mod{5}
+\]
+and obviously $0\equiv 5^2\mod{5}$.
+
+So we have three classes here.  The graph will look like three separate complete graphs, and each vertex having a loop.
+
+\vspace{.5in}
+
+\begin{tikzpicture}
+[scale=2,auto=left,every node/.style={circle}]
+\node[circle,draw] (0) at (0,3){0};
+\node[circle,draw] (1) at (0,1){1};
+\node[circle,draw] (2) at (4,3){2};
+\node[circle,draw] (3) at (6,3){3};
+\node[circle,draw] (4) at (2,1){4};
+\node[circle,draw] (5) at (2,3){5};
+\node[circle,draw] (6) at (1,0){6};
+\node[circle,draw] (7) at (4,1){7};
+\node[circle,draw] (8) at (6,1){8};
+\foreach \x in {0,1,2,6,7}
+\path  (\x)   edge[loop left] (\x);
+\foreach \x in {3,4,5,8}
+\path  (\x)   edge[loop right] (\x);
+\foreach \from/\to in {0/5,1/4,1/6,4/6,2/3,2/7,2/8,3/7,3/8,8/7}
+\draw (\from) -- (\to) ;
+\end{tikzpicture}
+
+As we can see, this is not a connected graph.  There are, in fact, three connected components.
+
+
+\newpage
+
+Section 8.2:
+
+
+3.a.b.c: If $R$ is (a) reflexive, (b) symmetric, (c) transitive then $R^{-1}$ is reflexive, symmetric, transitive (respectively)
+
+\vspace{1in}
+
+Solution:
+(a) If $R$ is reflexive then $R^{-1}$ is also reflexive.
+
+This is essentially the definition.
+
+\[
+R \text{ is reflexive }\iff \forall x\in A, xRx
+\]
+By definition of inverse
+\[
+xRy \iff yR^{-1}x
+\]
+
+Thus
+\[
+\forall x\in A, xR^{-1}x \iff xRx
+\]
+which is the definition of reflexivity.
+
+\vspace{.5in}
+
+(b) If $R$ is symmetric, then $R^{-1}$ is symmetric.
+
+\vspace{.5in}
+
+Solution: Consider the following diagram
+
+\[
+\xymatrix{
+xRy \ar@{<->}[d] \ar@{<->}[r]^{sym} & yRx \ar@{<->}[d] \\
+yR^{-1}x \ar@{<-->}[r] & xR^{-1}y
+}
+\]
+
+
+The top if and only if is the definition of symmetry.  The downward arrows are the definition of inverse.  And thus we can complete the dotted if, and only if by logical transitivity of if, and only if. This tells us that if $R$ is symmetric then $R^{-1}$ is symmetric.
+
+\vspace{.5in}
+
+(c) If $R$ is transitive, then consider the following diagram
+\[
+\xymatrix{
+xRy \ar[d]& \wedge & yRz\ar[d] \ar[r] & xRz\ar[d]\\
+yR^{-1}x \ar@{-->}[drr] & \wedge & zR^{-1}y\ar@{-->}[dll] \ar[r] & zR^{-1}x \ar[d]\\
+zR^{-1}y & \wedge & yR^{-1}x \ar[r] & zR^{-1}x
+}
+\]
+
+Since it doesn't matter whether we call the triple $x,y,z$ or $a,b,c$ or $c,b,a$
+
+We see that $R^{-1}$ is transitive (obviously in the reverse order of $R$).
+
+\newpage
+
+4. If $R$ and $S$ are both (a)reflexive, (b) symmetric, (c) transitive then $R\cap S$ is reflexive, symmetric, or transitive, respectively.
+
+\vspace{.5in}
+
+Solution: (a)Since $R$ and $S$ are both reflexive, this means, 
+\[
+\forall x\in A, (x,x)\in R \wedge (x,x)\in S \implies (x,x)\in R\cap S.
+\]
+
+(b) Since $R$ and $S$ are both symmetric this means
+\[
+(x,y)\in R \iff (y,x)\in R \text{ and } (a,b)\in S \iff (b,a)\in S.
+\]
+
+So let's consider some element $(c,d)\in R\cap S$.
+Since $R$ is symmetric $(d,c)\in R$ and since $S$ is symmetric, $(d,c)\in S$ therefore $(d,c)\in R\cap S$ and $R\cap S$ is symmetric.
+
+\vspace{.5in}
+
+(c) Since $R$ and $S$ are both transitive 
+\[
+xRy \wedge yRz \rightarrow xRz
+\]
+\[
+aSb \wedge bSc \rightarrow aSc
+\]
+
+Now consider three elements $p,q,r\in A$ so that
+\[
+(p,q),(q,r) \in R\cap S
+\]
+Since $R$ is transtive $(p,r)\in R$ and since $S$ is transitive $(p,r)\in S$ therefore $(p,r)\in R\cap S$
+and thus $R\cap S$ is transitive as well.
+
+
+
+\newpage
+
+4def: If $R$ and $S$ are both (d)reflexive, (e) symmetric, and (f) transitive, then $R\cup S$ is reflexive, symmetric, transitive (respectively).
+
+\vspace{1in}
+
+Solution: (d) Since $R$ and $S$ are both reflexive, then
+\[
+\forall x\in A, (x,x)\in R, \text{ and } (x,x)\in S
+\]
+Thus $(x,x)\in R\cup S$ and so $R\cup S$ is reflexive.
+
+\vspace{.5in}
+
+(e) Given the both $R$ and $S$ are symmetric then 
+\[
+\forall (x,y)\in R \implies (y,x)\in R \implies (x,y)\in R\cup S \implies (y,x)\in R\cup S.
+\]
+
+Similarly 
+\[
+\forall (x,y)\in S \implies (y,x)\in S \implies (x,y)\in R\cup S \implies (y,x)\in R\cup S.
+\]
+So for any element $(a,b)\in R\cup S$ we see that $(b,a)\in R\cup S$ as well.
+
+
+\vspace{.5in}
+
+(f) This is the only property that breaks down in the union of relations.  In order for $R\cup S$ to be transitive, all pairs of $R$ whose second coordinate matches the first coordinate of $S$ must transit with each other.  Let's give an extremely simple example to show that this does not hold.
+
+\[
+R \subseteq \R\times \R \iff (x,y)\in R \iff x<y
+\]
+Clearly, we know the relation of ``less than" is transitive.
+Let $S$ be the relation of ``greater than."
+\[
+S \subseteq \R\times \R \iff (x,y)\in S \iff x>y
+\]
+
+Obviously these don't transit with each other.
+$2<3$ and $3>2$, but $2\nless 2$ and $2\ngtr 2$ since $2=2$.
+
+In our example
+\[
+(2,3)\in R \implies (2,3)\in R\cup S
+\]
+\[
+(3,2)\in S \implies (3,2)\in R\cup S
+\]
+
+If $R\cup S$ were transitive, then $(2,3),(3,2)\in R\cup S$ would mean $(2,2)$ in $R\cup S$, but it is not always the case.
+
+There are, of course, situations in which this does hold, but generally speaking we cannot assume it to be true.
+
+Let's look at another example quickly:
+\[
+R\subseteq \Z\times\Z \iff nRm \iff 2|(n-m)
+\]
+and let $S$ be the ``less than."
+
+\[
+(100,0)\in R (\implies \in R\cup S) (0,99)\in S(\implies R\cup S)
+\]
+but
+\[
+(100,99)\notin R \emph{ AND } (100,99)\notin S \implies (100,99)\notin R\cup S
+\]
+
+So in the first case we had a purely transitive relation and its inverse.  In the second case, we had a transitive relation, and an equivalence relation, but their union still fails to be transitive.
+
+
+\end{document}

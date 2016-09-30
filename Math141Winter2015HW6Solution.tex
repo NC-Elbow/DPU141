@@ -1,0 +1,281 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{svg}
+\usetikzlibrary{graphs,arrows,topaths}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\begin{document}
+
+\title{Homework 6 Maths 141 Winter 2015}
+\maketitle 
+
+
+
+
+8.3.22: Show that the following is an equivalence relation.  Let $A$ be set of all statement forms in three variables $p,q,r.$  
+\[
+P(p,q,r) R Q(p,q,r) iff P\equiv Q
+\]
+
+\vspace{1in}
+
+Solution: This is the most obvious and useful of all the equivalence relations we have seen and will use.  It basically tells us that if two statements have the same truth table then they are logically equivalent.  This  gives us the power to argue by contraposition and contrapositive.  So for reflexivity:
+\[
+P(p,q,r) \equiv P(p,q,r)
+\] 
+This is what it means to have a truth table.  E.g. $p\wedge q \equiv p\wedge q$.  This is reflexivity so there really isn't much to show here.
+
+Let's check symmetry.
+\[
+P(p,q,r) \equiv Q(p,q,r) \iff Q(p,q,r) \equiv P(p,q,r)
+\]
+Again, if statement $P$ has the same truth table as statement $Q$ then statement $Q$ has the same truth table as statement $P$.  This is almost a tautology.
+
+For transitivity
+\[
+P(p,q,r) \equiv Q(p,q,r) \wedge Q(p,q,r) \equiv R(p,q,r) \implies P(p,q,r)\equiv R(p,q,r)
+\]
+
+This is again fairly simple.  Since $P$ and $Q$ share the same truth table and $Q$ shares that table with $R$ then $P$ and $R$ must also share the same truth table.  
+
+The main point here is that these are statements and not simply sentences.  Sentences may have truth tables which vary, but statements do not.  We cannot change the table $p\wedge q$ without changing the meaning of $\wedge$.  So let's give an example: In two variables a few elements in the equivalence class of the conditional...
+
+\[
+p\rightarrow q \equiv \sim q \rightarrow \sim p \equiv \sim(p\wedge \sim q) \equiv q\vee (p\rightarrow q) 
+\]
+
+We only need one of these at a time to argue a logical point. As an aside note, in one variable $p$ we have four possible truth tables: $p$, $\sim p$, tautology, and contradicition.
+For each variable we have two options for inputs.  That is to say, in $n$ variables, we need a truth table of $2^n$ inputs.  Since we have $2^n$ rows, and each row can have two outputs, we have $2^{2^n}$ possible distinct truth tables.  In the case of one variable $2^{2^1} = 4$ as we saw above.  In the case of two variables $p,q$ we have $2^{2^2}=16$ truth tables.  These are known as the classical ``logic gates"
+\[
+\mathfrak{t},\mathfrak{c},p,q,\sim p, \sim q,p\wedge q,p\vee q, p\rightarrow q, q\rightarrow p, p\leftrightarrow q,
+\] 
+\[
+p\text{XOR}q, p\text{NOR}q,p\text{NAND}q,p\text{XNOR}q
+\]
+
+
+\newpage
+
+
+
+8.3.25: $A$ is the absolute value relation on $\R$
+\[
+\forall x,y,\in R xAy \iff |x|=|y|.
+\]
+
+
+\vspace{1in}
+
+Solution: Certainly this is reflexive $|x|=|x|$ for every $x$.
+This is also symmetric $|x|=|y| \iff |y|=|x|$.
+Finally, this is transitive
+\[
+(|x|=|y|) \wedge (|y|=|z|) \implies |x|=|z|
+\]
+
+
+The equivalence class of any element $x$ is a two element set
+\[
+[x] = \{x,-x\}
+\]
+
+with the lone exception of zero which is its own equivalence class.
+
+\newpage
+
+
+8.3.26: $D$ is the relation on $\Z$
+\[
+nDm \iff 3|(n^2-m^2)
+\]
+
+\vspace{1in}
+
+Solution: We say that $3|a$ if $a/3 = k \in\Z$.
+So
+\[
+3|(n^2-n^2) \iff 3|0
+\] 
+Everything divides zero, so this relation is reflexive.
+\[
+3|(n^2-m^2) \iff 3|(m^2-n^2)
+\]
+Suppose $n^2-m^2 = 3k$ for some $k\in\Z$.  Then $m^2-n^2 = -3k$.  Since $-k\in\Z$ this relation is symmetric.
+
+Finally consider
+\[
+n^2-m^2 = 3k, \text{ and } m^2-\ell^2 = 3j
+\]
+Then 
+\[
+(n^2-m^)+(m^2-\ell^2) = (n^2-\ell^2) = 3(j+k)
+\]
+$j+k$ is clearly an integer because integers are closed under addition.  So the relation $D$ is an equivlance relation on $\Z$.
+
+Let's describe the equivalence classes.  In this case, any integer squares to be $a^2 \equiv 0 \mod{3}$ or $a^2 \equiv 1 \mod{3}$
+
+So if we have two integers $a,b$ whose squares are one modulo three then $aDb$.  In this case we know only multiples of three square to be zero modulo three (this is because three is prime, this property would not hold if we considered squared integers modulo a nonprime.)
+
+So the classes are
+\[
+[0] = \{3k|k\in\Z\} \text{ and } [1] = \{3k+1,3\ell+2|k,\ell\in\Z \}
+\]
+
+
+\newpage
+
+
+8.3.43: Define rationals on $\Z\times\Z-\{0\}$ by 
+\[
+(a,b)Q(c,d) iff ad=bc
+\]
+
+
+Let $[(a,b)]$ be the equivalence class of $(a,b)$.
+And define
+\[
+[(a,b)] + [(c,d)] = [(ad+bc,bd)]
+\]
+\[
+[(a,b)]\cdot[(c,d)] = [(ac,bd)]
+\]
+
+a. Is $(+)$ well defined?
+b. Is $(\cdot)$ well defined?
+
+\vspace{1in}
+
+Solution: This is already an equivalence relation.  We don't need to check it.  We did in class, so we don't need to check it again, but if you're confused, you may extrapolate from the problem below.
+
+To check if this is well defined (basically we're seeing that $1/2 = 3/6$ and that this makes sense on a broad scale) we check that 
+\[
+[(a,b)] = [(a',b')] \wedge [(c,d)] = [(c',d')] 
+\]
+then
+\[
+[(a,b)]+[(c,d)] = [(a',b')]+[(c',d')]
+\]
+This is relatively straight forward
+\[
+[(a,b)]+[(c,d)] = [(a',b')]+[(c,d)]
+\]
+By the first assumption and
+\[
+[(a',b')]+[(c,d)] = [(a',b')]+[(c',d')]
+\]
+by the second assumption.  So this is well defined.  Let's look at an example to help build our intuition.
+
+We know $2/5=4/10$ and $5/7= 10/14$
+
+So we are asking
+\[
+2/5 + 5/7 = 4/10 + 10/14
+\]
+Of course this holds.  The equivalence class on rationals helps us in such a way that the phrase ``in lowest terms" makes perfectly good sense.  We no longer treat $1/2$ differently from $2/4$ even though the symbols are different.  The value is the same.
+
+\newpage
+
+
+
+8.3.44: Let $A= \Z^+ \times \Z^+$ define $R$ on $A$ by
+\[
+(a,b)R(c,d) \iff a+d = b+c
+\]
+a.Show this relation is reflexive.\\
+b. Show this relation is symmetric.\\
+c. Show this relation is transitive.\\
+d. Find elements in $[(1,1)]$.\\
+e. $[(3,1)]$.\\
+f. Describe equivalence classes.
+
+\vspace{1in}
+
+Solution: Before we begin the solution of this problem, recall that this is extraordinarily similar to the rationals.  In the case of the rationals, we ``cross-multiply" to show that we maintain a common ratio.  In this case we ``cross-sum" to show that we maintain a constant difference.
+\[
+a+d = b+c  \iff a-b = c-d
+\]
+
+Now, let's check that this is reflexive:
+\[
+a+b = b+a 
+\]
+Since addition is commutative $(a,b) R (a,b)$.
+
+Now we check symmetry
+\[
+(a,b)R(c,d) \iff a+d=b+c \iff b+c = a+d \iff c+b = d+a \iff (c,d)R(a,b)
+\]
+Again, because addition (of integers) is commutative, this relation is symmetric.
+
+Transitivity is the only one the requires a touch of work.  Suppose
+\[
+(a,b)R(c,d) \text{ and } (c,d) R (f,g)
+\]
+Then
+\begin{eqnarray*}
+a+d & = & b+c \\
+c+g & = & d+ f\\
+\end{eqnarray*}
+
+Adding $f$ to the first equation and $a$ to the second we get
+\begin{eqnarray*}
+a+d+f & = & b+c+f \\
+a+c+g & = & a+d+ f\\
+\end{eqnarray*}
+Notice a copy of $a+d+f$ in both equations: We conclude
+\begin{eqnarray*}
+a+c+g & = & b+c + f \\
+a+g & = & b + f\\
+\end{eqnarray*}
+
+which is to say that 
+\[
+(a,b)R(f,g)
+\]
+
+Therefore this is an equivalence relation.
+
+\vspace{.5in}
+
+The elements in $[(1,1)]$ are 
+\[
+[(1,1)] = \{ (c,d) | 1+d = 1+c\}
+\]
+Or the elements $[(c,c)]$.
+So five elements in $[(1,1)]$ are $(1,1),(2,2),(343,343),(100,100),$ and
+(the number of countries which use Farenheit,the number of countries which have put a person on the moon)
+
+\vspace{.5in}
+As for $[(3,1)]$ we're looking for elements which have a constant difference of two.
+$(3,1),(4,2),(5,3),(6,4),$ and
+(Number of poopy diapers per day, number of hours daddy sleeps)
+
+\vspace{.5in}
+
+Here, we have differences which are positive and zero and negative.  So the equivalence classes are
+\[
+[k] = \{[(k,0)] | k > 0\}, [-j] = \{[(0,j)] | j>0\}, \text{ and } [0] = \{[(0,0)] \}  
+\]
+That is, there is one equivalence class for each integer.
+
+
+\end{document}

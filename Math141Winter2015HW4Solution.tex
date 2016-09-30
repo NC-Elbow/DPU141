@@ -1,0 +1,313 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{svg}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{section}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Homework 4 Maths 141 Winter 2015}
+\maketitle 
+
+
+6.1.22: Let $D_i = {x\in\R | -i\leq x \leq i} = [-i,i]$
+
+a.Find $\bigcup_{0}^{4}D_i$
+
+\vspace{.5in}
+
+These are intervals in the real line which are increasing.  That is to say $D_i \subset D_{i+1}, \forall i$.  Thus the union is simply the biggest set.
+\[
+\bigcup_{0}^{4}D_i = D_4 = [-4,4]
+\]
+
+\vspace{.5in}
+
+b.$\bigcap_{0}^{4}D_i$
+
+\vspace{.5in}
+
+Again, since these are increasing sets, the intersection simply contains the smallest set:
+\[
+\bigcap_{0}^{4}D_i = D_0 = \{0\}
+\]
+
+\vspace{.5in}
+
+c. are the $D_i$ mutually disjoint?
+
+\vspace{.5in}
+
+Definitely not.  $D_0 \subset D_i, \forall i$
+
+\vspace{.5in}
+
+d. $\bigcup_{0}^{n}D_i$
+
+\vspace{.5in}
+
+This is simply $D_n = [-n,n]$
+
+\vspace{.5in}
+
+e. $\bigcap_{0}^{n}D_i$
+
+\vspace{.5in}
+
+This is $D_0$ as in part (b).
+
+\vspace{.5in}
+
+f. $\bigcup_{0}^{\infty}D_i$\\
+This is the entire real line. = $(-\infty,\infty)=\R$
+
+g. $\bigcap_{0}^{\infty}D_i$\\
+Again this is $D_0$.
+
+\newpage
+
+6.1.26:  Let $S_i = (1,1+1/i)$
+
+a.Find $\bigcup_{0}^{4}S_i$\\
+Referring to the previous problem where we simply have intersecting sets we reason as before.  The only difference in this set is that the sets are decreasing.
+\[
+S_i \supset S_{i+1}
+\]
+With that in mind:
+\[
+\bigcup_{0}^{4}S_i = S_0 = (1,2)
+\]
+
+\vspace{.5in}
+
+b.$\bigcap_{0}^{4}S_i$\\
+This is $S_4 = (1,5/4)$
+
+\vspace{.5in}
+
+c. are the $S_i$ mutually disjoint?\\
+No, see part (a).
+
+\vspace{.5in}
+
+
+
+d. $\bigcup_{0}^{n}S_i$\\
+This is $S_0 = (1,2)$
+
+\vspace{.5in}
+
+e. $\bigcap_{0}^{n}S_i$\\
+$S_n = (1,\frac{n+1}{n})$
+
+\vspace{.5in}
+
+f. $\bigcup_{0}^{\infty}S_i$\\
+$S_0=(1,2)$
+
+\vspace{.5in}
+
+g. $\bigcap_{0}^{\infty}S_i$\\
+Finally, an interesting problem.  These intervals are all open, which means none of them contain the point 1.  So we can see if we keep intersecting then the sets decrease. We ask whether any element is in the set.  Clearly not.  Suppose $1+\epsilon$ were in this set for any positive $\epsilon$.  Suppose this is in $S_k$.  By going far enough along, perhaps $S_{2k}$ or $S_{k!}$ or $S_{k^k}$ we will find a set in which $1+\epsilon$ has been excluded.  Since we can achieve this for any positive $\epsilon$ we conclude that no elements greater than 1 are in the infinite intersection.  Since 1 is not in any set at all, the overall intersection is empty.
+
+\newpage
+
+6.1.31: Let $A=\{1,2\}, B=\{2,3\}$ find 
+
+a. $\mathcal{P}(A\cap B)$\\
+$\mathcal{P}(\{2\}) = \{\emptyset, \{2\}\}$
+
+\vspace{.5in}
+
+b. $\mathcal{P}(A)$\\
+$\mathcal{P}(\{1,2\}) = \{\emptyset,\{1\},\{2\},\{1,2\}\}$
+
+\vspace{.5in}
+
+c. $\mathcal{P}(A\cup B)$\\
+$\mathcal{P}(\{1,2,3\}) = \{\emptyset,\{1\},\{2\},\{3\},\{1,2\},\{1,3\},\{2,3\},\{1,2,3\}\}$
+
+\vspace{.5in}
+
+d. $\mathcal{P}(A\times B)$\\
+$\mathcal{P}(\{(1,2),(1,3),(2,2),(2,3)\})=\{\emptyset,\{(1,2)\},\{(1,3)\},\{(2,2)\},\{(2,3)\},\\
+\{(1,2),(1,3)\},\{(1,2),(2,2)\},\{(1,2),(2,3)\},\\
+\{(1,3),(2,2)\},\{(1,3),(2,3)\},\{(2,2),(2,3)\},\\
+\{(1,2),(1,3),(2,2)\},\{(1,2),(1,3),(2,3)\},\{(1,3),(2,2),(2,3)\},\{(1,2),(2,2),(2,3),\},\\
+A\times B\}$
+
+
+
+
+
+
+\newpage
+
+6.2.16:  For all sets $A,B,C$ if $A\subset B$ and $A\subset C$ then $A\subset (B\cap C)$
+
+\vspace{1in}
+
+Solution:  Let's do this with a classical set argument.  Suppose $x\in A$ Since $A\subset B$ that yields $x\in B$.  Since $A\subset C$ that yields $x\in C$ also.  Since $x\in B$ and $x\in C$ then $x\in B\cap C$.  Since this holds for any arbitrarily chosen element of $A$ we can conclude:
+\[
+(A \subset B)\wedge(A\subset C) \implies A\subset (B\cap C).
+\]
+
+\newpage
+
+6.2.37:  For all integers $n>0$, sets $A,B_i$
+
+\[
+A\cap (\bigcup_{i=1}^{n} B_i) = \bigcup_{i=1}^{n} (A\cap B_i)
+\]
+
+
+\vspace{1in}
+
+Solution:  We can again approach this with a classical set argument.  To show equality we must show that each set is a subset of the other. Let's begin with
+\[
+A\cap (\bigcup_{i=1}^{n} B_i) \subseteq \bigcup_{i=1}^{n} (A\cap B_i)
+\]
+Suppose $x\in A\cap (\bigcup_{i=1}^{n} B_i)$ Then by defintion of intersection this means $x\in A$ and $x\in \bigcup \_i B_i$.  By the definition of union this means $x\in B_i$ for at least one particular $i$.  For this particular set $B_i$ we have $x\in A\cap B_i$ since $x$ is in both sets simultaneously.  Therefore $x\in \bigcup_i (A\cap B_i)$ since it's in at least one of the intersections.
+
+Now let's try the other way
+\[
+\bigcup_{i=1}^{n} (A\cap B_i) \subseteq A\cap (\bigcup_{i=1}^{n} B_i)
+\]
+Since $x \in \bigcup_i A\cap B_i$ we know $x \in A\cap B_i$ for some particular $i$.  Thus $x\in A$ and $x\in B_i$.  So $x\in \bigcup_i B_i$ and thus $x\in A\cap \bigcup_i B_i$.
+
+Since both sets are subsets of each other we can conclude they are equal.
+
+
+\newpage
+
+6.3.26: Given a positive integer $n\geq 2$, Let $S$ be the set of all nonempty subsets of
+
+$\{2,3,\dots ,n\}$.  For each $S_i\in S$ let $P_i$ be the product of elements in $S_i$.
+
+prove
+
+\[
+\sum_{i=1}^{2^{m-1}-1} P_i = \frac{(m+1)!}{2} -1
+\]
+
+\vspace{1in}
+
+Solution:  This problem has some layers to it.  Let's define some things and see where these pieces fall into place.
+\[
+X_n = \{2,\dots,n\}
+\]
+
+Then $S$ is the power set of $X_n$ minus the empty set.  So
+\[
+|S| = |\mathcal{P}(X_n)| - 1
+\]
+Since we know $|X_n|=n-1$ we have
+\[
+|S| = |\mathcal{P}(X_n)| - 1 = 2^{n-1}-1
+\]
+This is the upper index in our summation.
+Let's work out a baby example.  Consider $X_3 = \{2,3\}$.
+\[
+S = \{\{2\},\{3\},\{2,3\} \} = \{S_1,S_2,S_3\}
+\]
+Now $P_i$ is the product of the elements of $S_1$ so in this case
+\[
+S_1 = \{2\} \implies P_1 = 2, \dots , S_3=\{2,3\}\implies P_3 = 2\cdot 3=6.
+\]
+
+Our overall sum is
+\[
+\sum_{i=1}^3 P_i = P_1+P_2+P_3 = 2+3+6 = 11 = \frac{(3+1)!}{2}-1
+\]
+This serves as our base case for induction.
+
+Now let's tackle the inductive step.
+\[
+X_{n+1} = X_n \cup \{n+1\}
+\]
+And so the new set $S$ has $2^{n-1+1}-1 = 2^n-1$ elements.
+
+Let's look directly at how the example for $X_3$ relates to the example for $X_4$.
+
+\[
+S_4 = S_3 \cup \{\{4\},\{2,4\},\{3,4\},\{2,3,4\}\}
+\]
+We see that all the new sets for $S_{n+1}$ contain the element $n+1$.  In general we see that 
+\[
+S_{n+1} = S_n \cup \{n+1\} \cup S_n\times\{n+1\}
+\]
+This is not exactly proper notation, but it gets the point across that each new element is either $n+1$ by itself, or an old set with an additional $n+1$ thrown in.  So how does this affect the $P_i$?
+
+Listing the $P_i$ from $X_4$
+\[
+P_1,P_2,P_3,P_4,4\cdot P_1, 4\cdot P_2, 4\cdot P_3.
+\]
+Notice what happens after $P_3$ which was the last element from the $X_3$ example.  Each $P_i$ is multiplied by the $n+1$.
+
+So the sum of the new $P_i$
+\[
+\sum_{i=1}^{7}P_i = (2+3+6) + (4) + 4\cdot(2+3+6) 
+\]
+Notice the grouping here...
+\[
+= (11) + (4) + 4\cdot(11) = 59 = \frac{(4+1)!}{2} -1
+\]
+
+Our general sum will become
+\[
+\sum_{i=1}^{2^n-1}P_i = \sum_{i=1}^{2^{n-1}-1}P_i + P_{2^{n-1}} + (n+1)\cdot \sum_{i=1}^{2^{n-1}-1}P_i
+\]
+
+It's very important to realize that
+\[
+S_{2^{n-1}} = \{n+1\}
+\]
+is the singleton and so
+\[
+P_{2^{n-1}} = n+1.
+\]
+
+Now let's look at the general inductive step:\\
+Assume for some $m>0$ that
+\[
+\sum_{i=1}^{2^{m-1}-1} P_i = \frac{(m+1)!}{2} - 1
+\]
+We will show
+\[
+\sum_{i=1}^{2^{m}-1} P_i = \frac{(m+2)!}{2} - 1
+\]
+
+As per our lengthy set up we see
+\[
+\sum_{i=1}^{2^m-1}P_i = \sum_{i=1}^{2^{m-1}-1}P_i + P_{2^{m-1}} + (m+1)\cdot \sum_{i=1}^{2^{m-1}-1}P_i
+\]
+which by hypothesis becomes
+\[
+\sum_{i=1}^{2^m-1}P_i = \left(\frac{(m+1)!}{2}-1\right) + (m+1) + (m+1)\left(\frac{(m+1)!}{2}-1\right)
+\]
+
+This becomes
+\[
+(1+m+1)\left(\frac{(m+1)!}{2}-1\right) + m+1 = \frac{(m+2)!}{2} - m - 2 + m+1= \frac{(m+2)!}{2} - 1.
+\]
+
+
+Which is what we wished to show.
+
+\end{document}
