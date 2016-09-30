@@ -1,0 +1,193 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Final Exam Maths 141 Winter 2015 \\ DePaul University\\Dr. Alexander}
+\maketitle
+You have 135 minutes to complete this exam.  Calculators are allowed, but no other electronic devices are permitted.  Please write all your answers in complete, legible sentences, and show all your work to receive full credit.  There are six (6) problems here.  Please solve all of them.  
+\vspace{1in}
+
+
+%table
+\begin{center}
+  \begin{tabular}{ c | c }
+    Problem & Score\\
+    \hline
+    &\\
+    1&\\
+    &\\
+    2&\\
+    &\\
+    3&\\
+    &\\
+    4&\\
+    &\\
+    5&\\
+    &\\
+    6&\\
+    &\\
+    Bonus Round 
+    &\\
+    \hline 
+    &\\    
+    Total& 
+ \end{tabular}
+\end{center}
+
+
+\newpage
+
+
+Problem 1: Prove by induction:
+\[
+\frac{1}{1} + \frac{1}{2} \cdots + \frac{1}{n} < (\ln(n) + 1)
+\]
+For all $n>1$.
+
+\vspace{.5in}
+
+Hint: $\ln(a) = b$ is the same as $e^b =a$. In particular $\ln(1)=0$. Additionally $\ln(a) + \ln(b) = \ln(ab)$
+
+See the bonus for more goodies!
+ 
+\newpage
+
+
+Problem 2: Consider the following recurrence relation defined by:
+\[
+a_n = a_{n-1}+a_{n-2}+a_{n-3}
+\]
+and
+\[
+a_1 = 1, a_2 = 2, a_3 =3.
+\]
+
+
+
+Prove by induction 
+\[
+\forall n\ge 1, a_n \le 2^n
+\]
+\vspace{.5in}
+
+See the Bonus for getting a tighter bound on this sequence.
+
+\newpage
+
+Problem 3: Prove by induction:
+\[
+\begin{bmatrix}
+a & b \\
+0 & a
+\end{bmatrix}^n = 
+\begin{bmatrix}
+a^n & nba^{n-1} \\
+0 & a^n
+\end{bmatrix}
+\]
+Where $a,b\in \R$ and $n\ge 1$.
+
+\newpage
+
+Problem 4: Let $A= \R^+ \times \R^+$.  Define a relation $R$ on $A$ as follows:
+\[
+(a,b) R (c,d) \iff a^d = c^b.
+\]
+a. Prove this is an equivalence relation.\\
+b. Describe the equivalence classes of $R$.
+
+\vspace{.5in}
+
+Hint: Order Matters Here! Think about the equivalence classes for rationals and constant sums...
+
+\newpage
+
+Problem 5:(a) Find an inverse of 175 $\mod{353}$.\\
+
+(b) Find the smallest positive inverse of 175 $\mod{353}$\\
+
+(c) Find the smallest positive number $n$ so that
+\[
+175 n \equiv 174 \mod{353}
+\]
+
+\newpage
+
+Problem 6: Consider a real number $a>1$.  Show that
+\[
+a^n \text{ is } O(n!), \forall a>1.
+\]
+ 
+\newpage
+
+Bonus Round:  Here are your category three questions:
+
+Bonus 1: Show 
+\[
+\ln(n) < \sum_{j=1}^{n} \frac{1}{j}
+\]
+
+\vspace{.75in}
+
+Bonus 2: Consider again, the ``tribonacci sequence"
+\[
+a_n = a_{n-1}+a_{n-2}+a_{n-3}
+\]
+Show that $a_n \in O(1.9^n)$ Can you find $b$ so that $a_n \in \Theta(b^n)$?
+
+\vspace{.75in}
+
+Bonus 3: Show
+\[
+\begin{bmatrix}
+0 & 1 \\ -1 & 0
+\end{bmatrix}^n =
+\begin{bmatrix}
+(-1)^{n+1}(\frac{1}{2}+(-1)^{n}\frac{1}{2}) & (-1)^{n+1}(\frac{1}{2}+(-1)^{n+1}\frac{1}{2})\\
+(-1)^{n}(\frac{1}{2}+(-1)^{n+1}\frac{1}{2})
+ & (-1)^{n+1}(\frac{1}{2}+(-1)^{n}\frac{1}{2})
+\end{bmatrix}
+\]
+
+\vspace{.75in}
+
+Bonus 4: Show by induction
+\[
+\frac{n^n}{e^n} < n!
+\]
+
+\vspace{.75in}
+
+Bonus 5: Show
+\[
+\sum_{n=1}^{\infty} \frac{n^n}{2^{2^n}} < 1
+\]
+
+
+\vspace{.75in}
+
+Bonus 6: Show
+\[
+n^{n^2} \in O(2^{2^n})
+\]
+
+\end{document}

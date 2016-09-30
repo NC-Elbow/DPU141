@@ -1,0 +1,235 @@
+\documentclass[16 pt]{amsart}
+\usepackage{amscd,amsmath,amsthm,amssymb}
+\usepackage{enumerate,varioref}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{svg}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\lh}{\lim_{h\rightarrow 0}}
+\begin{document}
+
+\title{Homework 1 Maths 140 Winter 2015}
+\maketitle 
+
+
+3.3.24. Use laws of negation to derive the following rules:
+a.
+
+\[
+\sim (\forall x \in D ( \forall y \in E (P(x,y))) \equiv \exists x\in D (\exists y\in E( \sim P(x,y)))
+\]
+
+\vspace{1in}
+
+Solution: As we've seen, negation flips $\forall$ with $\exists$ and changes the places of `such that' with the comma. So 
+
+\[
+\sim (\forall x \in D ( \forall y \in E (P(x,y))) 
+\]
+needs $\exists x\in D$ and then $\exists y\in E$ and the simple negation $\sim P(x,y)$
+
+which gives the result
+\[
+\exists x\in D (\exists y\in E( \sim P(x,y)))
+\]
+
+\vspace{1in}
+
+b.
+\[
+\sim (\exists x\in D ( \exists y\in E( P(x,y))) \equiv \forall x\in D(\forall y\in E (\sim P(x,y)))
+\]
+
+
+\vspace{1in}
+
+Solution:  Taking our rules from before
+
+\[
+\sim (\exists x\in D ( \exists y\in E( P(x,y))) 
+\]
+
+becomes
+\[
+\forall x\in D (\exists y\in E, (\sim P(x,y)))
+\]
+
+
+\newpage
+
+
+4.3.29. For all $a,b$ if $a|b$ then $a^2|b^2$
+
+\vspace{1in}
+
+Solution: Beginning with the hypothesis $a|b$ we see $\exists k \in \mathbb{Z}$ so that $b = ka.$
+Therefore
+\[
+b^2 = (ka)^2 = k^2 a^2 \implies a^2 | b^2
+\]
+ 
+since $k\in\Z$ and integers are closed under multiplication $k^2\in\Z$ and so $a^2$ divides $b^2.$
+
+
+
+\newpage
+
+4.3.41.How many zeroes are at the end of $45^8 \times 88^5$?
+
+
+\vspace{1in}
+
+Solution: We should observe that when can count the number of zeroes at the end of a number by writing a number in the form
+\[
+\text{Thing not divisible by ten} \times 10^n
+\]
+
+Then $n$ will be the number of zeroes at the end of the number.  So we should simply write $45^8 \times 88^5$ in it's prime factorization and then collect tens.
+
+\[
+45^8 \times 88^5 = (3\cdot 3\cdot 5)^8 \cdot (2\cdot 2\cdot 2\cdot 11)^5 = 2^{15}3^{16}5^8 11^5 = 2^{7}3^{16}11^5 (2\cdot 5)^8
+\]
+
+Since we have $1o^8$ in this number and no other divisors of ten, this number ends in eight zeroes.
+
+
+\newpage
+
+4.3.47. Observe that 
+\begin{eqnarray*}
+7524 &=& 7 \cdot 1000 + 5\cdot 100 + 2\cdot 10 + 4\\
+        &=& 7\cdot(999+1) + 5 ...\\
+&=& \text{an integer divisible by } 9 + (7+5+2+4)
+\end{eqnarray*}
+
+Generalize this to any number.
+
+\vspace{1in}
+
+Solution: We start with the recollection of the additive property of divisibility, that is:
+\[
+(a|b) \wedge (a|c) \implies a|(b+c)
+\]
+
+
+In practice this means:
+\[
+9 | b  \leftrightarrow 9 | (9k + b)
+\]
+
+So adding any multiple of 9 to $b$ does not change the divisibilty.
+
+Here are some examples:
+\[
+9 | 18  \implies 9 | (18+999)
+\]
+More explicitly
+\[
+\forall n\geq 0, \hspace{.1in} 9 | (10^n -1).
+\]
+
+Now recalling the multiplicative property of divisibility:
+\[
+\forall c\in\Z, (a|b) \rightarrow (a|bc).
+\]
+
+So the practical implication is that
+\[
+a | b  \implies a|(10^n\cdot b)
+\]
+
+And in the case of nines we can write any number as
+\[
+d_nd_{n-1}d_{n-2}\dots d_1d_0 = d_n\cdot 10^n + \cdots + d_1\cdot 10 + d_0
+\]
+
+Since $9|d_n \leftrightarrow 9|10^n d_n$ we have
+\[
+9|(\sum_{k=0}^{n} d_k\cdot 10^k) \longleftrightarrow 9| (\sum_{k=0}^{n} d_k)
+\]
+
+Which is the result we wished to show.
+
+
+\newpage
+
+4.4.37: The square of any integer is of the form $4k$ or $4k+1.$
+
+
+\vspace{1in}
+
+
+Solution: Here, we will use a proof by division into classes.
+The statement $r=$`is of the form $4k$ or $4k+1$' is our conclusion.
+So we let\\
+ $p=$ `$n$ is an even integer,'\\
+  and\\ 
+  $q= `n$ is an odd integer.'
+
+We will show
+\begin{center}
+$p\vee q$\\
+$p\rightarrow r$\\
+$q\rightarrow r$\\
+$\therefore r$
+\end{center}
+
+All integers are even or odd, therefore $p\vee q$ is true.
+Let's check the case when $n$ is even.\\
+Since $n$ is even $\exists \ell\in\mathbb{Z}$ s.t. $n=2\ell$.\\
+\[
+n^2 = (2\ell)^2 = 4\ell^2 = 4 (k) 
+\]
+where $k=\ell^2$. So we have shown $p\rightarrow r$.\\
+
+Now let's check when $n$ is odd.\\
+Since $n$ is odd, $\exists j\in\Z$ s.t. $n=2j+1.$
+
+\[
+n^2 = (2j+1)^2 = 4j^2+4j+1 = 4(j^2+j) + 1 = 4k+1
+\]
+where $k=(j^2+j)$.  So we have shown $q\rightarrow r$.
+Thus the overall statment is true.
+
+
+
+\newpage
+
+4.4.38. For any integer $n$ then $n^2+5$ is not divisible by 4.
+
+\vspace{1in}
+
+Solution: Let's again check this for even and odd integers.\\
+
+When $n$ is even, there is some integer $k$ so that $n=2k$.
+\[
+n^2 + 5 = (2k)^2 + 5 = 4k^2 + 5 = 4(k^2+1) + 1.
+\]
+
+Clearly this is not divisible by 4, since there is a remainder of 1.\\
+
+Now let's check when $n$ is odd.  Since $n$ is odd, we have some integer $\ell$ so that $n=2\ell+1$.
+
+\[
+n^2+5 = 4\ell^2 + 4\ell + 1+ 5 = 4(\ell^2+ \ell + 1) + 2
+\]
+Again, this is not divisible by four because we have a remainder of two.
+
+
+
+
+\end{document}
